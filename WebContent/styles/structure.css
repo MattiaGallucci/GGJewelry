@@ -1,18 +1,25 @@
 @charset "ISO-8859-1";
 
 .header {
+	top: 0; /* Posiziona l'header in cima */
+	left: 0;
+    width: 100%; /* L'header occupa l'intera larghezza della pagina */
 	height: 100px; /* Imposta l'altezza desiderata */
 	padding: 5px 10px; /* Riduci il padding */
 	background-color: red;
 	overflow: hidden;
+	position: fixed;
 }
 
 .header .logo {
 	display: block; /* Assicurati che l'immagine sia un blocco */
-	margin: 0 auto;
-	/* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
+	margin: 0 auto; /* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
 }
 
 h1 {
 	margin-top: 20px; /* Aggiungi margine superiore */
+}
+
+body {
+    padding-top: 100px; /* Aggiungi spazio di compensazione in cima alla pagina */
 }

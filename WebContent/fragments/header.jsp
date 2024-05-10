@@ -4,6 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="styles/structure.css">
+<meta charset="ISO-8859-1">
 </head>
 <header>
 	<div class="header">

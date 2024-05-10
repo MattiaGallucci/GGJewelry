@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+@font-face{
+	font-family: "Proxima";
+	src: url("../Proxima-Nova-Regular.woff");
+}
+
 .header {
 	top: 0; /* Posiziona l'header in cima */
 	left: 0;
@@ -16,10 +21,41 @@
 	margin: 0 auto; /* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
 }
 
+.footer{
+    position: fixed; /* Fissa il footer */
+    bottom: 0; /* Posiziona il footer in basso */
+    width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
+    background-color: red; /* Colore di sfondo rosso */
+    padding: 10px; /* Padding interno per lo spazio */
+    text-align: center; /* Allinea il testo al centro */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi un'ombra leggera per distinguere il footer */
+}
+
+.row{
+	background-color: red;
+}
+
 h1 {
+	font-family: Proxima;
 	margin-top: 20px; /* Aggiungi margine superiore */
 }
 
 body {
+	color: black;
+	font-family: Proxima;
     padding-top: 100px; /* Aggiungi spazio di compensazione in cima alla pagina */
+}
+
+.col{
+  float: left;
+  width: 33.33%;
+  padding: 16px;
+  border-color: red;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  border-color: red;
 }

@@ -8,6 +8,6 @@
 </head>
 <body>
 <%@ include file="../fragments/header.jsp"%>
-<h1>PROVA HOME</h1>
+<h1>PROVA REDIRECT</h1>
 </body>
 </html>

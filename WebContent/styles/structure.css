@@ -1,14 +1,14 @@
 @charset "ISO-8859-1";
 
-@font-face{
+@font-face {
 	font-family: "Proxima";
 	src: url("../Proxima-Nova-Regular.woff");
 }
 
-.header {
+header {
 	top: 0; /* Posiziona l'header in cima */
 	left: 0;
-    width: 100%; /* L'header occupa l'intera larghezza della pagina */
+	width: 100%; /* L'header occupa l'intera larghezza della pagina */
 	height: 100px; /* Imposta l'altezza desiderata */
 	padding: 5px 10px; /* Riduci il padding */
 	background-color: black;
@@ -16,27 +16,47 @@
 	position: fixed;
 }
 
-footer {
-   width: 100%;
-  background-color: blue;
-}
-
 .header .logo {
 	display: block; /* Assicurati che l'immagine sia un blocco */
 	margin: 0 auto; /* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
 }
 
-.footer{
-    position: fixed; /* Fissa il footer */
-    bottom: 0; /* Posiziona il footer in basso */
-    width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
-    padding: 10px; /* Padding interno per lo spazio */
-    text-align: center; /* Allinea il testo al centro */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi un'ombra leggera per distinguere il footer */
+footer {
+	width: 100%;
+	background-color: blue;
 }
 
-.row{
+.footer {
+	position: fixed; /* Fissa il footer */
+	bottom: 0; /* Posiziona il footer in basso */
+	width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
+	padding: 10px; /* Padding interno per lo spazio */
+	text-align: center; /* Allinea il testo al centro */
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi un'ombra leggera per distinguere il footer */
+}
+
+.row {
 	background-color: green;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+	border-color: red;
+}
+
+.col {
+	float: left;
+	width: 33.33%;
+	padding: 16px;
+	border-color: red;
+}
+
+body {
+	color: black;
+	font-family: Proxima;
+	padding-top: 100px; /* Aggiungi spazio di compensazione in cima alla pagina */
 }
 
 h1 {
@@ -44,22 +64,29 @@ h1 {
 	margin-top: 20px; /* Aggiungi margine superiore */
 }
 
-body {
-	color: black;
-	font-family: Proxima;
-    padding-top: 100px; /* Aggiungi spazio di compensazione in cima alla pagina */
+nav{
+	background-color: yellow;
+	margin: 10px 10px 0px 10px;
+	position: fixed;
 }
 
-.col{
-  float: left;
-  width: 33.33%;
-  padding: 16px;
-  border-color: red;
+nav ul{
+	margin: 0px;
+	list-style-type: none;
+	padding: 5px 0px 5px 0px;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-  border-color: red;
+nav ul li{
+	display: inline;
+	padding: 5px 10px 5px 10px;
+}
+
+nav ul li a:link, nav ul li a:visited, nav ul li a:hover{
+	color: #954b4b;
+	border-bottom: none;
+	font-weight: bold;
+}
+
+nav ul.selected{
+	background-color: #c8b99c;
 }

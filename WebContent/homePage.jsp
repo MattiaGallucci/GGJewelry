@@ -9,6 +9,15 @@
 </head>
 <body>
 	<%@ include file="../fragments/header.jsp"%>
+	<nav>
+		<ul>
+			<li>HOME</a></li>
+			<li>BLOG</a></li>
+			<li>INVENTIONS</a></li>
+			<li>RECIPES</li>
+			<li>LOCATIONS</li>
+		</ul>
+	</nav>
 	<h1>PROVA HOME</h1>
 	<p>prova font</p>
 	

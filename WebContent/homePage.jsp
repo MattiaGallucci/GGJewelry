@@ -10,6 +10,10 @@
 <body>
 	<%@ include file="../fragments/header.jsp"%>
 	
+	<video id="video" autoplay muted loop>
+	<source src="videos/diamonds.mp4" type="video/mp4">
+	</video>
+	
 	<h1>PROVA HOME</h1>
 	<p>prova font</p>
 	

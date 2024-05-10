@@ -8,14 +8,18 @@
 </head>
 <header>
 	<div class="header">
+		<a href="homePage.jsp">
 		<img alt="logo" src="images/logo.png" class="logo" width="100" height="100">
+		</a>
 		<nav>
 		<ul>
 			<li><a href="prova.jsp">Prova</a></li>
-			<li>BLOG</li>
-			<li>INVENTIONS</li>
-			<li>RECIPES</li>
-			<li>LOCATIONS</li>
+			<li>Anelli</li>
+			<li>Collane</li>
+			<li>Bracciali</li>
+			<li>Orecchini</li>
+			<li>Orologi</li>
+			<li>Pendenti</li>
 		</ul>
 	</nav>
 	</div>

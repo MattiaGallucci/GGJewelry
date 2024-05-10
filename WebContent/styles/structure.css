@@ -16,7 +16,7 @@ header {
 	position: fixed;
 }
 
-.header .logo {
+.logo {
 	display: block; /* Assicurati che l'immagine sia un blocco */
 	margin: 0 auto; /* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
 }
@@ -64,10 +64,21 @@ h1 {
 	margin-top: 20px; /* Aggiungi margine superiore */
 }
 
+#video {
+    width: 100%; /* Il video si allungherà fino alla lunghezza della finestra */
+    height: 350px; /* L'altezza del video sarà ridotta al 20% dell'altezza della finestra */
+    object-fit: cover; /* Mantiene il video centrato e taglia le parti in eccesso */
+}
+
 nav{
-	background-color: yellow;
-	margin: 10px 10px 0px 10px;
-	position: fixed;
+	background-color: yellow; /* Colore di sfondo della barra di navigazione */
+    position: fixed; /* Mantiene la barra di navigazione fissa */
+    top: 100px; /* Posiziona la barra di navigazione subito sotto l'header */
+    width: 100%; /* Larghezza della barra di navigazione uguale alla larghezza della pagina */
+    margin: 0 auto; /* Centra la barra di navigazione orizzontalmente */
+    left: 0;
+    text-align: center; /* Allinea il contenuto di nav al centro */
+    padding: 10px 0; /* Aggiungi padding superiore e inferiore */
 }
 
 nav ul{
@@ -78,7 +89,7 @@ nav ul{
 
 nav ul li{
 	display: inline;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 100px 5px 10px;
 }
 
 nav ul li a:link, nav ul li a:visited, nav ul li a:hover{
@@ -89,4 +100,8 @@ nav ul li a:link, nav ul li a:visited, nav ul li a:hover{
 
 nav ul.selected{
 	background-color: #c8b99c;
+}
+
+#video {
+	z-index: -1;
 }

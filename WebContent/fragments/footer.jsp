@@ -35,7 +35,7 @@
   </div>
   </div>
   
-  <p align="center">G&amp;G Jewelry</p>
+  <p align="center">&#169; G&amp;G Jewelry</p>
   <br>
 </footer>
 </html>

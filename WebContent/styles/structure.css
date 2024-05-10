@@ -11,9 +11,14 @@
     width: 100%; /* L'header occupa l'intera larghezza della pagina */
 	height: 100px; /* Imposta l'altezza desiderata */
 	padding: 5px 10px; /* Riduci il padding */
-	background-color: red;
+	background-color: black;
 	overflow: hidden;
 	position: fixed;
+}
+
+footer {
+   width: 100%;
+  background-color: blue;
 }
 
 .header .logo {
@@ -25,14 +30,13 @@
     position: fixed; /* Fissa il footer */
     bottom: 0; /* Posiziona il footer in basso */
     width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
-    background-color: red; /* Colore di sfondo rosso */
     padding: 10px; /* Padding interno per lo spazio */
     text-align: center; /* Allinea il testo al centro */
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi un'ombra leggera per distinguere il footer */
 }
 
 .row{
-	background-color: red;
+	background-color: green;
 }
 
 h1 {

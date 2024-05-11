@@ -5,15 +5,17 @@
 	src: url("../Proxima-Nova-Regular.woff");
 }
 
-header {
+
+.header {
 	top: 0; /* Posiziona l'header in cima */
 	left: 0;
 	width: 100%; /* L'header occupa l'intera larghezza della pagina */
-	height: 100px; /* Imposta l'altezza desiderata */
-	padding: 5px 10px; /* Riduci il padding */
+	height: auto; /* Imposta l'altezza desiderata */
+	padding: 5px; /* Riduci il padding */
 	background-color: black;
-	overflow: hidden;
 	position: fixed;
+	z-index: 1;
+	margin: 0 auto;
 }
 
 .logo {
@@ -32,7 +34,6 @@ footer {
 	width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
 	padding: 10px; /* Padding interno per lo spazio */
 	text-align: center; /* Allinea il testo al centro */
-	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi un'ombra leggera per distinguere il footer */
 }
 
 .row {
@@ -70,15 +71,15 @@ h1 {
     object-fit: cover; /* Mantiene il video centrato e taglia le parti in eccesso */
 }
 
-nav{
+.nav{
 	background-color: yellow; /* Colore di sfondo della barra di navigazione */
     position: fixed; /* Mantiene la barra di navigazione fissa */
-    top: 100px; /* Posiziona la barra di navigazione subito sotto l'header */
     width: 100%; /* Larghezza della barra di navigazione uguale alla larghezza della pagina */
     margin: 0 auto; /* Centra la barra di navigazione orizzontalmente */
     left: 0;
     text-align: center; /* Allinea il contenuto di nav al centro */
     padding: 10px 0; /* Aggiungi padding superiore e inferiore */
+    z-index: 2;
 }
 
 nav ul{
@@ -90,12 +91,15 @@ nav ul{
 nav ul li{
 	display: inline;
 	padding: 5px 100px 5px 10px;
+	color: #08111f;
+	font-size: small;
+	
 }
 
 nav ul li a:link, nav ul li a:visited, nav ul li a:hover{
-	color: #954b4b;
+	color: #08111f;;
 	border-bottom: none;
-	font-weight: bold;
+	text-decoration: none;
 }
 
 nav ul.selected{
@@ -104,4 +108,27 @@ nav ul.selected{
 
 #video {
 	z-index: -1;
+}
+
+.lista{
+	background-color: purple;
+	width: 100%;
+	height: auto;
+	margin: auto auto;
+	padding: 0 50px;
+	display: flex;
+    flex-wrap: wrap; /* Per gestire il wrap degli elementi */
+}
+
+.elemento{
+	background-color: green;
+	display: inline-block; /* Per far sì che l'elemento si adatti alla larghezza del contenuto */
+    text-align: center; /* Centra il contenuto all'interno dell'elemento */
+    margin: 0 15px 0 0; /* Aggiunge spazio tra gli elementi */
+}
+
+.categoria{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

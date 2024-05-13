@@ -126,9 +126,3 @@ nav ul.selected{
     text-align: center; /* Centra il contenuto all'interno dell'elemento */
     margin: 0 15px 0 0; /* Aggiunge spazio tra gli elementi */
 }
-
-.categoria{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}

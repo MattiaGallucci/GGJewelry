@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="initial-scale=1, width=device-width">
 <title>G&amp;G Jewelry</title>
 <link rel="stylesheet" type="text/css" href="./css/structure.css">
 <link rel="icon" href="images/logo.png">
@@ -20,56 +21,44 @@
 	<div class="lista">
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
 				<img alt="prova" src="images/logo.png" width="150">
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
 				<img alt="prova" src="images/logo.png" width="150">
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
 				<img alt="prova" src="images/logo.png" width="150">
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
 				<img alt="prova" src="images/logo.png" width="150">
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
 				<img alt="prova" src="images/logo.png" width="150">
 			</div>
-			<div class="categoria">
-				<p>Collane</p>
-			</div>
+			<span>Collane</span>
 		</div>
 		
 	</div>

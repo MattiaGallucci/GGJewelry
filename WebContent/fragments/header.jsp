@@ -10,8 +10,8 @@
 	<div class="header">
 		<img alt="logo" src="images/logo.png" class="logo" width="75" usemap="#home">
 		<map name="home">
-					<area shape="rect" coords="0, 0, 100, 100" href="homePage.jsp">
-				</map>
+			<area shape="rect" coords="0, 0, 100, 100" href="homePage.jsp">
+		</map>
 	</div>
 	<div class="nav">
 		<nav>

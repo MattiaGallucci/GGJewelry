@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>G&amp;G Jewelry</title>
 <link rel="stylesheet" type="text/css" href="./css/structure.css">
+<link rel="icon" href="images/logo.png">
 </head>
 <body>
 	<%@ include file="../fragments/header.jsp"%>

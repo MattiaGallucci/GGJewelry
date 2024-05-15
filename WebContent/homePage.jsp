@@ -28,35 +28,35 @@
 		
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
 			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
 			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
 			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
 			<span>Collane</span>
 		</div>
 		
 		<div class="elemento">
 			<div class="immagine">
-				<img alt="prova" src="images/logo.png" width="150">
+				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
 			</div>
 			<span>Collane</span>
 		</div>

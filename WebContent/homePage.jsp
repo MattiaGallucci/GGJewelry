@@ -12,67 +12,50 @@
 <body>
 	<%@ include file="../fragments/header.jsp"%>
 
-	<div>
+	<div class="video">
 		<video id="video" autoplay muted loop>
 			<source src="videos/diamonds.mp4" type="video/mp4">
 		</video>
 	</div>
 
 	<div class="lista">
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+		<div class="wrapper">
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
-		</div>
-		
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
-		</div>
-		
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
-		</div>
-		
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
-		</div>
-		
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
-		</div>
-		
-		<div class="elemento">
-			<div class="immagine">
-				<a href="prova.jsp"><img alt="prova" src="images/logo.png" width="150"></a>
+			<div class="elemento">
+				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
 			</div>
-			<span>Collane</span>
 		</div>
-		
 	</div>
+	
 
-	<p>
-		prova lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-		lunghezza <br>prova lunghezza <br>prova lunghezza <br>
-	</p>
+	<section>
+
+		<p>
+			prova lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
+			lunghezza <br>prova lunghezza <br>prova lunghezza <br>
+		</p>
+	</section>
+
 
 	<%@include file="../fragments/footer.jsp"%>
 </body>

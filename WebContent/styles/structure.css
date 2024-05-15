@@ -5,58 +5,65 @@
 	src: url("../Proxima-Nova-Regular.woff");
 }
 
-.header {
-	top: 0; /* Posiziona l'header in cima */
-	left: 0;
-	width: 100%; /* L'header occupa l'intera larghezza della pagina */
-	height: auto; /* Imposta l'altezza desiderata */
-	padding: 5px; /* Riduci il padding */
-	background-color: black;
-	position: fixed;
-	z-index: 1;
-	margin: 0 auto;
-}
-
-.logo {
-	display: block; /* Assicurati che l'immagine sia un blocco */
-	margin: 0 auto; /* Azzera i margini sopra e sotto, e centra l'immagine orizzontalmente */
-}
-
-footer {
-	width: 100%;
+header, footer{
+	padding: 0;
 	background-color: blue;
+	margin: auto;
+	float: l
 }
 
-.footer {
-	position: fixed; /* Fissa il footer */
-	bottom: 0; /* Posiziona il footer in basso */
-	width: 100%; /* Larghezza del footer uguale alla larghezza della pagina */
-	padding: 10px; /* Padding interno per lo spazio */
-	text-align: center; /* Allinea il testo al centro */
+header{
+	top: 0px;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 
-.row {
-	background-color: green;
+.top{
+	background-color: red;
+	height: 15%;
+	width: auto;
+	margin-bottom: 0px;
 }
 
-.row:after {
-	content: "";
-	display: table;
-	clear: both;
-	border-color: red;
+.logo{
+	width: 75px;
+	margin: auto;
 }
 
-.col {
-	float: left;
-	width: 33.33%;
-	padding: 16px;
-	border-color: red;
+nav{
+	background-color: yellow;
+	margin-top: 0px;
+}
+
+nav ul{
+	margin: 0px;
+	margin-left: auto;
+	list-style-type: none;
+	padding: 5px 0px 5px 0px;
+}
+
+nav ul li{
+	display: inline;
+	padding: 5px 10px 5px 10px;
+	margin: auto;
+}
+
+a{
+	text-decoration: none;
 }
 
 body {
 	color: black;
 	font-family: Proxima;
-	padding-top: 100px; /* Aggiungi spazio di compensazione in cima alla pagina */
+	max-width: 100%;
+	background-color: fuchsia;
+}
+
+section{
+	width: 40%;
+	margin: auto;
+	background-color: blue;
 }
 
 h1 {
@@ -68,60 +75,22 @@ h1 {
     width: 100%; /* Il video si allungherà fino alla lunghezza della finestra */
     height: 350px; /* L'altezza del video sarà ridotta al 20% dell'altezza della finestra */
     object-fit: cover; /* Mantiene il video centrato e taglia le parti in eccesso */
-}
-
-.nav{
-	background-color: yellow; /* Colore di sfondo della barra di navigazione */
-    position: fixed; /* Mantiene la barra di navigazione fissa */
-    width: 100%; /* Larghezza della barra di navigazione uguale alla larghezza della pagina */
-    margin: 0 auto; /* Centra la barra di navigazione orizzontalmente */
-    left: 0;
-    text-align: center; /* Allinea il contenuto di nav al centro */
-    padding: 10px 0; /* Aggiungi padding superiore e inferiore */
-    z-index: 2;
-}
-
-nav ul{
-	margin: 0px;
-	list-style-type: none;
-	padding: 5px 0px 5px 0px;
-}
-
-nav ul li{
-	display: inline;
-	padding: 5px 100px 5px 10px;
-	color: #08111f;
-	font-size: small;
-	
-}
-
-nav ul li a:link, nav ul li a:visited, nav ul li a:hover{
-	color: #08111f;;
-	border-bottom: none;
-	text-decoration: none;
-}
-
-nav ul.selected{
-	background-color: #c8b99c;
-}
-
-#video {
 	z-index: -1;
+}
+
+.video{
+	margin-top: 0px;
 }
 
 .lista{
 	background-color: purple;
+	float: left;
 	width: 100%;
-	height: auto;
-	margin: auto auto;
-	padding: 0 50px;
-	display: flex;
-    flex-wrap: wrap; /* Per gestire il wrap degli elementi */
+	margin-top: 60px;
 }
 
 .elemento{
-	background-color: green;
-	display: inline-block; /* Per far sì che l'elemento si adatti alla larghezza del contenuto */
-    text-align: center; /* Centra il contenuto all'interno dell'elemento */
-    margin: 0 15px 0 0; /* Aggiunge spazio tra gli elementi */
+	text-align: center;
+	float: left;
+	margin-right: 3.15%;
 }

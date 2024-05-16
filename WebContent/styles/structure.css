@@ -5,92 +5,90 @@
 	src: url("../Proxima-Nova-Regular.woff");
 }
 
-header, footer{
-	padding: 0;
-	background-color: blue;
+body {
+	font-family: Proxima;
+	max-width: 1500px;
 	margin: auto;
-	float: l
+	background-color: fuchsia;
 }
 
-header{
-	top: 0px;
-	position: fixed;
+
+#header{
 	width: 100%;
-	z-index: 1;
-}
-
-.top{
+	margin: 0 auto;
 	background-color: red;
-	height: 15%;
-	width: auto;
-	margin-bottom: 0px;
 }
 
-.logo{
+#logo{
 	width: 75px;
 	margin: auto;
 }
 
-nav{
-	background-color: yellow;
-	margin-top: 0px;
-}
-
-nav ul{
-	margin: 0px;
-	margin-left: auto;
-	list-style-type: none;
-	padding: 5px 0px 5px 0px;
-}
-
-nav ul li{
-	display: inline;
-	padding: 5px 10px 5px 10px;
-	margin: auto;
-}
-
-a{
-	text-decoration: none;
-}
-
-body {
-	color: black;
-	font-family: Proxima;
-	max-width: 100%;
-	background-color: fuchsia;
-}
-
-section{
-	width: 40%;
-	margin: auto;
+#nav{
 	background-color: blue;
+	padding: 7.5px 0px;
 }
 
-h1 {
-	font-family: Proxima;
-	margin-top: 20px; /* Aggiungi margine superiore */
+#nav ul {
+	list-style-type: none;
+	margin: auto;
+}
+
+#nav ul li{
+	display: inline;
+	
 }
 
 #video {
     width: 100%; /* Il video si allungherà fino alla lunghezza della finestra */
     height: 350px; /* L'altezza del video sarà ridotta al 20% dell'altezza della finestra */
     object-fit: cover; /* Mantiene il video centrato e taglia le parti in eccesso */
-	z-index: -1;
 }
 
-.video{
-	margin-top: 0px;
+#lista{
+	margin: auto;
+	background-color: green;
+	
 }
 
-.lista{
-	background-color: purple;
-	float: left;
-	width: 100%;
-	margin-top: 60px;
+#wrapper{
+	width: 75%;
+	margin: auto;
+	background-color: yellow;
 }
 
 .elemento{
-	text-align: center;
-	float: left;
-	margin-right: 3.15%;
+	display: inline-block;
+	margin: 0 6.25%;
+	background-color: red;
+}
+
+span{
+	justify-content: center;
+	display: block;
+}
+
+.categoria{
+	display: flex;
+	justify-content: space-between;
+	background-color: blue;
+}
+
+.parole{
+	margin: auto;
+}
+
+.nomeCategoria{
+	margin: auto;
+	font-size: 75px;
+}
+
+.linkShop{
+	margin: auto;
+	display: flex;
+	align-content: center;
+}
+
+.image{
+	float: right;
 }

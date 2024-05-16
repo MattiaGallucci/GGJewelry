@@ -12,51 +12,68 @@
 <body>
 	<%@ include file="../fragments/header.jsp"%>
 
-	<div class="video">
+	<div>
 		<video id="video" autoplay muted loop>
 			<source src="videos/diamonds.mp4" type="video/mp4">
 		</video>
 	</div>
 
-	<div class="lista">
-		<div class="wrapper">
+	<section id="lista">
+		<div id="wrapper">
 			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
+				<a href=""><img alt="logo" src="images/logo.png" width="75"></a>
+				<a href=""><span>PROVA</span></a>
 			</div>
 			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
+				<a href=""><img alt="logo" src="images/logo.png" width="75"></a>
+				<a href=""><span>PROVA</span></a>
 			</div>
 			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
+				<a href=""><img alt="logo" src="images/logo.png" width="75"></a>
+				<a href=""><span>PROVA</span></a>
 			</div>
 			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
-			</div>
-			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
-			</div>
-			<div class="elemento">
-				<img alt="logo" src="images/logo.png" width="100"> <span>ELEMENTO</span>
+				<a href=""><img alt="logo" src="images/logo.png" width="75"></a>
+				<a href=""><span>PROVA</span></a>
 			</div>
 		</div>
-	</div>
+	</section>
 	
-
-	<section>
-
-		<p>
-			prova lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>prova
-			lunghezza <br>prova lunghezza <br>prova lunghezza <br>
-		</p>
+	<section id="main">
+		<div id="anelli">
+			<div class="categoria">
+				<div class="parole">
+					<h1 class="nomeCategoria">ANELLI</h1>
+					<a href=""><span class="linkShop">Compra anelli</span></a>
+				</div>
+				<div class="image">
+					<img alt="anelli" src="images/categoria-anelli.webp" width="550">
+				</div>
+			</div>
+			
+			<div class="prodottiWrapper">
+				<div class="prodotto">
+					<span>ANELLO 1</span>
+					<span>ANELLO 2</span>
+					<span>ANELLO 3</span>
+				</div>
+			</div>
+		</div>
+		
+		<div id="anelli">
+			<div class="categoria">
+				<div class="parole">
+					<h1 class="nomeCategoria">ANELLI</h1>
+					<a href=""><span class="linkShop">Compra anelli</span></a>
+				</div>
+				<div class="image">
+					<img alt="anelli" src="images/categoria-anelli.webp" width="550">
+				</div>
+			</div>
+		</div>
+		
+		
 	</section>
 
-
-	<%@include file="../fragments/footer.jsp"%>
 </body>
 </html>

@@ -7,23 +7,20 @@
 <meta charset="ISO-8859-1">
 </head>
 <header>
-	<div class="top">
-		<div class="logo">
+	<section id="header">
+		<div id="logo">
 			<a href="homePage.jsp"><img alt="logo" src="images/logo.png" width="75"></a>
 		</div>
-	</div>
-	<div class="menu">
-		<nav>
+	</section>
+	<section id="nav">
 		<ul>
-			<li><a href="prova.jsp">PROVA</a></li>
-			<li>ANELLI</li>
-			<li>COLLANE</li>
-			<li>BRACCIALI</li>
-			<li>ORECCHINI</li>
-			<li>OROLOGI</li>
-			<li>PENDENTI</li>
+			<li><a href="">PROVA</a></li>
+			<li><a href="">PROVA</a></li>
+			<li><a href="">PROVA</a></li>
+			<li><a href="">PROVA</a></li>
+			<li><a href="">PROVA</a></li>
+			<li><a href="">PROVA</a></li>
 		</ul>
-	</nav>
-	</div>
+	</section>
 </header>
 </html>

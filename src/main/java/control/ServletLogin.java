@@ -21,37 +21,8 @@ public class ServletLogin extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		List<String> errors = new ArrayList<>();
-    	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("loginPage.jsp");
-
-		if(username == null || username.trim().isEmpty()) {
-			errors.add("Il campo username non può essere vuoto!");
-		}
-        if(password == null || password.trim().isEmpty()) {
-        	errors.add("Il campo password non può essere vuoto!");
-		}
-        if (!errors.isEmpty()) {
-        	request.setAttribute("errors", errors);
-        	dispatcherToLoginPage.forward(request, response);
-        	return; // note the return statement here!!!
-        }
-        
-        username = username.trim();
-        password = password.trim();
-		
-		if(username.equals("admin") && password.equals("mypass")){ //admin
-			request.getSession().setAttribute("isAdmin", Boolean.TRUE); //inserisco il token nella sessione
-			response.sendRedirect("homePage.jsp");
-		} else if (username.equals("user") && password.equals("mypass")){ //user
-			request.getSession().setAttribute("isAdmin", Boolean.FALSE); //inserisco il token nella sessione
-			response.sendRedirect("homePage.jsp");
-		} else {
-			errors.add("Username o password non validi!");
-			request.setAttribute("errors", errors);
-			dispatcherToLoginPage.forward(request, response);
-		}
+		String utente = (String) request.getSession().getAttribute("utente");
+		boolean admin = (boolean) request.getSession().getAttribute("admin");
 	}
 
 	

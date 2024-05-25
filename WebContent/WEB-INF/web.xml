@@ -35,6 +35,7 @@
 			<param-value>DENY</param-value>
 		</init-param>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>httpHeaderSecurity</filter-name>
 		<url-pattern>/*</url-pattern>

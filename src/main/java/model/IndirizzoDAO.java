@@ -125,7 +125,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
     }
 
     // Recupera tutti gli indirizzi dal database, con un ordine specifico se necessario
-    public synchronized List<IndirizzoBean> doRetrieveAll(String order) throws SQLException {
+    public synchronized List<IndirizzoBean> doRetrieveAll() throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         List<IndirizzoBean> indirizzi = new ArrayList<>();

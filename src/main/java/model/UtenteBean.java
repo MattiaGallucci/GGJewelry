@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class UtenteBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	private String email;
 	private String username;
 	private String password;
 	private String nome;
 	private String cognome;
-	private String email;
 	private boolean admin;
 	
 	public UtenteBean() {
+		this.email = "null";
 		this.username = "null";
 		this.password = "null";
 		this.nome = "null";
 		this.cognome = "null";
-		this.email = "null";
 		this.admin = false;
 	}
 

@@ -33,9 +33,9 @@ id 				int 					NOT NULL AUTO_INCREMENT,
 tipo 			enum('carta','iban')	NOT NULL,
 iban 			char(27) 				DEFAULT NULL,
 numeroCarta 	varchar(19) 			DEFAULT NULL,
-utenteUsername 	varchar(50) 			NOT NULL,
+utenteEmail 	varchar(50) 			NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (utenteUsername) REFERENCES utente(username) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS ordine;
@@ -43,9 +43,9 @@ CREATE TABLE ordine (
 id 				int 			NOT NULL AUTO_INCREMENT,
 data 			date 			NOT NULL,
 costoTotale 	double 			NOT NULL,
-utenteUsername 	varchar(50) 	NOT NULL,
+utenteEmail 	varchar(50) 	NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (utenteUsername) REFERENCES utente(username) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS categoria;

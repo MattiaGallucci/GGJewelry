@@ -27,7 +27,7 @@
             <th>CAP</th>
             <th>Via</th>
             <th>Civico</th>
-            <th>Username Utente</th>
+            <th>Email Utente</th>
         </tr>
         <%
             if (indirizzi != null) {
@@ -40,7 +40,7 @@
             <td><%= indirizzo.getCap() %></td>
             <td><%= indirizzo.getVia() %></td>
             <td><%= indirizzo.getCivico() %></td>
-            <td><%= indirizzo.getUtenteUsername() %></td>
+            <td><%= indirizzo.getUtenteEmail() %></td>
         </tr>
         <%
                 }

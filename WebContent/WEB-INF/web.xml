@@ -11,7 +11,7 @@
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/errorPages/error500.html</location>
+    <location>/errorPages/error500.html</location> 
   </error-page>
   
 </web-app>

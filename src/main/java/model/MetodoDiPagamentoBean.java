@@ -9,13 +9,13 @@ public class MetodoDiPagamentoBean implements Serializable {
 	private String tipo; // enum
 	private String iban;
 	private String numeroCarta;
-	private String utenteUsername;
+	private String utenteEmail;
 
 	public MetodoDiPagamentoBean() {
 		this.id = -1;
 		this.tipo = "null";
 		this.numeroCarta = "null";
-		this.utenteUsername = "null";
+		this.utenteEmail = "null";
 	}
 
 	public int getId() {
@@ -50,12 +50,12 @@ public class MetodoDiPagamentoBean implements Serializable {
 		this.numeroCarta = numeroCarta;
 	}
 
-	public String getUtenteUsername() {
-		return utenteUsername;
+	public String getUtenteEmail() {
+		return utenteEmail;
 	}
 
-	public void setUtenteUsername(String utenteUsername) {
-		this.utenteUsername = utenteUsername;
+	public void setUtenteEmail(String utenteEmail) {
+		this.utenteEmail = utenteEmail;
 	}
 
 	public static long getSerialversionuid() {

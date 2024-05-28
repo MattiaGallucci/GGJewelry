@@ -7,13 +7,13 @@ public class OrdineBean implements Serializable {
     private int id;
     private String data;
     private double costoTotale;
-    private String utenteUsername;
+    private String utenteEmail;
 
     public OrdineBean() {
         this.id = -1;
         this.data = "null";
         this.costoTotale = -1;
-        this.utenteUsername = "null";
+        this.utenteEmail = "null";
     }
 
     public int getId() {
@@ -40,12 +40,12 @@ public class OrdineBean implements Serializable {
         this.costoTotale = costoTotale;
     }
 
-    public String getUtenteUsername() {
-        return utenteUsername;
+    public String getUtenteEmail() {
+        return utenteEmail;
     }
 
-    public void setUtenteUsername(String utenteUsername) {
-        this.utenteUsername = utenteUsername;
+    public void setUtenteEmail(String utenteEmail) {
+        this.utenteEmail = utenteEmail;
     }
 
     public static long getSerialversionuid() {

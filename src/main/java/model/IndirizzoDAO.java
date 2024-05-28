@@ -19,7 +19,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
 
         // Query SQL per inserire un nuovo indirizzo
         String query = "INSERT INTO " + IndirizzoDAO.TABLE_NAME
-                + " (citta, provincia, cap, via, civico, utenteUsername) VALUES (?, ?, ?, ?, ?, ?);";
+                + " (citta, provincia, cap, via, civico, utenteEmail) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
             // Ottieni una connessione dal pool
@@ -32,7 +32,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
             statement.setString(3, bean.getCap());
             statement.setString(4, bean.getVia());
             statement.setString(5, bean.getCivico());
-            statement.setString(6, bean.getUtenteUsername());
+            statement.setString(6, bean.getUtenteEmail());
 
             // Esegui l'aggiornamento
             statement.executeUpdate();
@@ -109,7 +109,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
                 indirizzo.setCap(result.getString("cap"));
                 indirizzo.setVia(result.getString("via"));
                 indirizzo.setCivico(result.getString("civico"));
-                indirizzo.setUtenteUsername(result.getString("utenteUsername"));
+                indirizzo.setUtenteEmail(result.getString("utenteEmail"));
             }
         } finally {
             // Chiudi lo statement e rilascia la connessione
@@ -150,7 +150,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
                 indirizzo.setCap(result.getString("cap"));
                 indirizzo.setVia(result.getString("via"));
                 indirizzo.setCivico(result.getString("civico"));
-                indirizzo.setUtenteUsername(result.getString("utenteUsername"));
+                indirizzo.setUtenteEmail(result.getString("utenteEmail"));
 
                 indirizzi.add(indirizzo);
             }
@@ -175,7 +175,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
 
         // Query SQL per aggiornare un indirizzo
         String query = "UPDATE " + IndirizzoDAO.TABLE_NAME
-                + " SET citta = ?, provincia = ?, cap = ?, via = ?, civico = ? WHERE id = ? AND utenteUsername = ?;";
+                + " SET citta = ?, provincia = ?, cap = ?, via = ?, civico = ? WHERE id = ? AND utenteEmail = ?;";
 
         try {
             // Ottieni una connessione dal pool
@@ -189,7 +189,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
             statement.setString(4, bean.getVia());
             statement.setString(5, bean.getCivico());
             statement.setInt(6, bean.getId());
-            statement.setString(7, bean.getUtenteUsername());
+            statement.setString(7, bean.getUtenteEmail());
 
             // Esegui l'aggiornamento
             result = statement.executeUpdate();
@@ -217,7 +217,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
         List<IndirizzoBean> indirizzi = new ArrayList<>();
 
         // Query SQL per selezionare gli indirizzi di un utente specifico
-        String query = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME + " WHERE utenteUsername = ?;";
+        String query = "SELECT * FROM " + IndirizzoDAO.TABLE_NAME + " WHERE utenteEmail = ?;";
 
         try {
             // Ottieni una connessione dal pool
@@ -237,7 +237,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
                 indirizzo.setCap(result.getString("cap"));
                 indirizzo.setVia(result.getString("via"));
                 indirizzo.setCivico(result.getString("civico"));
-                indirizzo.setUtenteUsername(result.getString("utenteUsername"));
+                indirizzo.setUtenteEmail(result.getString("utenteEmail"));
 
                 indirizzi.add(indirizzo);
             }

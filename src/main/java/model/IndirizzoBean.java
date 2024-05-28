@@ -10,7 +10,7 @@ public class IndirizzoBean implements Serializable{
 	private String cap;
 	private String via;
 	private String civico;
-	private String utenteUsername;
+	private String utenteEmail;
 	
 	public IndirizzoBean() {
 		this.id = -1;
@@ -19,7 +19,7 @@ public class IndirizzoBean implements Serializable{
 		this.cap = "null";
 		this.via = "null";
 		this.civico = "null";
-		this.utenteUsername = "null";
+		this.utenteEmail = "null";
 	}
 
 	public int getId() {
@@ -70,12 +70,12 @@ public class IndirizzoBean implements Serializable{
 		this.civico = civico;
 	}
 
-	public String getUtenteUsername() {
-		return utenteUsername;
+	public String getUtenteEmail() {
+		return utenteEmail;
 	}
 
-	public void setUtenteUsername(String utenteUsername) {
-		this.utenteUsername = utenteUsername;
+	public void setUtenteEmail(String utenteEmail) {
+		this.utenteEmail = utenteEmail;
 	}
 	
 	public static long getSerialversionuid() {

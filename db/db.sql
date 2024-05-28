@@ -22,9 +22,9 @@ provincia 		varchar(10)		NOT NULL,
 cap 			varchar(10) 	NOT NULL,
 via 			varchar(50) 	NOT NULL,
 civico 			varchar(10) 	NOT NULL,
-utenteUsername 	varchar(50) 	NOT NULL,
+utenteEmail 	varchar(50) 	NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY (utenteUsername) REFERENCES utente(username) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS metodoDiPagamento;
@@ -78,11 +78,11 @@ FOREIGN KEY (prodottoId) REFERENCES prodotto(id) ON UPDATE CASCADE ON DELETE CAS
 FOREIGN KEY (ordineId) REFERENCES ordine(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO utente (username, password, nome, cognome, email, admin) VALUES
-('user1', 'password1', 'Mario', 'Rossi', 'mario@example.com', 0),
-('user2', 'password2', 'Luigi', 'Verdi', 'luigi@example.com', 0),
-('admin', 'adminpassword', 'Admin', 'Admin', 'admin@example.com', 1);
+INSERT INTO utente (email, username, password, nome, cognome, admin) VALUES
+('mario@example.com', 'user1', 'password1', 'Mario', 'Rossi', 0),
+('luigi@example.com', 'user2', 'password2', 'Luigi', 'Verdi', 0),
+('admin@example.com', 'admin', 'adminpassword', 'Admin', 'Admin', 1);
 
-INSERT INTO indirizzo (citta, provincia, cap, via, civico, utenteUsername) VALUES
-('Roma', 'RM', '00100', 'Via Roma', '1', 'user1'),
-('Milano', 'MI', '20100', 'Corso Milano', '2', 'user2');
+INSERT INTO indirizzo (citta, provincia, cap, via, civico, utenteEmail) VALUES
+('Roma', 'RM', '00100', 'Via Roma', '1', 'mario@example.com'),
+('Milano', 'MI', '20100', 'Corso Milano', '2', 'luigi@example.com');

@@ -86,3 +86,8 @@ INSERT INTO utente (email, username, password, nome, cognome, admin) VALUES
 INSERT INTO indirizzo (citta, provincia, cap, via, civico, utenteEmail) VALUES
 ('Roma', 'RM', '00100', 'Via Roma', '1', 'mario@example.com'),
 ('Milano', 'MI', '20100', 'Corso Milano', '2', 'luigi@example.com');
+
+INSERT INTO categoria (nome) VALUES
+('Elettronica'),
+('Abbigliamento'),
+('Ufficio');

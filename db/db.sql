@@ -56,7 +56,7 @@ PRIMARY KEY (nome)
 
 DROP TABLE IF EXISTS prodotto;
 CREATE TABLE prodotto (
-id 				varchar(25) 	NOT NULL,
+id 				int 			NOT NULL,
 nome 			varchar(100) 	NOT NULL,
 descrizione 	varchar(500) 	NOT NULL,
 quantita 		int 			NOT NULL,
@@ -70,7 +70,7 @@ FOREIGN KEY (categoriaNome) REFERENCES categoria(nome) ON UPDATE CASCADE ON DELE
 
 DROP TABLE IF EXISTS inserimento;
 CREATE TABLE inserimento (
-prodottoId 	varchar(25) 	NOT NULL,
+prodottoId 	int 			NOT NULL,
 ordineId 	int 			NOT NULL,
 quantita   	int				NOT NULL,
 PRIMARY KEY (prodottoId, ordineId),
@@ -86,3 +86,41 @@ INSERT INTO utente (email, username, password, nome, cognome, admin) VALUES
 INSERT INTO indirizzo (citta, provincia, cap, via, civico, utenteEmail) VALUES
 ('Roma', 'RM', '00100', 'Via Roma', '1', 'mario@example.com'),
 ('Milano', 'MI', '20100', 'Corso Milano', '2', 'luigi@example.com');
+
+INSERT INTO categoria (nome) VALUES
+('Elettronica'),
+('Abbigliamento'),
+('Ufficio');
+
+-- Insert values into 'prodotto' table without the 'immagine' field
+INSERT INTO prodotto (id, nome, descrizione, quantita, costo, sesso, immagine, categoriaNome) VALUES 
+(1, 'T-shirt Uomo', 'T-shirt in cotone di alta qualità', 50, 15.99, 'm', 'images/tshirt_uomo.jpg', 'Abbigliamento'),
+(2, 'Jeans Donna', 'Jeans slim fit', 30, 39.99, 'f', 'images/jeans_donna.jpg', 'Abbigliamento'),
+(3, 'Giacca Uomo', 'Giacca elegante in lana', 15, 99.99, 'm', 'images/giacca_uomo.jpg', 'Abbigliamento'),
+(4, 'Abito Donna', 'Abito lungo elegante', 10, 79.99, 'f', 'images/abito_donna.jpg', 'Abbigliamento');
+
+-- Insert values into 'ordine' table
+INSERT INTO ordine (data, costoTotale, utenteEmail) VALUES
+('2023-01-10', 1520, 'mario@example.com'),
+('2023-02-15', 40, 'luigi@example.com');
+
+-- Insert values into 'inserimento' table
+INSERT INTO inserimento (prodottoId, ordineId, quantita) VALUES
+(1, 1, 1),
+(2, 1, 1),
+(3, 2, 2);
+
+-- Insert values into 'metodoDiPagamento' table
+INSERT INTO metodoDiPagamento (tipo, iban, numeroCarta, utenteEmail) VALUES
+('iban', 'IT60X0542811101000000123456', NULL, 'mario@example.com'),
+('carta', NULL, '1234-5678-9123-4567', 'mario@example.com'),
+('iban', 'IT60X0542811101000000654321', NULL, 'luigi@example.com'),
+('carta', NULL, '9876-5432-1098-7654', 'luigi@example.com');
+
+-- Popola la tabella 'ordine' con alcuni dati di esempio
+INSERT INTO ordine (data, costoTotale, utenteEmail) VALUES
+('2023-01-10', 1520.00, 'mario@example.com'),
+('2023-02-15', 40.00, 'luigi@example.com'),
+('2023-03-20', 200.00, 'mario@example.com'),
+('2023-04-25', 85.00, 'luigi@example.com'),
+('2023-05-30', 400.00, 'mario@example.com');

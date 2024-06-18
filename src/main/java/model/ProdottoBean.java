@@ -80,7 +80,7 @@ public class ProdottoBean implements Serializable {
         this.immagine = immagine;
     }
 
-    public String categoriaNome() {
+    public String getCategoriaNome() {
         return categoriaNome;
     }
 

@@ -11,7 +11,7 @@ public class ProdottoBean implements Serializable {
     private int costo;
     private String sesso;
     private String immagine;
-    private String categoriaImmagine;
+    private String categoriaNome;
 
     public ProdottoBean() {
         this.id = -1;
@@ -21,7 +21,7 @@ public class ProdottoBean implements Serializable {
         this.costo = -1;
         this.sesso = "null";
         this.immagine = "null";
-        this.categoriaImmagine = "null";
+        this.categoriaNome = "null";
     }
 
     public int getId() {
@@ -80,12 +80,12 @@ public class ProdottoBean implements Serializable {
         this.immagine = immagine;
     }
 
-    public String getCategoriaImmagine() {
-        return categoriaImmagine;
+    public String categoriaNome() {
+        return categoriaNome;
     }
 
-    public void setCategoriaImmagine(String categoriaImmagine) {
-        this.categoriaImmagine = categoriaImmagine;
+    public void setCategoriaNome(String categoriaNome) {
+        this.categoriaNome = categoriaNome;
     }
 
     public static long getSerialversionuid() {

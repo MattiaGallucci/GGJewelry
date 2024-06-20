@@ -1,7 +1,5 @@
 package model;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +23,7 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 			
 			statement.setString(1, bean.getEmail());
 			statement.setString(2, bean.getUsername());
-			statement.setString(3, hashPassword(bean.getPassword()));
+			statement.setString(3, bean.getPassword());
 			statement.setString(4, bean.getNome());
 			statement.setString(5, bean.getCognome());
 			statement.setBoolean(6, bean.isAdmin());
@@ -71,8 +69,8 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 		return result != 0;
 	}
 	
-	@Override
-	public synchronized UtenteBean doRetrieveByKey(String key) throws SQLException {
+	
+	public synchronized UtenteBean doRetrieveByEmail(String key) throws SQLException {
 		Connection con = null;
 		PreparedStatement statement = null;
 		UtenteBean utente = new UtenteBean();
@@ -106,6 +104,41 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 		
 		return utente;
 	
+	}
+	
+	public synchronized UtenteBean doRetrieveByUsername(String key) throws SQLException {
+		Connection con = null;
+		PreparedStatement statement = null;
+		UtenteBean utente = new UtenteBean();
+		
+		String query = "SELECT * FROM " + UtenteDAO.TABLE_NAME + " WHERE username = ?";
+		
+		try {
+			con = DriverManagerConnectionPool.getConnection();
+			statement = con.prepareStatement(query);
+			statement.setString(1, key);
+			
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next()) {
+				utente.setEmail(result.getString("email"));
+				utente.setUsername(result.getString("username"));
+				utente.setPassword(result.getString("password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setAdmin(result.getBoolean("admin"));
+			}
+		} finally {
+			try {
+				if(statement != null) {
+					statement.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(con);
+			}
+		}
+		
+		return utente;
 	}
 	
 	@Override
@@ -242,53 +275,4 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 
 		return alreadyUsed;
 	}
-	
-	public String hashPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes());
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1)
-                    hexString.append('0');
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            // In caso di errore, restituisci la password in chiaro
-            return password;
-        }
-    }
-	
-	public synchronized String retrieveEncryptedPassword(String username) throws SQLException {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        String encryptedPassword = null;
-
-        String selectSQL = "SELECT password FROM " + UtenteDAO.TABLE_NAME + " WHERE username = ?";
-
-        try {
-            connection = DriverManagerConnectionPool.getConnection();
-            statement = connection.prepareStatement(selectSQL);
-            statement.setString(1, username);
-
-            ResultSet result = statement.executeQuery();
-
-            if (result.next()) {
-                encryptedPassword = result.getString("password");
-            }
-        } finally {
-            try {
-                if (statement != null)
-                    statement.close();
-            } finally {
-                if (connection != null)
-                    connection.close();
-            }
-        }
-
-        return encryptedPassword;
-    }
 }

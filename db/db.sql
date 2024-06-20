@@ -79,11 +79,11 @@ FOREIGN KEY (ordineId) REFERENCES ordine(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 INSERT INTO utente (email, username, password, nome, cognome, admin) VALUES
-('mario@example.com', 'user1', SHA2('password1', 256), 'Mario', 'Rossi', 0),
-('luigi@example.com', 'user2', 'password2', 'Luigi', 'Verdi', 0),
-('admin@example.com', 'admin', 'adminpassword', 'Admin', 'Admin', 1),
-("admin@admin.com", "admin1", SHA2("admin", 256), "admin", "admin", 1),
-("mattia@gmail.com", "mattia", SHA2("mattia", 256), "Mattia", "Gallucci", 0);
+('mario@example.com', 'user1', "cGFzc3dvcmQx", 'Mario', 'Rossi', 0),
+('luigi@example.com', 'user2', 'cGFzc3dvcmQy', 'Luigi', 'Verdi', 0),
+('admin@example.com', 'admin', 'YWRtaW5wYXNzd29yZA==', 'Admin', 'Admin', 1),
+("admin@admin.com", "admin1", "YWRtaW4=", "admin", "admin", 1),
+("mattia@gmail.com", "mattia", "bWF0dGlh", "Mattia", "Gallucci", 0);
 
 INSERT INTO indirizzo (citta, provincia, cap, via, civico, utenteEmail) VALUES
 ('Roma', 'RM', '00100', 'Via Roma', '1', 'mario@example.com'),
@@ -133,4 +133,4 @@ INSERT INTO ordine (data, costoTotale, utenteEmail) VALUES
 ('2023-02-15', 40.00, 'luigi@example.com'),
 ('2023-03-20', 200.00, 'mario@example.com'),
 ('2023-04-25', 85.00, 'luigi@example.com'),
-('2023-05-30', 400.00, 'mario@example.com'); 
+('2023-05-30', 400.00, 'mario@example.com');

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
 <%@ page import="model.OrdineBean" %>
-<%@ page import="model.OrdineDAO" %>
+<%@ page import="model.OrdineDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <body>
     <h1>Mostra Ordini</h1>
     <%
-        OrdineDAO ordineDAO = new OrdineDAO();
+        OrdineDao ordineDAO = new OrdineDao();
         List<OrdineBean> ordini = null;
         try {
             ordini = ordineDAO.doRetrieveAll(null);

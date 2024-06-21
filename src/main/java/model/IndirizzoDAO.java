@@ -84,7 +84,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
     }
 
     // Recupera un indirizzo dal database utilizzando la chiave primaria
-    public synchronized IndirizzoBean doRetrieveByKey(String key) throws SQLException {
+    public synchronized IndirizzoBean doRetrieveById(String key) throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         IndirizzoBean indirizzo = new IndirizzoBean();
@@ -211,7 +211,7 @@ public class IndirizzoDAO extends AbstractDAO<IndirizzoBean> {
     }
 
     // Recupera tutti gli indirizzi associati a un utente specifico
-    public synchronized List<IndirizzoBean> doRetrieveAllByKey(String key) throws SQLException {
+    public synchronized List<IndirizzoBean> doRetrieveByEmail(String key) throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         List<IndirizzoBean> indirizzi = new ArrayList<>();

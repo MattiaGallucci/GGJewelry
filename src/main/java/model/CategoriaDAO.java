@@ -65,8 +65,7 @@ public class CategoriaDAO extends AbstractDAO<CategoriaBean> {
 		return result != 0;
 	}
 
-	@Override
-	public synchronized CategoriaBean doRetrieveByKey(String key) throws SQLException {
+	public synchronized CategoriaBean doRetrieveByNome(String key) throws SQLException {
 		Connection con = null;
 		PreparedStatement statement = null;
 		CategoriaBean categoria = new CategoriaBean();

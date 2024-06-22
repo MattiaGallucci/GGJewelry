@@ -43,7 +43,7 @@ public class ServletLogin extends HttpServlet {
 		} else {
 			request.getSession().setAttribute("logged", false);
 			request.getSession().setAttribute("error", "Username e/o password invalidi.");
-			response.sendRedirect("loginForm.jsp?action=error");
+			response.sendRedirect("loginPage.jsp?action=error");
 		}
 	}
 

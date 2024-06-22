@@ -12,11 +12,19 @@
     <h1>Gestione</h1>
     
     <%
-        UtenteBean currentUser = (UtenteBean) session.getAttribute("currentSessionUser");
-        if (currentUser != null) {
-            out.println("<p>Welcome, " + currentUser.getUsername() + "! You are logged in.</p>");
+        Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
+        if (isLoggedIn != null && isLoggedIn) {
+            String nome = (String) session.getAttribute("nome");
+            String cognome = (String) session.getAttribute("cognome");
+            out.println("<p>Welcome, " + nome + " " + cognome + "!</p>");
         } else {
-            out.println("<p>You are not logged in. Please <a href='Login.jsp'>login</a>.</p>");
+            out.println("<p>Please <a href='loginPage.jsp'>login</a> to continue.</p>");
+        }
+
+        String error = (String) session.getAttribute("error");
+        if (error != null) {
+            out.println("<p style='color:red;'>" + error + "</p>");
+            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
         }
     %>
     
@@ -28,9 +36,9 @@
         <li><a href="mostraOrdini.jsp">Mostra Ordini</a></li>
         <li><a href="mostraProdotti.jsp">Mostra Prodotti</a></li>
         <li><a href="mostraUtenti.jsp">Mostra Utenti</a></li>
-        <li><a href="Login.jsp">Login</a></li>
+        <li><a href="loginPage.jsp">Login</a></li>
         <li><a href="mostraMieiOrdini.jsp">Mostra Miei Ordini</a></li>
-        <li><a href="<%= request.getContextPath() %>/Logout">Logout</a></li>
+        <li><a href="LogOutServlet">Logout</a></li>
         <li><a href="collane.jsp">Collane</a></li>
     </ul>
 </body>

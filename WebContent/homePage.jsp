@@ -43,104 +43,19 @@
                     <img src="assets/img/logo.png" alt="Logo" class="img-fluid"/>
                 </a>
             </div>
-            <!-- Logo Area End -->
+           
 
             <!-- Navigation Area Start -->
             <div class="col-3 col-lg-9 col-xl-8 m-auto">
                 <div class="main-menu-wrap">
                     <nav id="mainmenu">
                         <ul>
-                            <a href="index.html">Home</a>
-                            &nbsp&nbsp&nbsp&nbsp
-                            <a href="shop-full-wide.html">Shop</a></li>
-                            <li class="dropdown-show"><a href="#">Uomo</a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shirt</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop-full-wide.html">Shop</a></li>
 
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Jeans</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shoes</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Watches</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            
-                            <li class="dropdown-show"><a href="shop-left-full-wide.html">Donna</a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Kamiz</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Life Style</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shoes</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            &nbsp&nbsp&nbsp
-                            <a href="blog.html">Chi siamo</a></li>
-                            &nbsp&nbsp&nbsp
-                            <a href="contact.html">Contattaci</a>
+                            <li><a href="blog.html">Chi siamo</a></li>
+                        
+                            <li><a href="contact.html">Contattaci</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -270,7 +185,7 @@
     </div>
 </section>
 <!--== Banner Slider End ==-->
-
+s
 <!--== About Us Area Start ==-->
 <section id="aboutUs-area" class="pt-9">
     <div class="ruby-container">
@@ -294,10 +209,11 @@
                             e di alta qualità, realizzati con passione e maestria artigianale. Ogni pezzo che trovate nel nostro negozio è una testimonianza del nostro impegno 
                             per l'eccellenza, combinando design innovativi con materiali preziosi. 
 
+                        </p>
                         <p> 
                             Che siate alla ricerca di un regalo speciale o di un pezzo esclusivo per voi stessi,
                             da G&G Jewelry troverete un servizio personalizzato e una collezione che incanta e ispira. La nostra missione è trasformare ogni desiderio in realtà, 
-                            creando gioielli che raccontano storie e celebrano momenti indimenticabili.</p>
+                            creando gioielli che raccontano storie e celebrano momenti indimenticabili.
                         </p>
 
                         <h4 class="vertical-text">CHI SIAMO?</h4>
@@ -780,207 +696,6 @@
 </section>
 <!--== New Collection Area End ==-->
 
-
-<!--== New Products Area Start ==-->
-<section id="new-products-area" class="p-9">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
-                <div class="section-title">
-                    <h2>New Products</h2>
-                    <p>Trending stunning Unique</p>
-                </div>
-                <!-- Section Title End -->
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="products-wrapper">
-                    <div class="new-products-carousel owl-carousel">
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/new-product-1.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <span class="price">$52.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/new-product-2.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Bruno Compete Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <span class="price">$152.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/new-product-3.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">MH01-Black</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <span class="price">$43.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge">New</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/new-product-4.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                </div>
-                                <span class="price">$83.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge sale">Sale</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-
-                        <!-- Single Product Item -->
-                        <div class="single-product-item text-center">
-                            <figure class="product-thumb">
-                                <a href="single-product.html"><img src="assets/img/new-product-4.jpg" alt="Products"
-                                                                   class="img-fluid"></a>
-                            </figure>
-
-                            <div class="product-details">
-                                <h2><a href="single-product.html">Chaz Kangeroo Hoodie</a></h2>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                </div>
-                                <span class="price">$83.00</span>
-                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                <span class="product-bedge sale">Sale</span>
-                            </div>
-
-                            <div class="product-meta">
-                                <button type="button" data-toggle="modal" data-target="#quickView">
-                                    <span data-toggle="tooltip" data-placement="left" title="Quick View"><i
-                                            class="fa fa-compress"></i></span>
-                                </button>
-                                <a href="wishlist.html" data-toggle="tooltip" data-placement="left"
-                                   title="Add to Wishlist"><i
-                                        class="fa fa-heart-o"></i></a>
-                                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Compare"><i
-                                        class="fa fa-tags"></i></a>
-                            </div>
-                        </div>
-                        <!-- Single Product Item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--== New Products Area End ==-->
-
 <!--== Testimonial Area Start ==-->
 <section id="testimonial-area">
     <div class="ruby-container">
@@ -1027,10 +742,6 @@
 </section>
 <!--== Testimonial Area End ==-->
 
- 
- 
-
- 
 <footer id="footer-area">
     <!-- Footer Call to Action Start -->
     <div class="footer-callto-action">

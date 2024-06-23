@@ -144,5 +144,42 @@
 </div>
 <!--== Search Box Area End ==-->
 
+
+<!--== Banner // Slider Area Start ==-->
+<section id="banner-area">
+    <div class="ruby-container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="banner-carousel" class="owl-carousel">
+                    <!-- Banner Single Carousel Start -->
+                    <div class="single-carousel-wrap slide-item-1">
+                        <div class="banner-caption text-center text-lg-left">
+                            <h4>G&G Jewelry</h4>
+                            <h3>Presto fuori!!</h3>
+                            <h2>Anello Angel</h2>
+                            <p>L'anello "Anello Angel" è un'opera d'arte. Realizzato in oro bianco 18 carati, il suo design elegante incornicia una splendida pietra centrale. </p>
+                             
+                        </div>
+                    </div>
+                    <!-- Banner Single Carousel End -->
+
+                    <!-- Banner Single Carousel Start -->
+                    <div class="single-carousel-wrap slide-item-2">
+                        <div class="banner-caption text-center text-lg-left">
+                            <h4>Nuova Collezione 2024</h4>
+                            <h3>Presto fuori!!</h3>
+                            <h2>Orecchini boreali</h2>
+                            <p>Gli orecchini "boreali" sono una creazione raffinata e incantevole, ideali per illuminare ogni occasione speciale</p>
+                             
+                        </div>
+                    </div>
+                    <!-- Banner Single Carousel End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--== Banner Slider End ==-->
+
 </body>
 </html>

@@ -221,5 +221,52 @@
 </section>
 <!--== About Us Area End ==-->
 
+<!--== Testimonial Area Start ==-->
+<section id="testimonial-area">
+    <div class="ruby-container">
+        <div class="testimonial-wrapper">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- Section Title Start -->
+                    <div class="section-title">
+                        <h2>Le persone cosa pensano di noi</h2>
+                        <p>Feedbacks</p>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-7 m-auto text-center">
+                    <div class="testimonial-content-wrap">
+                        <div id="testimonialCarousel" class="owl-carousel">
+                            <div class="single-testimonial-item">
+                                <p>
+                                    "Ho recentemente acquistato un anello da G&G Jewelry e non potrei essere più soddisfatto della mia esperienza.
+                                    l'assistentenza è stata estremamente competente e paziente, aiutandomi a trovare il gioiello perfetto per il mio anniversario.
+                                </p>
+
+                                <h3 class="client-name">Angela Mercanti</h3>
+                                 
+                            </div>
+
+                            <div class="single-testimonial-item">
+                                <p>
+                                    Consiglio vivamente Eterna Gioielli a chiunque cerchi un gioiello unico e di alta qualità. Non vedo l'ora di tornare per i miei futuri acquisti!"
+                                </p>
+
+                                <h3 class="client-name">Maria Boreali</h3>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--== Testimonial Area End ==-->
+
+
 </body>
 </html>

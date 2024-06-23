@@ -181,5 +181,45 @@
 </section>
 <!--== Banner Slider End ==-->
 
+
+<!--== About Us Area Start ==-->
+<section id="aboutUs-area" class="pt-9">
+    <div class="ruby-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- About Image Area Start -->
+                <div class="about-image-wrap">
+                    <a href="about.html"><img src="assets/img/about-img.png" alt="About Us" class="img-fluid"/></a>
+                </div>
+                <!-- About Image Area End -->
+            </div>
+
+            <div class="col-lg-6 m-auto">
+                <!-- About Text Area Start -->
+                <div class="about-content-wrap ml-0 ml-lg-5 mt-5 mt-lg-0">
+                    <h2>Chi siamo</h2>
+                    <h3>SIAMO VISIONARI</h3>
+                    <div class="about-text">
+                        <p>
+                            Benvenuti da G&G Jewelry, dove l'arte della gioielleria prende vita. Da anni siamo specializzati nella creazione e vendita di gioielli unici 
+                            e di alta qualità, realizzati con passione e maestria artigianale. Ogni pezzo che trovate nel nostro negozio è una testimonianza del nostro impegno 
+                            per l'eccellenza, combinando design innovativi con materiali preziosi. 
+
+                        <p> 
+                            Che siate alla ricerca di un regalo speciale o di un pezzo esclusivo per voi stessi,
+                            da G&G Jewelry troverete un servizio personalizzato e una collezione che incanta e ispira. La nostra missione è trasformare ogni desiderio in realtà, 
+                            creando gioielli che raccontano storie e celebrano momenti indimenticabili.</p>
+                        </p>
+
+                        <h4 class="vertical-text">CHI SIAMO?</h4>
+                    </div>
+                </div>
+                <!-- About Text Area End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--== About Us Area End ==-->
+
 </body>
 </html>

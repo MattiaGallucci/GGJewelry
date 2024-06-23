@@ -46,97 +46,13 @@
                 <div class="main-menu-wrap">
                     <nav id="mainmenu">
                         <ul>
-                            <a href="index.html">Home</a>
-                            &nbsp&nbsp&nbsp&nbsp
-                            <a href="shop-full-wide.html">Shop</a></li>
-                            <li class="dropdown-show"><a href="#">Uomo</a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shirt</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Jeans</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shoes</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Watches</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li><a href="index.html">Home</a></li>
                             
-                            <li class="dropdown-show"><a href="shop-left-full-wide.html">Donna</a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Kamiz</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Life Style</a>
-                                        <ul>
-                                            <li><a href="shop.html">Crochet</a></li>
-                                            <li><a href="shop.html">Sleeveless</a></li>
-                                            <li><a href="shop.html">Stripes</a></li>
-                                            <li><a href="shop.html">Sweaters</a></li>
-                                            <li><a href="shop.html">Hoodies</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="mega-menu-item"><a href="shop-left-full-wide.html"
-                                                                  class="mega-item-title">Shoes</a>
-                                        <ul>
-                                            <li><a href="shop.html">Tops & Tees</a></li>
-                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                            <li><a href="shop.html">Jackets & Coats</a></li>
-                                            <li><a href="shop.html">Fashion Jackets</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            &nbsp&nbsp&nbsp
-                            <a href="blog.html">Chi siamo</a></li>
-                            &nbsp&nbsp&nbsp
-                            <a href="contact.html">Contattaci</a>
+                            <li><a href="shop-full-wide.html">Shop</a></li>
+ 
+                            <li><a href="blog.html">Chi siamo</a></li>
+                          
+                            <li><a href="contact.html">Contattaci</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -213,7 +129,7 @@
         </div>
     </div>
 </header>
-<!--== Header Area End ==-->
+ 
 
 </body>
 </html>

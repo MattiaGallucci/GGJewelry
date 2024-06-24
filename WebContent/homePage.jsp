@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +15,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i"/>
 
-    <!--=== Bootstrap CSS ===-->
+    <!--=== Bootstrap CSS ===--> 
     <link href="assets/css/vendor/bootstrap.min.css" rel="stylesheet">
     <!--=== Font-Awesome CSS ===-->
     <link href="assets/css/vendor/font-awesome.css" rel="stylesheet">
@@ -50,7 +49,7 @@
                 <div class="main-menu-wrap">
                     <nav id="mainmenu">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="homePage.jsp">Home</a></li>
                             <li><a href="shop-full-wide.html">Shop</a></li>
 
                             <li><a href="blog.html">Chi siamo</a></li>
@@ -173,8 +172,8 @@
                         <div class="banner-caption text-center text-lg-left">
                             <h4>Nuova Collezione 2024</h4>
                             <h3>Presto fuori!!</h3>
-                            <h2>Orecchini boreali</h2>
-                            <p>Gli orecchini "boreali" sono una creazione raffinata e incantevole, ideali per illuminare ogni occasione speciale</p>
+                            <h2>Collana boreale</h2>
+                            <p>Il set collana "boreale" è una creazione raffinata e incantevole, ideale per illuminare ogni occasione speciale</p>
                              
                         </div>
                     </div>
@@ -185,7 +184,7 @@
     </div>
 </section>
 <!--== Banner Slider End ==-->
-s
+
 <!--== About Us Area Start ==-->
 <section id="aboutUs-area" class="pt-9">
     <div class="ruby-container">

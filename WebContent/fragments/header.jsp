@@ -6,32 +6,16 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset="ISO-8859-1">
 </head>
-<header>
-
-<<<<<<< HEAD
 <!--== Header Area Start ==-->
 <header id="header-area">
-    <div class="ruby-container">
-        <div class="row">
-            <!-- Logo Area Start -->
-            <div class="col-3 col-lg-1 col-xl-2 m-auto">
-                <a href="homePage.jsp" class="logo-area">
-                    <img src="assets/img/logo.png" alt="Logo" class="img-fluid"/>
-                </a>
-            </div>
-           
-=======
-	<!--== Header Area Start ==-->
-	<header id="header-area">
 		<div class="ruby-container">
 			<div class="row">
 				<!-- Logo Area Start -->
 				<div class="col-3 col-lg-1 col-xl-2 m-auto">
-					<a href="index.html" class="logo-area"> <img
+					<a href="homePage.jsp" class="logo-area"> <img
 						src="assets/img/logo.png" alt="Logo" class="img-fluid" />
 					</a>
 				</div>
->>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 
 
 				<!-- Navigation Area Start -->

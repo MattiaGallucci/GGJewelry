@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="follow-content-wrap">
-                            <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="logo"/></a>
+                            <a href="homePage.jsp" class="logo"><img src="assets/img/logo.png" alt="logo"/></a>
                             <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum</p>
 
                             <div class="footer-social-icons">

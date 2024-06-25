@@ -245,7 +245,7 @@
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <!--=== Plugins Min Js ===-->
 <script src="assets/js/plugins.js"></script>
-
+ 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
 </body>

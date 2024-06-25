@@ -104,20 +104,6 @@
                                     </div>
 
                                     <div class="single-input-item">
-                                        <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                            <div class="remember-meta">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                                    <label class="custom-control-label" for="rememberMe">Remember
-                                                        Me</label>
-                                                </div>
-                                            </div>
-
-                                            <a href="#" class="forget-pwd">Forget Password?</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="single-input-item">
                                         <button class="btn-login">Login</button>
                                     </div>
                                 </form>
@@ -148,22 +134,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="single-input-item">
-                                        <div class="login-reg-form-meta">
-                                            <div class="remember-meta">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                           id="subnewsletter">
-                                                    <label class="custom-control-label" for="subnewsletter">Subscribe
-                                                        Our Newsletter</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="single-input-item">
                                         <button class="btn-login">Register</button>
                                     </div>
+                                    
                                 </form>
                             </div>
                         </div>

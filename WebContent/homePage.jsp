@@ -149,22 +149,7 @@
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
-<<<<<<< HEAD
-                                    <c:forEach var="product" items="${sessionScope.randomProducts}">
-                                        <div class="single-product-item text-center">
-                                            <figure class="product-thumb">
-                                                <a href="single-product.html">
-                                                    <img src="assets/images/${product.immagine}" alt="Products" class="img-fluid">
-                                                </a>
-                                            </figure>
-                                            <div class="product-details">
-                                                <h2><a href="single-product.html">${product.nome}</a></h2>
-                                                <span class="price">$${product.costo}</span>
-                                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-=======
+
                                     <% for (ProdottoBean prodotto : prodottiCasuali) { %>
                                     <!-- Loop through the randomProducts stored in session -->
                                     <div class="single-product-item text-center">
@@ -180,7 +165,6 @@
                                         </div>
                                     </div>
                                     <% } %>
->>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
                                 </div>
                             </div>
                         </div>

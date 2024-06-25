@@ -55,8 +55,8 @@
                 <div class="page-title-content">
                     <h1>Dashboard</h1>
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="login-register.html" class="active">Dashboard</a></li>
+                        <li><a href="homePage.jsp">Home</a></li>
+                        <li><a href="memberArea.jsp" class="active">Dashboard</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,16 +81,12 @@
 
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
 
-                                <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Download</a>
-
-                                <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
-                                    Method</a>
-
+                                
                                 <a href="#address" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a>
 
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
 
-                                <a href="login-register.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="loginPage.jsp"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -104,8 +100,23 @@
                                         <h3>Dashboard</h3>
 
                                         <div class="welcome">
-                                            <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a
-                                                    href="login-register.html" class="logout"> Logout</a>)</p>
+                                            <p>Hello,  <%
+														Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
+												        if (isLoggedIn != null && isLoggedIn) {
+												            String nome = (String) session.getAttribute("nome");
+												            String cognome = (String) session.getAttribute("cognome");
+												            out.println("<p>Welcome, " + nome + " " + cognome + "!</p>");
+												        } else {
+												            out.println("<p>Please <a href='loginPage.jsp'>login</a> to continue.</p>");
+												        }
+												
+												        String error = (String) session.getAttribute("error");
+												        if (error != null) {
+												            out.println("<p style='color:red;'>" + error + "</p>");
+												            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
+												        }
+   														%>
+														<a href="loginPage.jsp" class="logout"> Logout</a>)</p>
                                         </div>
 
                                         <p class="mb-0">From your account dashboard. you can easily check & view your

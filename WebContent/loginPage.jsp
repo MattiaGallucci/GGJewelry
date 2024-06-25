@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
 
-    <title>Member Area</title>
+    <title>Member Area</title> 
 
     <!--=== Favicon ===-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
@@ -67,8 +67,8 @@
                 <div class="page-title-content">
                     <h1>Member Area</h1>
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="login-register.html" class="active">Login & Register</a></li>
+                        <li><a href="homePage.jsp">Home</a></li>
+                        <li><a href="loginPage.jsp." class="active">Login & Register</a></li>
                     </ul>
                 </div>
             </div>

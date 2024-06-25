@@ -19,8 +19,8 @@
                                 <img src="assets/img/air-plane.png" alt="WorldWide Shipping"/>
                             </figure>
                             <div class="callto-info">
-                                <h2>Free Shipping Worldwide</h2>
-                                <p>On order over $150 - 7 days a week</p>
+                                <h2>Spedizione internazionale gratuita</h2>
+                                <p>Per ordini superiori a 150</p>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->
@@ -33,8 +33,10 @@
                                 <img src="assets/img/support.png" alt="Support"/>
                             </figure>
                             <div class="callto-info">
-                                <h2>24/7 CUSTOMER SERVICE</h2>
-                                <p>Call us 24/7 at 000 - 123 - 456k</p>
+                                <a href="contact.jsp " style="color: black;">
+                                <h2>24/7 Servizio Clienti</h2>
+                                Chiamaci 24/7 sui nostri contatti
+                                </a>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->
@@ -47,8 +49,8 @@
                                 <img src="assets/img/money-back.png" alt="Money Back"/>
                             </figure>
                             <div class="callto-info">
-                                <h2>MONEY BACK Guarantee!</h2>
-                                <p>Send within 30 days</p>
+                                <h2>Reso garantito!</h2>
+                                <p>In 30 giorni</p>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->
@@ -61,8 +63,8 @@
                                 <img src="assets/img/cog.png" alt="Guide"/>
                             </figure>
                             <div class="callto-info">
-                                <h2>SHOPPING GUIDE</h2>
-                                <p>Quis Eum Iure Reprehenderit</p>
+                                <h2>Informazioni</h2>
+                                <p>Lavora con noi</p>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->
@@ -81,8 +83,9 @@
                     <div class="col-lg-12 text-center">
                         <div class="follow-content-wrap">
                             <a href="homePage.jsp" class="logo"><img src="assets/img/logo.png" alt="logo"/></a>
-                            <p>Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum</p>
-
+                            <p>©. All Rights Reserved.</p>
+								<p>Choaib Goumri</p>	
+								<p>Mattia Gallucci</p>
                             <div class="footer-social-icons">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>

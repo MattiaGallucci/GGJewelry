@@ -32,7 +32,7 @@
 								%>
 								<li><a href="gestisciProdotti.jsp">Prodotti</a></li>
 								<%
-								}
+								} 
 								%>
 
 							</ul>

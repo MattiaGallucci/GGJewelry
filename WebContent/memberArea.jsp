@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
 
-    <title>Dashboard :: DNX - Jewelry Store eCommerce</title>
+    <title>Area utente</title>
 
     <!--=== Favicon ===-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
@@ -50,10 +50,10 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>Dashboard</h1>
+                    <h1>Area Utente</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <li><a href="memberArea.jsp" class="active">Dashboard</a></li>
+                        <li><a href="memberArea.jsp" class="active">Area Utente</a></li>
                     </ul>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         <div class="col-lg-3">
                             <div class="myaccount-tab-menu nav" role="tablist">
                                 <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
-                                    Dashboard</a>
+                                    Area utente</a>
 
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Ordini</a>
 
@@ -93,7 +93,7 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Dashboard</h3>
+                                        <h3>Area Utente</h3>
 
                                         <div class="welcome">
                                             <p><%
@@ -103,7 +103,7 @@
 										            String cognome = (String) session.getAttribute("cognome");
 										            out.println("<p>Bentornato, " + nome + " " + cognome + "!</p>");
 										        } else {
-										            out.println("<p>Perfavore <a href='loginPage.jsp'>login</a> per continuare.</p>");
+										            out.println("<p>Perfavore <a href='loginPage.jsp'>accedi</a> per continuare.</p>");
 										        }
 										
 										        

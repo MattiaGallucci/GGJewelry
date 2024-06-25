@@ -119,17 +119,12 @@
 <!--== About Us Area End ==-->
 
 
-<<<<<<< HEAD
-=======
-
-
 
 
 <%
     List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
 %>
 
->>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
@@ -175,21 +170,6 @@
     </div>
 </section>
 
-
-<<<<<<< HEAD
-<!--== New Collection Area End ==-->
-=======
-
-
-
-
-
-
-
-
- 
-
->>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 <!--== Testimonial Area Start ==-->
 <section id="testimonial-area">
     <div class="ruby-container">

@@ -231,8 +231,8 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 		return prodottiTrovati;
 	}
 	
-	public synchronized List<ProdottoBean> doRetrieveByCategoria(String categoria) throws SQLException{
-		List<ProdottoBean> prodotti = new ArrayList<>();
+	public synchronized ArrayList<ProdottoBean> doRetrieveByCategoria(String categoria) throws SQLException{
+		ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement statement = null;
 		

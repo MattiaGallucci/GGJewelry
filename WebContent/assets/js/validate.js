@@ -1,136 +1,230 @@
-const textAreaRegEx = /^[a-zA-Z0-9\s,\.!?éçòàùéè^()&$£€';":^]+$/;
-const textRegEx = /^[a-zA-Z0-9\s'àèòùìéçé]+$/;
-const emailRegEx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
-const passwordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9#?!@$%^&*-]{8,}$/;
+$(document).ready(function() {
+		let emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let usernameValidator = /^[a-zA-Z0-9_.]{4,15}$/;
+        let nameValidator = /^[a-zA-Z]{3,}$/;
+        let validEmail = false;
+        let validUsername = false;
+        let validPwd = false;
+        let validPwdCheck = false;
+        let validName = false;
+        let validSurname = false;
 
-function showError(input, message) {
-	input.style.border = "2px solid red";
-	const errorElement = document.getElementById(input.id + "-error");
-	errorElement.textContent = message;
-}
+        $("#email").keyup(function() {
+            let email = $("#email").val();
+            let slideEmail = 0;
 
-function clearError(input) {
-	input.style.border = "none";
-	const errorElement = document.getElementById(input.id + "-error");
-	errorElement.textContent = "";
-}
+            if (email.match(emailValidator)) {
+                console.log("Email valida");
+                $.ajax({
+                    type: "POST",
+                    url: "login",
+                    data: {
+                        mode: "checkEmail",
+                        email: email,
+                    },
+                    dataType: "html",
+                    success: function(data) {
+                        console.log(data);
+                        if (data.match("non disponibile")) {
+                            validEmail = false;
+                            if (slideEmail == 0) {
+                                $("#error-email").slideDown();
+                                slideEmail = 1;
+                            }
+                            $("#error-email").text("Email già in uso");
+                        } else if (data.match("disponibile")) {
+                            slideEmail = 0;
+                            validEmail = true;
+                            $("#error-email").slideUp();
+                            $("#error-email").text("");
+                        }
+                    }
+                });
+            } else {
+                console.log("Email non valida");
+                validEmail = false;
+                if (slideEmail == 0) {
+                    $("#error-email").slideDown();
+                    slideEmail = 1;
+                }
+                $("#error-email").text("Inserisci un'email valida");
+            }
 
-function passwordMatchValidate(password, passwordR) {
-	var m = document.getElementById("errorMessage");
-	if (password != passwordR) {
-		m.style.color = "red";
-		showError(document.getElementById("passwordR"), "Le due password non corrispondono!");
-		return false;
-	}
-	m.innerHTML = "";
-	clearError(document.getElementById("passwordR"));
-	return true;
-}
+            if (email == "") {
+                validEmail = false;
+                if (slideEmail == 1) {
+                    slideEmail = 0;
+                    $("#error-email").slideUp();
+                }
+                $("#error-email").text("");
+            }
+        });
 
-function passwordValidate(input) {
-	const passwordResult = passwordRegEx.test(input.value);
+        $("#username").keyup(function() {
+            let username = $("#username").val();
+            let slideUsername = 0;
 
-	if (!passwordResult) {
-		showError(input, "Password non valida! La password deve essere di almeno 8 caratteri, deve contenere un numero, una lettera maiuscola, una lettera minuscola e NESSUN carattere speciale.");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-	return true;
-}
+            if (username.match(usernameValidator)) {
+                console.log("Username formattato correttamente");
+                $.ajax({
+                    type: "POST",
+                    url: "login",
+                    data: {
+                        mode: "checkUsername",
+                        username: username,
+                    },
+                    dataType: "html",
+                    success: function(data) {
+                        console.log(data);
+                        if (data.match("non disponibile")) {
+                            validUsername = false;
+                            if (slideUsername == 0) {
+                                $("#error-username").slideDown();
+                                slideUsername = 1;
+                            }
+                            $("#error-username").text("Username non disponibile o già in uso");
+                        } else if (data.match("disponibile")) {
+                            validUsername = true;
+                            slideUsername = 0;
+                            $("#error-username").text("Username disponibile");
+                            $("#error-username").slideUp();
+                        }
+                    }
+                });
+            } else {
+                console.log("Username non valido");
+                validUsername = false;
+                if (slideUsername == 0) {
+                    $("#error-username").slideDown();
+                    slideUsername = 1;
+                }
+                $("#error-username").text("Username non valido");
+            }
 
-function textValidate(input) {
-	const textResult = textRegEx.test(input.value);
+            if (username == "") {
+                validUsername = false;
+                if (slideUsername == 1) {
+                    slideUsername = 0;
+                    $("#error-username").slideUp();
+                }
+                $("#error-username").text("");
+            }
+        });
 
-	if (!textResult) {
-		showError(input, "Campo vuoto o Formato errato caratteri consentiti: a-z A-Z 0-9");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-	return true;
-}
-function textAreaValidate(input) {
-	const textResult = textAreaRegEx.test(input.value);
+        $("#password").keyup(function() {
+            let pwd = $("#password").val();
+            let slidePwd = 0;
 
-	if (!textResult) {
-		showError(input, "Campo vuoto o Formato errato sono consentite solo a-z A-Z 0-9  e i simboli ,?.:!;^()&$£€\"");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-	return true;
-}
-function capValidate(input) {
-	const capRegEx = /^[0-9]{5}$/;
-	const capResult = capRegEx.test(input.value);
+            if (pwd.length < 5) {
+                validPwd = false;
+                if (slidePwd == 0) {
+                    $("#error-pwd").text("Password troppo corta!");
+                    $("#error-pwd").slideDown();
+                    slidePwd = 1;
+                } else {
+                    $("#error-pwd").text("Password troppo corta!");
+                }
+            } else {
+                validPwd = true;
+                if (slidePwd == 1) {
+                    $("#error-pwd").slideUp();
+                    slidePwd = 0;
+                }
+                $("#error-pwd").text("");
+            }
+        });
 
-	if (!capResult) {
-		showError(input, "Campo vuoto o CAP non valido!");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-	return true;
-}
+        $("#passwordCheck").keyup(function() {
+            let pwd = $("#password").val();
+            let pwdCheck = $("#passwordCheck").val();
+            let slidePwd = 0;
 
-function emailValidate(input) {
-	const emailResult = emailRegEx.test(input.value);
+            if (pwdCheck === pwd) {
+                console.log("Le password corrispondono!");
+                validPwdCheck = true;
+                slidePwd = 0;
+                $("#error-pwdchk").slideUp();
+                $("#error-pwdchk").text("");
+            } else {
+                console.log("Le password non corrispondono");
+                validPwdCheck = false;
+                if (slidePwd == 0) {
+                    $("#error-pwdchk").slideDown();
+                    slidePwd = 1;
+                }
+                $("#error-pwdchk").text("Le password non corrispondono");
+            }
+        });
 
-	if (!emailResult) {
-		showError(input, "Campo vuoto o Email non valida!");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-	return true;
-}
-function prezzoValidate(input) {
-	const n = input.value;
-	if(n<=0){
-		showError(input, "Inserire un numero >= 0");
-		input.focus();
-		return false;
-	}
-	clearError(input);
-		return true;
-}
-function imgValidate(input) {
-	const file = input.files[0];
-	const validTypes = ['image/png', 'image/gif', 'image/jpeg'];
-	if (file && !validTypes.includes(file.type)) {
-		alert('Errore, formati accettati: .png .gif .jpeg');
-		input.value = '';
-	}
-}
-function validate() {
-	const nome = document.getElementById("name");
-	const cognome = document.getElementById("surname");
-	const via = document.getElementById("via");
-	const cap = document.getElementById("cap");
-	const paese = document.getElementById("city");
-	const email = document.getElementById("email");
-	const password = document.getElementById("password");
-	const passwordR = document.getElementById("passwordR");
-	const prezzo = document.getElementById("prezzo");
-	const descrizione = document.getElementById("descrizione");
-	const img = document.getElementById("file");
-	return textValidate(nome) &&
-		textValidate(cognome) &&
-		textValidate(via) &&
-		capValidate(cap) &&
-		textValidate(paese) &&
-		emailValidate(email) &&
-		passwordValidate(password) &&
-		passwordMatchValidate(password.value, passwordR.value) &&
-		imgValidate(img)&&
-		prezzoValidate(prezzo);
-}
+        $("#nome").keyup(function() {
+            let nome = $("#nome").val();
+            let slideNome = 0;
 
-document.getElementById("RegForm").addEventListener("submit", function(event) {
-	if (!validate()) {
-		event.preventDefault();
-	}
-}
-);
+            if (nome.match(nameValidator)) {
+                console.log("Nome valido");
+                validName = true;
+                if (slideNome == 1) {
+                    slideNome = 0;
+                    $("#error-name").slideUp();
+                }
+                $("#error-name").text("");
+            } else {
+                console.log("Nome non valido");
+                validName = false;
+                if (slideNome == 0) {
+                    $("#error-name").slideDown();
+                    slideNome = 1;
+                }
+                $("#error-name").text("Nome non valido");
+            }
 
+            if (nome == "") {
+                validName = false;
+                if (slideNome == 1) {
+                    slideNome = 0;
+                    $("#error-name").slideUp();
+                }
+                $("#error-name").text("");
+            }
+        });
+
+        $("#cognome").keyup(function() {
+            let cognome = $("#cognome").val();
+            let slideCognome = 0;
+
+            if (cognome.match(nameValidator)) {
+                console.log("Cognome valido");
+                validSurname = true;
+                if (slideCognome == 1) {
+                    slideCognome = 0;
+                    $("#error-surname").slideUp();
+                }
+                $("#error-surname").text("");
+            } else {
+                console.log("Cognome non valido");
+                validSurname = false;
+                if (slideCognome == 0) {
+                    $("#error-surname").slideDown();
+                    slideCognome = 1;
+                }
+                $("#error-surname").text("Cognome non valido");
+            }
+
+            if (cognome == "") {
+                validSurname = false;
+                if (slideCognome == 1) {
+                    slideCognome = 0;
+                    $("#error-surname").slideUp();
+                }
+                $("#error-surname").text("");
+            }
+        });
+
+        $("#registrati").click(function() {
+            if (validEmail && validPwdCheck && validUsername && validName && validSurname && validPwd) {
+                $("#registrazione").submit();
+            } else {
+                event.preventDefault();
+            }
+        });
+    });

@@ -107,6 +107,7 @@
                                 <form action="registrazione" method="post">
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Nome" id="nome" name="nome" required/>
+                                   
                                     </div>
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Cognome" required/>
@@ -136,6 +137,7 @@
                                     <div class="single-input-item">
                                         <button class="btn-login">Register</button>
                                     </div>
+                                   
                                     
                                 </form>
                             </div>
@@ -170,6 +172,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+ <script src="assests/js/validate.js"></script>
 </body>
 
 </html>

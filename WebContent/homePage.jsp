@@ -118,52 +118,43 @@
 <!--== About Us Area End ==-->
 
 
-
-
-
-
-
-
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
                 <div class="section-title">
                     <h2>Nuova Collezione di prodotti</h2>
                     <p>Prodotti in Saldo.</p>
                 </div>
-                <!-- Section Title End -->
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="new-collection-tabs">
-                    <!-- Tab Content Area Start -->
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
-                                    <!-- Loop through the randomProducts stored in session -->
-<c:forEach var="product" items="${randomProducts}">
-    <div class="single-product-item text-center">
-        <figure class="product-thumb">
-            <a href="single-product.html"><img src="${product.immagine}" alt="Products" class="img-fluid"></a>
-        </figure>
-        <div class="product-details">
-            <h2><a href="single-product.html">${product.nome}</a></h2>
-            <span class="price">$${product.costo}</span>
-            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-        </div>
-    </div>
-</c:forEach>
+                                    <c:forEach var="product" items="${sessionScope.randomProducts}">
+                                        <div class="single-product-item text-center">
+                                            <figure class="product-thumb">
+                                                <a href="single-product.html">
+                                                    <img src="assets/images/${product.immagine}" alt="Products" class="img-fluid">
+                                                </a>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h2><a href="single-product.html">${product.nome}</a></h2>
+                                                <span class="price">$${product.costo}</span>
+                                                <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Tab Content Area end -->
                 </div>
             </div>
         </div>
@@ -171,15 +162,7 @@
 </section>
 
 
-
-
-
-
-
-
-
- 
-
+<!--== New Collection Area End ==-->
 <!--== Testimonial Area Start ==-->
 <section id="testimonial-area">
     <div class="ruby-container">

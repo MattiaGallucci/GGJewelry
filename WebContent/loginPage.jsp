@@ -107,30 +107,33 @@
                                 <form action="registrazione" id="registrazione" method="post" autocomplete="off">
 								    <div class="single-input-item">
 								        <input type="text" placeholder="Nome" id="nome" name="nome" required/>
-								        <p style="color:red;" id="error-name"></p>
+								        <p  class="errors"  style="color:red;" id="error-name"></p>
 								    </div>
 								    <div class="single-input-item">
 								        <input type="text" placeholder="Cognome" name="cognome" id="cognome" required/>
-								        <p style="color:red;" id="error-surname"></p>
+								        <p  class="errors"  style="color:red;" id="error-surname"></p>
 								    </div>
 								    <div class="single-input-item">
 								        <input type="text" placeholder="Username" id="username" name="username" required/>
-								        <p style="color:red;" id="error-username"></p>
+								        <p  class="errors"  style="color:red;" id="error-username"></p>
 								    </div>
 								    <div class="single-input-item">
 								        <input type="email" placeholder="Enter your Email" name="email" id="email" required>
+								    	 <p  class="errors"  style="color:red;" id="error-email"></p>
 								    </div>
 								
 								    <div class="row">
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="password" placeholder="Enter your Password" id="password" name="password" required/>
+								                <input type="text" placeholder="Enter your Password" id="password" name="password" required/>
+								            	 <p  class="errors"  style="color:red;"  id="error-pwd"></p>
 								            </div>
 								        </div>
 								
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="password" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
+								                <input type="text" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
+								            	<p  class="errors"  style="color:red;" id="error-pwdchk"></p>
 								            </div>
 								        </div>
 								    </div>

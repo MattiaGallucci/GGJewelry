@@ -1,230 +1,188 @@
-$(document).ready(function() {
-		let emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        let usernameValidator = /^[a-zA-Z0-9_.]{4,15}$/;
-        let nameValidator = /^[a-zA-Z]{3,}$/;
-        let validEmail = false;
-        let validUsername = false;
-        let validPwd = false;
-        let validPwdCheck = false;
-        let validName = false;
-        let validSurname = false;
+$(document).ready(function(){
+    let emailValidator = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    let usernameValidator = /^[a-zA-Z0-9_.]{4,15}$/;
+    let nameValidator = /^[a-zA-Z]{3,}$/;
+    let validEmail = false;
+    let validUsername = false;
+    let validPwd = false;
+    let validPwdCheck = false;
+    let validName = false;
+    let validSurname = false;
 
-        $("#email").keyup(function() {
-            let email = $("#email").val();
-            let slideEmail = 0;
-
-            if (email.match(emailValidator)) {
-                console.log("Email valida");
-                $.ajax({
-                    type: "POST",
-                    url: "login",
-                    data: {
-                        mode: "checkEmail",
-                        email: email,
-                    },
-                    dataType: "html",
-                    success: function(data) {
-                        console.log(data);
-                        if (data.match("non disponibile")) {
-                            validEmail = false;
-                            if (slideEmail == 0) {
-                                $("#error-email").slideDown();
-                                slideEmail = 1;
-                            }
-                            $("#error-email").text("Email già in uso");
-                        } else if (data.match("disponibile")) {
-                            slideEmail = 0;
-                            validEmail = true;
-                            $("#error-email").slideUp();
-                            $("#error-email").text("");
-                        }
+    function validateEmail(email) {
+        if (email.match(emailValidator)) {
+            console.log("email valida");
+            $.ajax({
+                type: "POST",
+                url: "login",
+                data: {
+                    mode: "checkEmail",
+                    email: email,
+                },
+                dataType: "html",
+                success: function(data) {
+                    console.log(data);
+                    if(data.match("non disponibile")) {
+                        validEmail = false;
+                        $("#error-email").text("Email già in uso").slideDown();
+                    } else if (data.match("disponibile")){
+                        validEmail = true;
+                        $("#error-email").text("").slideUp();
                     }
-                });
-            } else {
-                console.log("Email non valida");
-                validEmail = false;
-                if (slideEmail == 0) {
-                    $("#error-email").slideDown();
-                    slideEmail = 1;
                 }
-                $("#error-email").text("Inserisci un'email valida");
-            }
+            });
+        } else {
+            console.log("email non valida");
+            validEmail = false;
+            $("#error-email").text("Inserisci un'email valida").slideDown();
+        }
 
-            if (email == "") {
-                validEmail = false;
-                if (slideEmail == 1) {
-                    slideEmail = 0;
-                    $("#error-email").slideUp();
-                }
-                $("#error-email").text("");
-            }
-        });
+        if(email == "") {
+            validEmail = false;
+            $("#error-email").text("").slideUp();
+        }
+    }
 
-        $("#username").keyup(function() {
-            let username = $("#username").val();
-            let slideUsername = 0;
-
-            if (username.match(usernameValidator)) {
-                console.log("Username formattato correttamente");
-                $.ajax({
-                    type: "POST",
-                    url: "login",
-                    data: {
-                        mode: "checkUsername",
-                        username: username,
-                    },
-                    dataType: "html",
-                    success: function(data) {
-                        console.log(data);
-                        if (data.match("non disponibile")) {
-                            validUsername = false;
-                            if (slideUsername == 0) {
-                                $("#error-username").slideDown();
-                                slideUsername = 1;
-                            }
-                            $("#error-username").text("Username non disponibile o già in uso");
-                        } else if (data.match("disponibile")) {
-                            validUsername = true;
-                            slideUsername = 0;
-                            $("#error-username").text("Username disponibile");
-                            $("#error-username").slideUp();
-                        }
+    function validateUsername(username) {
+        if(username.match(usernameValidator)){
+            console.log("username formattato bene");
+            $.ajax({
+                type: "POST",
+                url: "login",
+                data: {
+                    mode: "checkUsername",
+                    username: username,
+                },
+                dataType: "html",
+                success: function(data) {
+                    console.log(data);
+                    if(data.match("non disponibile")) {
+                        validUsername = false;
+                        $("#error-username").text("Username non disponibile e/o già in uso").slideDown();
+                    } else if (data.match("disponibile")){
+                        validUsername = true;
+                        $("#error-username").text("").slideUp();
                     }
-                });
-            } else {
-                console.log("Username non valido");
-                validUsername = false;
-                if (slideUsername == 0) {
-                    $("#error-username").slideDown();
-                    slideUsername = 1;
                 }
-                $("#error-username").text("Username non valido");
-            }
+            });
+        } else {
+            console.log("username non disponibile");
+            validUsername = false;
+            $("#error-username").text("Username non valido").slideDown();
+        }
 
-            if (username == "") {
-                validUsername = false;
-                if (slideUsername == 1) {
-                    slideUsername = 0;
-                    $("#error-username").slideUp();
-                }
-                $("#error-username").text("");
-            }
-        });
+        if(username == ""){
+            validUsername = false;
+            $("#error-username").text("").slideUp();
+        }
+    }
 
-        $("#password").keyup(function() {
-            let pwd = $("#password").val();
-            let slidePwd = 0;
+    function validatePassword(pwd) {
+        if(pwd.length < 5){
+            validPwd = false;
+            $("#error-pwd").text("Password troppo corta!").slideDown();
+        } else {
+            validPwd = true;
+            $("#error-pwd").text("").slideUp();
+        }
+    }
 
-            if (pwd.length < 5) {
-                validPwd = false;
-                if (slidePwd == 0) {
-                    $("#error-pwd").text("Password troppo corta!");
-                    $("#error-pwd").slideDown();
-                    slidePwd = 1;
-                } else {
-                    $("#error-pwd").text("Password troppo corta!");
-                }
-            } else {
-                validPwd = true;
-                if (slidePwd == 1) {
-                    $("#error-pwd").slideUp();
-                    slidePwd = 0;
-                }
-                $("#error-pwd").text("");
-            }
-        });
+    function validatePasswordCheck(pwd, pwdCheck) {
+        if(pwdCheck === pwd){
+            console.log("Le password corrispondono!");
+            validPwdCheck = true;
+            $("#error-pwdchk").text("").slideUp();
+        } else {
+            console.log("Le password non corrispondono");
+            validPwdCheck = false;
+            $("#error-pwdchk").text("Le password non corrispondono").slideDown();
+        }
+    }
 
-        $("#passwordCheck").keyup(function() {
-            let pwd = $("#password").val();
-            let pwdCheck = $("#passwordCheck").val();
-            let slidePwd = 0;
+    function validateName(nome) {
+        if(nome.match(nameValidator)){
+            console.log("Nome valido");
+            validName = true;
+            $("#error-name").html("").slideUp();
+        } else {
+            console.log("Nome non valido");
+            validName = false;
+            $("#error-name").html("Nome non valido").slideDown();
+        }
 
-            if (pwdCheck === pwd) {
-                console.log("Le password corrispondono!");
-                validPwdCheck = true;
-                slidePwd = 0;
-                $("#error-pwdchk").slideUp();
-                $("#error-pwdchk").text("");
-            } else {
-                console.log("Le password non corrispondono");
-                validPwdCheck = false;
-                if (slidePwd == 0) {
-                    $("#error-pwdchk").slideDown();
-                    slidePwd = 1;
-                }
-                $("#error-pwdchk").text("Le password non corrispondono");
-            }
-        });
+        if(nome == ""){
+            validName = false;
+            $("#error-name").html("").slideUp();
+        }
+    }
 
-        $("#nome").keyup(function() {
-            let nome = $("#nome").val();
-            let slideNome = 0;
+    function validateSurname(cognome) {
+        if(cognome.match(nameValidator)){
+            console.log("Cognome valido");
+            validSurname = true;
+            $("#error-surname").html("").slideUp();
+        } else {
+            console.log("Cognome non valido");
+            validSurname = false;
+            $("#error-surname").html("Cognome non valido").slideDown();
+        }
 
-            if (nome.match(nameValidator)) {
-                console.log("Nome valido");
-                validName = true;
-                if (slideNome == 1) {
-                    slideNome = 0;
-                    $("#error-name").slideUp();
-                }
-                $("#error-name").text("");
-            } else {
-                console.log("Nome non valido");
-                validName = false;
-                if (slideNome == 0) {
-                    $("#error-name").slideDown();
-                    slideNome = 1;
-                }
-                $("#error-name").text("Nome non valido");
-            }
+        if(cognome == ""){
+            validSurname = false;
+            $("#error-surname").html("").slideUp();
+        }
+    }
 
-            if (nome == "") {
-                validName = false;
-                if (slideNome == 1) {
-                    slideNome = 0;
-                    $("#error-name").slideUp();
-                }
-                $("#error-name").text("");
-            }
-        });
-
-        $("#cognome").keyup(function() {
-            let cognome = $("#cognome").val();
-            let slideCognome = 0;
-
-            if (cognome.match(nameValidator)) {
-                console.log("Cognome valido");
-                validSurname = true;
-                if (slideCognome == 1) {
-                    slideCognome = 0;
-                    $("#error-surname").slideUp();
-                }
-                $("#error-surname").text("");
-            } else {
-                console.log("Cognome non valido");
-                validSurname = false;
-                if (slideCognome == 0) {
-                    $("#error-surname").slideDown();
-                    slideCognome = 1;
-                }
-                $("#error-surname").text("Cognome non valido");
-            }
-
-            if (cognome == "") {
-                validSurname = false;
-                if (slideCognome == 1) {
-                    slideCognome = 0;
-                    $("#error-surname").slideUp();
-                }
-                $("#error-surname").text("");
-            }
-        });
-
-        $("#registrati").click(function() {
-            if (validEmail && validPwdCheck && validUsername && validName && validSurname && validPwd) {
-                $("#registrazione").submit();
-            } else {
-                event.preventDefault();
-            }
-        });
+    $("#email").blur(function() {
+        let email = $("#email").val();
+        validateEmail(email);
     });
+
+    $("#username").blur(function (){
+        let username = $("#username").val();
+        validateUsername(username);
+    });
+
+    $("#password").blur(function (){
+        let pwd = $("#password").val();
+        validatePassword(pwd);
+    });
+
+    $("#passwordCheck").blur(function () {
+        let pwd = $("#password").val();
+        let pwdCheck = $("#passwordCheck").val();
+        validatePasswordCheck(pwd, pwdCheck);
+    });
+
+    $("#nome").blur(function () {
+        let nome = $("#nome").val();
+        validateName(nome);
+    });
+
+    $("#cognome").blur(function () {
+        let cognome = $("#cognome").val();
+        validateSurname(cognome);
+    });
+
+    $("#registrati").click(function(event){
+        let email = $("#email").val();
+        let username = $("#username").val();
+        let pwd = $("#password").val();
+        let pwdCheck = $("#passwordCheck").val();
+        let nome = $("#nome").val();
+        let cognome = $("#cognome").val();
+
+        validateEmail(email);
+        validateUsername(username);
+        validatePassword(pwd);
+        validatePasswordCheck(pwd, pwdCheck);
+        validateName(nome);
+        validateSurname(cognome);
+
+        if(validEmail && validPwdCheck && validUsername && validName && validSurname && validPwd){
+            $("#registrazione").submit();
+        } else {
+            event.preventDefault();
+        }
+    });
+});

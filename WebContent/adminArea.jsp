@@ -1,3 +1,5 @@
+<%@page import="model.ProdottoBean"%>
+<%@page import="model.ProdottoDAO"%>
 <%@page import="model.OrdineDao"%>
 <%@page import="model.OrdineBean"%>
 <%@page import="java.util.List"%>
@@ -81,7 +83,7 @@
 
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i>Gestisci Ordini</a>
 
-                                <a href="#address" data-toggle="tab"><i class="fa fa-map-marker"></i>Gestisci Prodotti</a>
+                                <a href="#products" data-toggle="tab"><i class="fa fa-map-marker"></i>Gestisci Prodotti</a>
 
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Informazioni account</a>
 
@@ -122,6 +124,9 @@
                                 <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start -->
+                                
+                                
+                                
                                 
                                 
                                 
@@ -283,94 +288,86 @@
                                 <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="address" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                <div class="tab-pane fade" id="products" role="tabpanel">
+    <div class="myaccount-content">
+        <h3>Prodotti</h3>
+        
+         <!-- Bottone per aggiungere un nuovo prodotto -->
+        <a href="aggiungiProdottoForm.jsp" class="btn btn-primary mb-3">Aggiungi Prodotto</a>
+        
 
-                                        <address>
-                                            <p><strong>Alex Tuntuni</strong></p>
-                                            <p>1355 Market St, Suite 900 <br>
-                                                San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
-                                        </address>
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Quantità</th>
+                        <th>Costo</th>
+                        <th>Sesso</th>
+                        <th>Categoria</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%-- Recupero tutti i prodotti --%>
+                    <%
+                        ProdottoDAO prodottoDAO = new ProdottoDAO();
+                        List<ProdottoBean> prodotti = null;
 
-                                        <a href="#" class="btn-add-to-cart d-inline-block"><i class="fa fa-edit"></i>
-                                            Edit Address</a>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
+                        try {
+                            prodotti = prodottoDAO.doRetrieveAll(null);
+                        } catch (Exception e) {
+                            out.println("Errore: " + e.getMessage());
+                        }
 
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="account-info" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Account Details</h3>
+                        if (prodotti != null && !prodotti.isEmpty()) {
+                            for (ProdottoBean prodotto : prodotti) {
+                    %>
+                    <tr>
+                        <td><%= prodotto.getId() %></td>
+                        <td><%= prodotto.getNome() %></td>
+                        <td><%= prodotto.getQuantita() %></td>
+                        <td><%= prodotto.getCosto() %></td>
+                        <td><%= prodotto.getSesso() %></td>
+                        <td><%= prodotto.getCategoriaNome() %></td>
+                        <td>
+                            <a href="editProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-info btn-sm">Modifica</a>
+                            <a href="deleteProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-danger btn-sm">Elimina</a>
+                        </td>
+                    </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="7">Nessun prodotto trovato.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-                                        <div class="account-details-form">
-                                            <form action="#">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="single-input-item">
-                                                            <label for="first-name" class="required">First Name</label>
-                                                            <input type="text" id="first-name"
-                                                                   placeholder="First Name"/>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="col-lg-6">
-                                                        <div class="single-input-item">
-                                                            <label for="last-name" class="required">Last Name</label>
-                                                            <input type="text" id="last-name" placeholder="Last Name"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="single-input-item">
-                                                    <label for="display-name" class="required">Display Name</label>
-                                                    <input type="text" id="display-name" placeholder="Display Name"/>
-                                                </div>
-
-                                                <div class="single-input-item">
-                                                    <label for="email" class="required">Email Addres</label>
-                                                    <input type="email" id="email" placeholder="Email Address"/>
-                                                </div>
-
-                                                <fieldset>
-                                                    <legend>Password change</legend>
-                                                    <div class="single-input-item">
-                                                        <label for="current-pwd" class="required">Current
-                                                            Password</label>
-                                                        <input type="password" id="current-pwd"
-                                                               placeholder="Current Password"/>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item">
-                                                                <label for="new-pwd" class="required">New
-                                                                    Password</label>
-                                                                <input type="password" id="new-pwd"
-                                                                       placeholder="New Password"/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item">
-                                                                <label for="confirm-pwd" class="required">Confirm
-                                                                    Password</label>
-                                                                <input type="password" id="confirm-pwd"
-                                                                       placeholder="Confirm Password"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <div class="single-input-item">
-                                                    <button class="btn-login btn-add-to-cart">Save Changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
+                                
+                                
+                                
                                 <!-- Single Tab Content End -->
                             </div>
                         </div>

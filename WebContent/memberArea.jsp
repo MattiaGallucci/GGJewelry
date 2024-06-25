@@ -78,12 +78,12 @@
                                 <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
                                     Dashboard</a>
 
-                                <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
+                                <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Ordini</a>
 
                                 
-                                <a href="#address" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a>
+                                <a href="#address" data-toggle="tab"><i class="fa fa-map-marker"></i>Indirizzo</a>
 
-                                <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
+                                <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Informazioni account</a>
 
                                 <a href="loginPage.jsp"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>

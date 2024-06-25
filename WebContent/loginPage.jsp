@@ -107,35 +107,40 @@
                                 <form action="registrazione" method="post">
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Nome" id="nome" name="nome" required/>
-                                   
+                                   		<p style=color:red; id="error-name"></p>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Cognome" required/>
+                                        <input type="text" placeholder="Cognome" name="cognome" id="cognome" required/>
+                                        <p style=color:red; id="error-surname"></p>
                                     </div>
 									<div class="single-input-item">
                                         <input type="text" placeholder="Username" id="username" name="username" required/>
+                                        <p style=color:red; id="error-username"></p>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="email" placeholder="Enter your Email" id="email" name="email" required/>
+                                        <input type="text" placeholder="Enter your Email" name="email" id="email" required>
+        								<p style=color:red; id="error-email"></p>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="single-input-item">
                                                 <input type="password" placeholder="Enter your Password" id="password" name="password" required/>
+                                                <p style=color:red; id="error-pwd"></p>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="single-input-item">
                                                 <input type="password" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
+                                                <p style=color:red; id="error-pwdchk"></p>
                                             </div>
                                         </div>
                                     </div>
 
 
                                     <div class="single-input-item">
-                                        <button class="btn-login">Register</button>
+                                        <input class="btn-login" type="submit" id="registrati" value="Registrati">
                                     </div>
                                    
                                     
@@ -172,7 +177,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
- <script src="assests/js/validate.js"></script>
+ <script src="assets/js/validate.js"></script>
 </body>
 
 </html>

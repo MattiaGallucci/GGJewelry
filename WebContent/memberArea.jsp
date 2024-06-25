@@ -116,7 +116,7 @@
 												            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
 												        }
    														%>
-														<a href="loginPage.jsp" class="logout"> Logout</a>)</p>
+														<a href="LogOutServlet" class="logout"> Logout</a>)</p>
                                         </div>
 
                                         <p class="mb-0">From your account dashboard. you can easily check & view your

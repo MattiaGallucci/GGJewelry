@@ -24,11 +24,8 @@
 						<nav id="mainmenu">
 							<ul>
 								<li><a href="homePage.jsp">Home</a></li>
-								<li><a href="shop-full-wide.html">Shop</a></li>
-
-								<li><a href="blog.html">Chi siamo</a></li>
-
-								<li><a href="contact.html">Contattaci</a></li>
+								<li><a href="catalogo.jsp">Catalogo</a></li>
+								<li><a href="contact.jsp">Contattaci</a></li>
 								<%
 								Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
 								if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) {

@@ -139,7 +139,7 @@
 								        <input class="btn-login" type="submit" id="registrati" value="Registrati">
 								    </div>
 								</form>
-								                            </div>
+							</div>
                         </div>
                     </div>
                 </div>

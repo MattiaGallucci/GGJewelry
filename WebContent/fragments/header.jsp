@@ -57,8 +57,7 @@
 								</svg>
 								</a>
 							</li>
-							<li><a href="#" class="modal-active"><i
-									class="fa fa-search"></i></a></li>
+							
 							<li class="shop-cart"><a href="#"><i
 									class="fa fa-shopping-bag"></i> <span class="count">3</span></a>
 								<div class="mini-cart">

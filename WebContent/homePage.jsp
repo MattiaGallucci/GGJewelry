@@ -111,6 +111,7 @@
                             per l'eccellenza, combinando design innovativi con materiali preziosi. 
 
                         </p>
+                        
                         <p> 
                             Che siate alla ricerca di un regalo speciale o di un pezzo esclusivo per voi stessi,
                             da G&G Jewelry troverete un servizio personalizzato e una collezione che incanta e ispira. La nostra missione è trasformare ogni desiderio in realtà, 

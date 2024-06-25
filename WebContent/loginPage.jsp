@@ -94,13 +94,13 @@
                     <div class="tab-content" id="login-reg-tabcontent">
                         <div class="tab-pane fade show active" id="login" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="#" method="post">
+                                <form action="login" method="post">
                                     <div class="single-input-item">
-                                        <input type="email" placeholder="Enter your Email" required/>
+                                        <input type="text" placeholder="Enter your Username" id="username" name="username" required/>
                                     </div>
 
                                     <div class="single-input-item">
-                                        <input type="password" placeholder="Enter your Password" required/>
+                                        <input type="password" placeholder="Enter your Password" id="password" name="password" required/>
                                     </div>
 
                                     <div class="single-input-item">
@@ -111,25 +111,30 @@
                         </div>
                         <div class="tab-pane fade" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="#" method="post">
+                                <form action="registrazione" method="post">
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Full Name" required/>
+                                        <input type="text" placeholder="Nome" id="nome" name="nome" required/>
                                     </div>
-
                                     <div class="single-input-item">
-                                        <input type="email" placeholder="Enter your Email" required/>
+                                        <input type="text" placeholder="Cognome" required/>
+                                    </div>
+									<div class="single-input-item">
+                                        <input type="text" placeholder="Username" id="username" name="username" required/>
+                                    </div>
+                                    <div class="single-input-item">
+                                        <input type="email" placeholder="Enter your Email" id="email" name="email" required/>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="single-input-item">
-                                                <input type="password" placeholder="Enter your Password" required/>
+                                                <input type="password" placeholder="Enter your Password" id="password" name="password" required/>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="single-input-item">
-                                                <input type="password" placeholder="Repeat your Password" required/>
+                                                <input type="password" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
                                             </div>
                                         </div>
                                     </div>

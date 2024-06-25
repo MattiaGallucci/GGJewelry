@@ -33,7 +33,7 @@
 <body>
 
 <jsp:include page="fragments/header.jsp" />
-<!--== Header Area End ==-->
+
 
 <!--== Search Box Area Start ==-->
 <div class="body-popup-modal-area">

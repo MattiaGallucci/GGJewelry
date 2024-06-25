@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
 
-    <title>G&G Jewelry</title>
+    <title>G&G Jewelry</title> 
 
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"

@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
 
-    <title>Dashboard :: DNX - Jewelry Store eCommerce</title>
+    <title>Area utente</title>
 
     <!--=== Favicon ===-->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
@@ -55,10 +55,10 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>Dashboard</h1>
+                    <h1>Area Utente</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <li><a href="memberArea.jsp" class="active">Dashboard</a></li>
+                        <li><a href="memberArea.jsp" class="active">Area Utente</a></li>
                     </ul>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         <div class="col-lg-3">
                             <div class="myaccount-tab-menu nav" role="tablist">
                                 <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
-                                    Dashboard</a>
+                                    Area Utente</a>
 
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i>Gestisci Ordini</a>
 
@@ -92,287 +92,219 @@
                         </div>
                         <!-- My Account Tab Menu End -->
 
-                        <!-- My Account Tab Content Start -->
-                        <div class="col-lg-9 mt-5 mt-lg-0">
-                            <div class="tab-content" id="myaccountContent">
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Dashboard</h3>
+                 <!-- My Account Tab Content Start -->
+                 <div class="col-lg-9 mt-5 mt-lg-0">
+                          <div class="tab-content" id="myaccountContent">
+                            <!-- Single Tab Content Start -->
+                            <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3>Area Utente</h3>
 
-                                        <div class="welcome">
-                                            <p><%
-												Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
-										        if (isLoggedIn != null && isLoggedIn) {
-										            String nome = (String) session.getAttribute("nome");
-										            String cognome = (String) session.getAttribute("cognome");
-										            out.println("<p>Bentornato, " + nome + " " + cognome + "!</p>");
-										        } else {
-										            out.println("<p>Perfavore <a href='loginPage.jsp'>login</a> per continuare.</p>");
-										        }
-										
-										        
- 												%>
-                                        </div>
-
-                                        <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
-                                            ordini recenti, gestisci i tuoi indirizzi di spedizione e fatturazione e modifica i tuoi
-                                            password e dettagli dell'account.
-                                         </p>
+                                    <div class="welcome">
+                                    <p>
+                                    <%
+									Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
+							        if (isLoggedIn != null && isLoggedIn) {
+							            String nome = (String) session.getAttribute("nome");
+							            String cognome = (String) session.getAttribute("cognome");
+							            out.println("<p>Bentornato, " + nome + " " + cognome + "!</p>");
+							        } else {
+							            out.println("<p>Perfavore <a href='loginPage.jsp'>login</a> per continuare.</p>");
+							        }
+							
+						        
+									%>
                                     </div>
+
+                                    <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
+                                        ordini recenti, gestisci i tuoi indirizzi di spedizione e fatturazione e modifica i tuoi
+                                        password e dettagli dell'account.
+                                     </p>
                                 </div>
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-<div class="tab-pane fade" id="orders" role="tabpanel">
-    <div class="myaccount-content">
-        <h3>Ordini</h3>
-        
-        <!-- Form per inserire l'email e intervallo di date -->
-        <form action="adminArea.jsp" method="GET">
-            <div class="form-group">
-                <label for="inputEmail">Inserisci l'email:</label>
-                <input type="text" id="inputEmail" name="email">
-            </div>
-            <div class="form-group">
-                <label for="inputDataInizio">Data Inizio:</label>
-                <input type="date" id="inputDataInizio" name="dataInizio">
-            </div>
-            <div class="form-group">
-                <label for="inputDataFine">Data Fine:</label>
-                <input type="date" id="inputDataFine" name="dataFine">
-            </div>
-            <button type="submit">Cerca ordini</button>
-            <button type="button" onclick="resetFilters()">Azzerare filtri</button>
-        </form>
-        
-        <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Data</th>
-                        <th>Costo Totale</th>
-                        <th>Email Utente</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%-- Recupero tutti gli ordini se non viene fornita un'email --%>
-                    <%
-                        OrdineDao ordineDAO = new OrdineDao();
-                        List<OrdineBean> ordini = null;
-
-                        String userEmail = request.getParameter("email");
-                        String dataInizio = request.getParameter("dataInizio");
-                        String dataFine = request.getParameter("dataFine");
-                        String reset = request.getParameter("reset");
-
-                        if (reset != null && reset.equals("true")) {
-                            // Azzeramento dei filtri, recupera tutti gli ordini
-                            try {
-                                ordini = ordineDAO.doRetrieveAll(null);
-                            } catch (Exception e) {
-                                out.println("Errore: " + e.getMessage());
-                            }
-                        } else if (userEmail != null && !userEmail.isEmpty()) {
-                            // Recupera gli ordini per email specificata
-                            try {
-                                ordini = ordineDAO.doRetrieveByEmail(userEmail);
-                            } catch (Exception e) {
-                                out.println("Errore: " + e.getMessage());
-                            }
-                        } else if (dataInizio != null && dataFine != null && !dataInizio.isEmpty() && !dataFine.isEmpty()) {
-                            // Recupera gli ordini per intervallo di date
-                            try {
-                                ordini = ordineDAO.doRetrieveByDateRange(dataInizio, dataFine);
-                            } catch (Exception e) {
-                                out.println("Errore: " + e.getMessage());
-                            }
-                        } else {
-                            // Recupera tutti gli ordini se non viene fornita un'email o un intervallo di date
-                            try {
-                                ordini = ordineDAO.doRetrieveAll(null);
-                            } catch (Exception e) {
-                                out.println("Errore: " + e.getMessage());
-                            }
-                        }
-
-                        if (ordini != null && !ordini.isEmpty()) {
-                            for (OrdineBean ordine : ordini) {
-                    %>
-                    <tr>
-                        <td><%= ordine.getId() %></td>
-                        <td><%= ordine.getData() %></td>
-                        <td><%= ordine.getCostoTotale() %></td>
-                        <td><%= ordine.getUtenteEmail() %></td>
-                        <td><a href="viewOrder.jsp?id=<%= ordine.getId() %>" class="btn-add-to-cart">View</a></td>
-                    </tr>
-                    <%
-                            }
-                        } else {
-                    %>
-                    <tr>
-                        <td colspan="5">Nessun ordine trovato<% if (userEmail != null && !userEmail.isEmpty()) out.print(" per l'email " + userEmail); %>.</td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-
-                                
-                                
-                                
-                                
-                                
-                                
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="download" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Downloads</h3>
-
-                                        <div class="myaccount-table table-responsive text-center">
-                                            <table class="table table-bordered">
-                                                <thead class="thead-light">
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Date</th>
-                                                    <th>Expire</th>
-                                                    <th>Download</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                <tr>
-                                                    <td>Haven - Free Real Estate PSD Template</td>
-                                                    <td>Aug 22, 2018</td>
-                                                    <td>Yes</td>
-                                                    <td><a href="#" class="btn-add-to-cart">Download File</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>HasTech - Profolio Business Template</td>
-                                                    <td>Sep 12, 2018</td>
-                                                    <td>Never</td>
-                                                    <td><a href="#" class="btn-add-to-cart">Download File</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="payment-method" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Payment Method</h3>
-
-                                        <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <div class="tab-pane fade" id="products" role="tabpanel">
-    <div class="myaccount-content">
-        <h3>Prodotti</h3>
-        
-         <!-- Bottone per aggiungere un nuovo prodotto -->
-        <a href="aggiungiProdottoForm.jsp" class="btn btn-primary mb-3">Aggiungi Prodotto</a>
-        
-
-        <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Quantità</th>
-                        <th>Costo</th>
-                        <th>Sesso</th>
-                        <th>Categoria</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%-- Recupero tutti i prodotti --%>
-                    <%
-                        ProdottoDAO prodottoDAO = new ProdottoDAO();
-                        List<ProdottoBean> prodotti = null;
-
-                        try {
-                            prodotti = prodottoDAO.doRetrieveAll(null);
-                        } catch (Exception e) {
-                            out.println("Errore: " + e.getMessage());
-                        }
-
-                        if (prodotti != null && !prodotti.isEmpty()) {
-                            for (ProdottoBean prodotto : prodotti) {
-                    %>
-                    <tr>
-                        <td><%= prodotto.getId() %></td>
-                        <td><%= prodotto.getNome() %></td>
-                        <td><%= prodotto.getQuantita() %></td>
-                        <td><%= prodotto.getCosto() %></td>
-                        <td><%= prodotto.getSesso() %></td>
-                        <td><%= prodotto.getCategoriaNome() %></td>
-                        <td>
-                            <a href="editProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-info btn-sm">Modifica</a>
-                            <a href="deleteProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-danger btn-sm">Elimina</a>
-                        </td>
-                    </tr>
-                    <%
-                            }
-                        } else {
-                    %>
-                    <tr>
-                        <td colspan="7">Nessun prodotto trovato.</td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-
-                                
-                                
-                                
-                                
-                                
-                                <!-- Single Tab Content End -->
                             </div>
-                        </div>
-                        <!-- My Account Tab Content End -->
-                    </div>
+                     
+					 <!-- Single Tab Content End -->
+				 	 <div class="tab-pane fade" id="orders" role="tabpanel">
+							<div class="myaccount-content">
+								        <h3>Gestisci Ordini</h3>
+								
+								        <!-- Form per inserire l'email e intervallo di date -->
+								        <form action="#orders" method="GET">
+								            <div class="form-group">
+								                <label for="inputEmail">Inserisci l'email:</label>
+								                &nbsp&nbsp
+								                <input type="text" id="inputEmail" name="email">
+								            </div>
+								            <div class="form-group">
+								                <label for="inputDataInizio">Data Inizio:</label>
+								                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								                <input type="date" id="inputDataInizio" name="dataInizio">
+								            </div>
+								            <div class="form-group">
+								                <label for="inputDataFine">Data Fine:</label>
+								                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								                <input type="date" id="inputDataFine" name="dataFine">
+								            </div>
+								            <br><br>
+								            <button type="submit">Cerca ordini</button>
+								            <button type="button" onclick="resetFilters()">Azzerare filtri</button>
+								        </form>
+								
+								        <div class="myaccount-table table-responsive text-center">
+								            <table class="table table-bordered">
+								                <thead class="thead-light">
+								                    <tr>
+								                        <th>ID</th>
+								                        <th>Data</th>
+								                        <th>Costo Totale</th>
+								                        <th>Email Utente</th>
+								                        <th>Action</th>
+								                    </tr>
+								                </thead>
+								                <tbody>
+								                    <%-- Recupero tutti gli ordini se non viene fornita un'email --%>
+								                    <%
+								                    OrdineDao ordineDAO = new OrdineDao();
+								                    List<OrdineBean> ordini = null;
+								
+								                    String userEmail = request.getParameter("email");
+								                    String dataInizio = request.getParameter("dataInizio");
+								                    String dataFine = request.getParameter("dataFine");
+								                    String reset = request.getParameter("reset");
+								
+								                    if (reset != null && reset.equals("true")) {
+								                        // Azzeramento dei filtri, recupera tutti gli ordini
+								                        try {
+								                            ordini = ordineDAO.doRetrieveAll(null);
+								                        } catch (Exception e) {
+								                            out.println("Errore: " + e.getMessage());
+								                        }
+								                    } else if (userEmail != null && !userEmail.isEmpty()) {
+								                        // Recupera gli ordini per email specificata
+								                        try {
+								                            ordini = ordineDAO.doRetrieveByEmail(userEmail);
+								                        } catch (Exception e) {
+								                            out.println("Errore: " + e.getMessage());
+								                        }
+								                    } else if (dataInizio != null && dataFine != null && !dataInizio.isEmpty() && !dataFine.isEmpty()) {
+								                        // Recupera gli ordini per intervallo di date
+								                        try {
+								                            ordini = ordineDAO.doRetrieveByDateRange(dataInizio, dataFine);
+								                        } catch (Exception e) {
+								                            out.println("Errore: " + e.getMessage());
+								                        }
+								                    } else {
+								                        // Recupera tutti gli ordini se non viene fornita un'email o un intervallo di date
+								                        try {
+								                            ordini = ordineDAO.doRetrieveAll(null);
+								                        } catch (Exception e) {
+								                            out.println("Errore: " + e.getMessage());
+								                        }
+								                    }
+								
+								                    if (ordini != null && !ordini.isEmpty()) {
+								                        for (OrdineBean ordine : ordini) {
+								                    %>
+								                    <tr>
+								                        <td><%= ordine.getId() %></td>
+								                        <td><%= ordine.getData() %></td>
+								                        <td><%= ordine.getCostoTotale() %></td>
+								                        <td><%= ordine.getUtenteEmail() %></td>
+								                        <td><a href="viewOrder.jsp?id=<%= ordine.getId() %>" class="btn-add-to-cart">View</a></td>
+								                    </tr>
+								                    <%
+								                        }
+								                    } else {
+								                    %>
+								                    <tr>
+								                        <td colspan="5">Nessun ordine trovato<% if (userEmail != null && !userEmail.isEmpty()) out.print(" per l'email " + userEmail); %>.</td>
+								                    </tr>
+								                    <%
+								                    }
+								                    %>
+								                </tbody>
+								            </table>
+								        </div>
+							</div>
+					 </div>
+
+                     <!-- Single Tab Content End -->
+
+                  
+                      
+
+                   
+                    
+                     <!-- Single Tab Content Start -->                       
+					 <div class="tab-pane fade" id="products" role="tabpanel">
+									    <div class="myaccount-content">
+									        <h3>Gestisi Prodotti</h3>
+									        
+									        
+									        <a href="aggiungiProdottoForm.jsp" class="btn btn-primary mb-3">Aggiungi Prodotto</a>
+									        
+									
+									        <div class="myaccount-table table-responsive text-center">
+									            <table class="table table-bordered">
+									                <thead class="thead-light">
+									                    <tr>
+									                        <th>ID</th>
+									                        <th>Nome</th>
+									                        <th>Quantità</th>
+									                        <th>Costo</th>
+									                        <th>Sesso</th>
+									                        <th>Categoria</th>
+									                        <th>Action</th>
+									                    </tr>
+									                </thead>
+									                <tbody>
+									                    <%-- Recupero tutti i prodotti --%>
+									                    <%
+									                        ProdottoDAO prodottoDAO = new ProdottoDAO();
+									                        List<ProdottoBean> prodotti = null;
+									
+									                        try {
+									                            prodotti = prodottoDAO.doRetrieveAll(null);
+									                        } catch (Exception e) {
+									                            out.println("Errore: " + e.getMessage());
+									                        }
+									
+									                        if (prodotti != null && !prodotti.isEmpty()) {
+									                            for (ProdottoBean prodotto : prodotti) {
+									                    %>
+									                    <tr>
+									                        <td><%= prodotto.getId() %></td>
+									                        <td><%= prodotto.getNome() %></td>
+									                        <td><%= prodotto.getQuantita() %></td>
+									                        <td><%= prodotto.getCosto() %></td>
+									                        <td><%= prodotto.getSesso() %></td>
+									                        <td><%= prodotto.getCategoriaNome() %></td>
+									                        <td>
+									                            <a href="editProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-info btn-sm">Modifica</a>
+									                            <a href="deleteProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-danger btn-sm">Elimina</a>
+									                        </td>
+									                    </tr>
+									                    <%
+									                            }
+									                        } else {
+									                    %>
+									                    <tr>
+									                        <td colspan="7">Nessun prodotto trovato.</td>
+									                    </tr>
+									                    <%
+									                        }
+									                    %>
+									                </tbody>
+									            </table>
+									        </div>
+									    </div>
+									</div>
+
+                     <!-- Single Tab Content End -->
+                 </div>
+                 </div>
+                 <!-- My Account Tab Content End -->
+                </div>
                 </div>
                 <!-- My Account Page End -->
             </div>
@@ -404,22 +336,23 @@
 <script src="assets/js/active.js"></script>
 
 
-
+ 
 <script>
-    function resetFilters() {
-        document.getElementById("inputEmail").value = "";
-        document.getElementById("inputDataInizio").value = "";
-        document.getElementById("inputDataFine").value = "";
-        // Aggiungi un parametro reset per azzerare i filtri
-        var form = document.querySelector("form");
-        var inputReset = document.createElement("input");
-        inputReset.setAttribute("type", "hidden");
-        inputReset.setAttribute("name", "reset");
-        inputReset.setAttribute("value", "true");
-        form.appendChild(inputReset);
-        form.submit();
-    }
+function resetFilters() {
+    document.getElementById("inputEmail").value = "";
+    document.getElementById("inputDataInizio").value = "";
+    document.getElementById("inputDataFine").value = "";
+    // Aggiungi un parametro reset per azzerare i filtri
+    var form = document.querySelector("form");
+    var inputReset = document.createElement("input");
+    inputReset.setAttribute("type", "hidden");
+    inputReset.setAttribute("name", "reset");
+    inputReset.setAttribute("value", "true");
+    form.appendChild(inputReset);
+    form.submit();
+}
 </script>
+ 
 
 
 

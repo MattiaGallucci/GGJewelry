@@ -104,7 +104,7 @@
                         </div>
                         <div class="tab-pane fade" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="registrazione" method="post">
+                                <form action="registrazione" id="registrazione" method="post" autocomplete="off">
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Nome" id="nome" name="nome" required/>
                                    		<p style=color:red; id="error-name"></p>
@@ -118,8 +118,8 @@
                                         <p style=color:red; id="error-username"></p>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Enter your Email" name="email" id="email" required>
-        								<p style=color:red; id="error-email"></p>
+                                        <input type="text" placeholder="Enter your Email" id="email" name="email" required/>
+                                        <p style=color:red; id="error-email"></p>
                                     </div>
 
                                     <div class="row">

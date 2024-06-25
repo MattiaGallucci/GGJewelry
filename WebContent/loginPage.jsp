@@ -177,11 +177,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
-<<<<<<< HEAD
 <script src="assets/js/validate.js"></script>
-=======
- <script src="assets/js/validate.js"></script>
->>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 </body>
 
 </html>

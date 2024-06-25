@@ -19,21 +19,20 @@ import java.util.Random;
 @WebServlet("/catalogo")
 public class CatalogoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    public CatalogoServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdottoDAO dao = new ProdottoDAO();
-        ArrayList<ArrayList<ProdottoBean>> categorie = new ArrayList<>();
+        List<ProdottoBean> prodotti = new ArrayList<>();
 		
         try {
-			ArrayList<ProdottoBean> abbigliamento = dao.doRetrieveByCategoria("Abbigliamento");
-			ArrayList<ProdottoBean> anelli = dao.doRetrieveByCategoria("anelli");
-			ArrayList<ProdottoBean> collane = dao.doRetrieveByCategoria("collane");
-			
-			categorie.add(abbigliamento);
-			categorie.add(anelli);
-			categorie.add(collane);
+			prodotti = dao.doRetrieveAll("");
 
-			request.getSession().setAttribute("categorie", categorie);
+			request.getSession().setAttribute("prodotti", prodotti);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

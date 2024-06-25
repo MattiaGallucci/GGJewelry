@@ -85,7 +85,7 @@
 
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Informazioni account</a>
 
-                                <a href="loginPage.jsp"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="LogOutServlet"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -99,6 +99,7 @@
                                         <h3>Dashboard</h3>
 
                                         <div class="welcome">
+
                                             <p><%
 												Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
 										        if (isLoggedIn != null && isLoggedIn) {
@@ -106,7 +107,7 @@
 										            String cognome = (String) session.getAttribute("cognome");
 										            out.println("<p>Bentornato, " + nome + " " + cognome + "!</p>");
 										        } else {
-										            out.println("<p>Perfavore <a href='loginPage.jsp'>login</a> per continuare.</p>");
+										            out.println("<p>Perfavore <a href='loginPage.jsp'>accedi</a> per continuare.</p>");
 										        }
 										
 										        String error = (String) session.getAttribute("error");
@@ -115,6 +116,7 @@
 										            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
 										        }
  												%>
+
                                         </div>
 
                                         <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo

@@ -475,19 +475,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="products-settings-option d-block d-md-flex">
-                        <nav class="page-pagination">
-                            <ul class="pagination">
-                                <li><a href="#" aria-label="Previous">&laquo;</a></li>
-                                <li><a class="current" href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#" aria-label="Next">&raquo;</a></li>
-                            </ul>
-                        </nav>
-
-                    </div>
+ 
                 </div>
             </div>
             <!-- Shop Page Content End -->

@@ -52,13 +52,6 @@ public class CatalogoServlet extends HttpServlet {
         doGet(request, response);
     }
 
-    /**
-     * Restituisce una lista di prodotti casuali da una lista di tutti i prodotti disponibili.
-     *
-     * @param products Lista di tutti i prodotti disponibili
-     * @param count    Numero di prodotti casuali da restituire
-     * @return Lista di prodotti casuali
-     */
     private List<ProdottoBean> getRandomProducts(List<ProdottoBean> products, int count) {
         List<ProdottoBean> randomProducts = new ArrayList<>();
         Random random = new Random();

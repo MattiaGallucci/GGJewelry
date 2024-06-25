@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
     <title>Aggiungi Prodotto</title> 
+    
+    <!--== Google Fonts ==-->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i"/>
 
     <!--=== Bootstrap CSS ===-->
     <link href="assets/css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +25,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    
 </head>
 <body>
 

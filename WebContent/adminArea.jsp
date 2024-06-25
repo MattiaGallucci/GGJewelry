@@ -18,7 +18,7 @@
     <title>Area utente</title>
 
     <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+    
 
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
@@ -90,7 +90,7 @@
                                 <a href="LogOutServlet"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
                         </div>
-                        <!-- My Account Tab Menu End -->
+                  	<!-- My Account Tab Menu End -->
 
                  <!-- My Account Tab Content Start -->
                  <div class="col-lg-9 mt-5 mt-lg-0">
@@ -116,7 +116,7 @@
 									%>
                                     </div>
 
-                                    <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
+                                     <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
                                         ordini recenti, gestisci i tuoi indirizzi di spedizione e fatturazione e modifica i tuoi
                                         password e dettagli dell'account.
                                      </p>
@@ -129,7 +129,7 @@
 								        <h3>Gestisci Ordini</h3>
 								
 								        <!-- Form per inserire l'email e intervallo di date -->
-								        <form action="#orders" method="GET">
+								        <form action="adminArea.jsp#orders" method="GET">
 								            <div class="form-group">
 								                <label for="inputEmail">Inserisci l'email:</label>
 								                &nbsp&nbsp

@@ -78,7 +78,6 @@
 
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Ordini</a>
 
-                                
                                 <a href="#address" data-toggle="tab"><i class="fa fa-map-marker"></i>Indirizzo</a>
 
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Informazioni account</a>

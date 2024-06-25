@@ -18,7 +18,7 @@ import java.util.Random;
 @WebServlet("/catalogo")
 public class CatalogoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     public CatalogoServlet() {
         super();
     }
@@ -26,54 +26,49 @@ public class CatalogoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdottoDAO dao = new ProdottoDAO();
         List<ProdottoBean> prodotti = new ArrayList<>();
-		
+        List<ProdottoBean> randomProdotti = new ArrayList<>();
+
         try {
-            // Retrieve all products
-			prodotti = dao.doRetrieveAll("");
-			
-			// Set products list in session
-			request.getSession().setAttribute("prodotti", prodotti);
-			
-			// Get 3 random products
-			List<ProdottoBean> randomProdotti = getRandomProducts(prodotti, 3);
-			
-			// Set random products list in session
-			request.getSession().setAttribute("randomProdotti", randomProdotti);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		// Forward to the homePage.jsp
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homePage.jsp");
-		dispatcher.forward(request, response);
+            // Recupera tutti i prodotti
+            prodotti = dao.doRetrieveAll("");
+
+            // Ottieni 3 prodotti casuali
+            randomProdotti = getRandomProducts(prodotti, 3);
+
+            // Imposta entrambe le liste nella sessione
+            request.getSession().setAttribute("prodotti", prodotti);
+            request.getSession().setAttribute("randomProdotti", randomProdotti);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Reindirizza alla catalogo.jsp
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homePage.jsp");
+        dispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
-    
+
     /**
-     * Retrieves a list of random products from the given list.
-     * 
-     * @param products List of all products available
-     * @param count Number of random products to retrieve
-     * @return List of randomly selected products
+     * Restituisce una lista di prodotti casuali da una lista di tutti i prodotti disponibili.
+     *
+     * @param products Lista di tutti i prodotti disponibili
+     * @param count    Numero di prodotti casuali da restituire
+     * @return Lista di prodotti casuali
      */
     private List<ProdottoBean> getRandomProducts(List<ProdottoBean> products, int count) {
         List<ProdottoBean> randomProducts = new ArrayList<>();
         Random random = new Random();
-        
-        // Ensure we don't exceed available products count
-        int maxIndex = Math.min(count, products.size());
-        
-        // Select random products
-        for (int i = 0; i < maxIndex; i++) {
+
+        for (int i = 0; i < count; i++) {
             int randomIndex = random.nextInt(products.size());
             ProdottoBean randomProduct = products.get(randomIndex);
             randomProducts.add(randomProduct);
         }
-        
+
         return randomProducts;
     }
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -116,12 +115,12 @@
 										            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
 										        }
  												%>
-												<a href="loginPage.jsp" class="logout"> Logout</a>)</p>
                                         </div>
 
                                         <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
                                             ordini recenti, gestisci i tuoi indirizzi di spedizione e fatturazione e modifica i tuoi
-                                            password e dettagli dell'account.</p>
+                                            password e dettagli dell'account.
+                                         </p>
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->

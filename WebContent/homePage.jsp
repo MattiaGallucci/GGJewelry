@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
 <%@page import="model.ProdottoBean"%>
 <%@page import="java.util.List"%>
 <html class="no-js" lang="zxx">
@@ -122,7 +123,9 @@
 
 
 
-
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%>
 
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
@@ -146,19 +149,21 @@
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
+                                    <% for (ProdottoBean prodotto : prodottiCasuali) { %>
                                     <!-- Loop through the randomProducts stored in session -->
-<c:forEach var="product" items="${randomProducts}">
-    <div class="single-product-item text-center">
-        <figure class="product-thumb">
-            <a href="single-product.html"><img src="${product.immagine}" alt="Products" class="img-fluid"></a>
-        </figure>
-        <div class="product-details">
-            <h2><a href="single-product.html">${product.nome}</a></h2>
-            <span class="price">$${product.costo}</span>
-            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-        </div>
-    </div>
-</c:forEach>
+                                    <div class="single-product-item text-center">
+                                        <figure class="product-thumb">
+                                            <a href="single-product.html">
+                                                <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" class="img-fluid">
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <h2><a href="single-product.html"><%= prodotto.getNome() %></a></h2>
+                                            <span class="price">$<%= prodotto.getCosto() %></span>
+                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -169,6 +174,7 @@
         </div>
     </div>
 </section>
+
 
 
 

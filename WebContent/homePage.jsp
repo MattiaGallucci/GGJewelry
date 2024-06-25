@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.ProdottoBean"%>
+<%@page import="java.util.List"%>
 <html class="no-js" lang="zxx">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,6 +118,15 @@
 </section>
 <!--== About Us Area End ==-->
 
+
+
+
+
+
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%>
+
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
@@ -131,65 +144,46 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="new-collection-tabs">
-
                     <!-- Tab Content Area Start -->
-                   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
-        <div class="products-wrapper">
-            <div class="products-carousel owl-carousel">
-                <!-- Single Product Item - 1st time -->
-                <div class="single-product-item text-center">
-                    <figure class="product-thumb">
-                        <a href="single-product.html"><img src="assets/img/product-4.jpg" alt="Products" class="img-fluid"></a>
-                    </figure>
-                    <div class="product-details">
-                        <h2><a href="single-product.html">come stai</a></h2>
-                        <span class="price">$83.00</span>
-                        <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                        <span class="product-bedge sale">Sale</span>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
+                            <div class="products-wrapper">
+                                <div class="products-carousel owl-carousel">
+                                    <% for (ProdottoBean prodotto : prodottiCasuali) { %>
+                                    <!-- Loop through the randomProducts stored in session -->
+                                    <div class="single-product-item text-center">
+                                        <figure class="product-thumb">
+                                            <a href="single-product.html">
+                                                <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" class="img-fluid">
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <h2><a href="single-product.html"><%= prodotto.getNome() %></a></h2>
+                                            <span class="price">$<%= prodotto.getCosto() %></span>
+                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Single Product Item - 2nd time -->
-                <div class="single-product-item text-center">
-                    <figure class="product-thumb">
-                        <a href="single-product.html"><img src="assets/img/product-3.jpg" alt="Products" class="img-fluid"></a>
-                    </figure>
-                    <div class="product-details">
-                        <h2><a href="single-product.html">come stai2</a></h2>
-                        <span class="price">$83.00</span>
-                        <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                        <span class="product-bedge sale">Sale</span>
-                    </div>
-                </div>
-
-                <!-- Single Product Item - 3rd time -->
-                <div class="single-product-item text-center">
-                    <figure class="product-thumb">
-                        <a href="single-product.html"><img src="assets/img/product-2.jpg" alt="Products" class="img-fluid"></a>
-                    </figure>
-                    <div class="product-details">
-                        <h2><a href="single-product.html">come stai3</a></h2>
-                        <span class="price">$83.00</span>
-                        <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                        <span class="product-bedge sale">Sale</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-                   
-					 <!-- Tab Content Area end -->
-                       
-                      
+                    <!-- Tab Content Area end -->
                 </div>
             </div>
         </div>
     </div>
-  </div>   
 </section>
+
+
+
+
+
+
+
+
+
+
  
 
 <!--== Testimonial Area Start ==-->
@@ -257,7 +251,7 @@
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <!--=== Plugins Min Js ===-->
 <script src="assets/js/plugins.js"></script>
-
+ 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
 </body>

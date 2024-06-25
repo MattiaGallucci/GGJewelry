@@ -99,17 +99,17 @@ INSERT INTO categoria (nome) VALUES
 
 -- Insert values into 'prodotto' table without the 'immagine' field
 INSERT INTO prodotto (id, nome, descrizione, quantita, costo, sesso, immagine, categoriaNome) VALUES 
-(1, 'T-shirt Uomo', 'T-shirt in cotone di alta qualità', 50, 15.99, 'm', 'images/tshirt_uomo.jpg', 'Abbigliamento'),
-(2, 'Jeans Donna', 'Jeans slim fit', 30, 39.99, 'f', 'images/jeans_donna.jpg', 'Abbigliamento'),
-(3, 'Giacca Uomo', 'Giacca elegante in lana', 15, 99.99, 'm', 'images/giacca_uomo.jpg', 'Abbigliamento'),
-(4, 'Abito Donna', 'Abito lungo elegante', 10, 79.99, 'f', 'images/abito_donna.jpg', 'Abbigliamento'),
-(5, "collana1", "collana d'oro", 50, 100, "m", "images/DA-METTERE.jpg", "collane"),
-(6, "anello1", "anello con diamante", 50, 100, "m", "images/DA-METTERE.jpg", "anelli");
+(1, 'T-shirt Uomo', 'T-shirt in cotone di alta qualità', 50, 15.99, 'm', 'assets/img/new-product-1.jpg', 'Abbigliamento'),
+(2, 'Jeans Donna', 'Jeans slim fit', 30, 39.99, 'f', 'assets/img/new-product-2.jpg', 'Abbigliamento'),
+(3, 'Giacca Uomo', 'Giacca elegante in lana', 15, 99.99, 'm', 'assets/img/new-product-3.jpg', 'Abbigliamento'),
+(4, 'Abito Donna', 'Abito lungo elegante', 10, 79.99, 'f', 'assets/img/new-product-4.jpg', 'Abbigliamento'),
+(5, 'collana1', 'collana d\'oro', 50, 100, 'm', 'assets/img/new-product-1.jpg', 'collane'),
+(6, 'anello1', 'anello con diamante', 50, 100, 'm', 'assets/img/new-product-1.jpg', 'anelli');
 
 -- Insert values into 'ordine' table
 INSERT INTO ordine (data, costoTotale, utenteEmail) VALUES
-('2023-01-10', 1520, 'mario@example.com'),
-('2023-02-15', 40, 'luigi@example.com'),
+("2023-01-10", 1520, "mario@example.com"),
+("2023-02-15", 40, "luigi@example.com"),
 ("2003-09-03", 100, "mattia@gmail.com");
 
 -- Insert values into 'inserimento' table

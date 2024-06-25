@@ -172,7 +172,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
- <script src="assests/js/validate.js"></script>
+<script src="assets/js/validate.js"></script>
 </body>
 
 </html>

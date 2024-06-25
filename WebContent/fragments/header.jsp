@@ -66,10 +66,14 @@
 								</a>
 								<%} %>
 							</li>
-							<% if(request.getSession().getAttribute("logged") == null) {%>
-                            <li class="shop-cart"><a href="cart.jsp"><i
+							
+							<% if(request.getSession().getAttribute("logged") != null) 
+						    {%>
+                            <li class="shop-cart">
+                            		<a href="cart.jsp"><i
                                     class="fa fa-shopping-bag"></i>
-                            <%} %>
+                            <%} 
+                            %>
 
 						</ul>
 					</div>

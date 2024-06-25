@@ -35,11 +35,13 @@ public class ServletLogin extends HttpServlet {
 
 			if (user.isAdmin()) {
 				request.getSession().setAttribute("admin", true);
+				response.sendRedirect("adminArea.jsp");
 			} else {
 				request.getSession().setAttribute("admin", false);
+				response.sendRedirect("memberArea.jsp");
 			}
 
-			response.sendRedirect("memberArea.jsp");
+			
 		} else {
 			request.getSession().setAttribute("logged", false);
 			request.getSession().setAttribute("error", "Username e/o password invalidi.");

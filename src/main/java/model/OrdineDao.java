@@ -209,4 +209,36 @@ public class OrdineDao extends AbstractDAO<OrdineBean> {
 		
 		return ordini;
 	}
+	
+	public synchronized List<OrdineBean> doRetrieveByDateRange(String dataInizio, String dataFine) throws SQLException {
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    List<OrdineBean> ordini = new ArrayList<>();
+	    String query = "SELECT * FROM " + OrdineDao.TABLE_NAME + " WHERE data BETWEEN ? AND ?";
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(query);
+	        statement.setString(1, dataInizio);
+	        statement.setString(2, dataFine);
+	        ResultSet result = statement.executeQuery();
+	        while (result.next()) {
+	            OrdineBean ordine = new OrdineBean();
+	            ordine.setId(result.getInt("id"));
+	            ordine.setData(result.getString("data"));
+	            ordine.setCostoTotale(result.getDouble("costoTotale"));
+	            ordine.setUtenteEmail(result.getString("utenteEmail"));
+	            ordini.add(ordine);
+	        }
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
+	    return ordini;
+	}
+
 }

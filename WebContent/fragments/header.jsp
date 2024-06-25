@@ -6,10 +6,8 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset="ISO-8859-1">
 </head>
-<header>
-
-	<!--== Header Area Start ==-->
-	<header id="header-area">
+<!--== Header Area Start ==-->
+<header id="header-area">
 		<div class="ruby-container">
 			<div class="row">
 				<!-- Logo Area Start -->

@@ -40,7 +40,7 @@
                     <h1>Aggiungi Prodotto</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <li><a href="products.jsp">Prodotti</a></li>
+                       	<li><a href="adminArea.jsp">Indietro</a></li>
                         <li class="active">Aggiungi Prodotto</li>
                     </ul>
                 </div>
@@ -81,9 +81,16 @@
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" required>
                                     </div>
+                                    
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Categoria" id="categoria" name="categoria" required>
                                     </div>
+                                    
+                                    <div class="single-input-item">
+                                        <input type="text" placeholder="ID" id="id" name="id" required>
+                                    </div>
+                              
+
                                     <div class="single-input-item">
                                         <button class="btn-login" type="submit">Aggiungi Prodotto</button>
                                     </div>

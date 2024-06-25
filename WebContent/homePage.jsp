@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
 <%@page import="model.ProdottoBean"%>
 <%@page import="java.util.List"%>
 <html class="no-js" lang="zxx">
@@ -118,6 +119,17 @@
 <!--== About Us Area End ==-->
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%>
+
+>>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
@@ -137,6 +149,7 @@
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
+<<<<<<< HEAD
                                     <c:forEach var="product" items="${sessionScope.randomProducts}">
                                         <div class="single-product-item text-center">
                                             <figure class="product-thumb">
@@ -151,6 +164,23 @@
                                             </div>
                                         </div>
                                     </c:forEach>
+=======
+                                    <% for (ProdottoBean prodotto : prodottiCasuali) { %>
+                                    <!-- Loop through the randomProducts stored in session -->
+                                    <div class="single-product-item text-center">
+                                        <figure class="product-thumb">
+                                            <a href="single-product.html">
+                                                <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" class="img-fluid">
+                                            </a>
+                                        </figure>
+                                        <div class="product-details">
+                                            <h2><a href="single-product.html"><%= prodotto.getNome() %></a></h2>
+                                            <span class="price">$<%= prodotto.getCosto() %></span>
+                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                        </div>
+                                    </div>
+                                    <% } %>
+>>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
                                 </div>
                             </div>
                         </div>
@@ -162,7 +192,20 @@
 </section>
 
 
+<<<<<<< HEAD
 <!--== New Collection Area End ==-->
+=======
+
+
+
+
+
+
+
+
+ 
+
+>>>>>>> branch 'master' of https://github.com/MattiaGallucci/GGJewelry.git
 <!--== Testimonial Area Start ==-->
 <section id="testimonial-area">
     <div class="ruby-container">

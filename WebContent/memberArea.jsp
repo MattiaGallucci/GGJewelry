@@ -100,28 +100,30 @@
                                         <h3>Dashboard</h3>
 
                                         <div class="welcome">
-                                            <p>Hello,  <%
-														Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
-												        if (isLoggedIn != null && isLoggedIn) {
-												            String nome = (String) session.getAttribute("nome");
-												            String cognome = (String) session.getAttribute("cognome");
-												            out.println("<p>Welcome, " + nome + " " + cognome + "!</p>");
-												        } else {
-												            out.println("<p>Please <a href='loginPage.jsp'>login</a> to continue.</p>");
-												        }
-												
-												        String error = (String) session.getAttribute("error");
-												        if (error != null) {
-												            out.println("<p style='color:red;'>" + error + "</p>");
-												            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
-												        }
-   														%>
-														<a href="LogOutServlet" class="logout"> Logout</a>)</p>
+
+                                            <p><%
+												Boolean isLoggedIn = (Boolean) session.getAttribute("logged");
+										        if (isLoggedIn != null && isLoggedIn) {
+										            String nome = (String) session.getAttribute("nome");
+										            String cognome = (String) session.getAttribute("cognome");
+										            out.println("<p>Bentornato, " + nome + " " + cognome + "!</p>");
+										        } else {
+										            out.println("<p>Perfavore <a href='loginPage.jsp'>accedi</a> per continuare.</p>");
+										        }
+										
+										        String error = (String) session.getAttribute("error");
+										        if (error != null) {
+										            out.println("<p style='color:red;'>" + error + "</p>");
+										            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
+										        }
+ 												%>
+												<a href="LogOutServlet" class="logout"> Logout</a></p>
+
                                         </div>
 
-                                        <p class="mb-0">From your account dashboard. you can easily check & view your
-                                            recent orders, manage your shipping and billing addresses and edit your
-                                            password and account details.</p>
+                                        <p class="mb-0">Dalla dashboard del tuo account. puoi facilmente controllare e visualizzare il tuo
+                                            ordini recenti, gestisci i tuoi indirizzi di spedizione e fatturazione e modifica i tuoi
+                                            password e dettagli dell'account.</p>
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->

@@ -23,7 +23,7 @@ public class LogoutServlet extends HttpServlet{
 		request.getSession().removeAttribute("carrello");
 		request.getSession().invalidate();
 		//response.sendRedirect("catalogo");
-		response.sendRedirect("logout.jsp");
+		response.sendRedirect("memberArea.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

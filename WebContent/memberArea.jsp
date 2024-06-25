@@ -110,11 +110,7 @@
 										            out.println("<p>Perfavore <a href='loginPage.jsp'>accedi</a> per continuare.</p>");
 										        }
 										
-										        String error = (String) session.getAttribute("error");
-										        if (error != null) {
-										            out.println("<p style='color:red;'>" + error + "</p>");
-										            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
-										        }
+										        
  												%>
 
                                         </div>

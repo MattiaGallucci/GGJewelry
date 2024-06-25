@@ -81,6 +81,13 @@
                         <div class="tab-pane fade show active" id="login" role="tabpanel">
                             <div class="login-reg-form-wrap">
                                 <form action="login" method="post">
+                                <% 
+                                String error = (String) session.getAttribute("error");
+										        if (error != null) {
+										            out.println("<p style='color:red;'>" + error + "</p>");
+										            session.removeAttribute("error"); // Rimuovi l'attributo per evitare di visualizzarlo nuovamente
+										        }
+								%>
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Enter your Username" id="username" name="username" required/>
                                     </div>

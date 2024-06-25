@@ -105,47 +105,44 @@
                         <div class="tab-pane fade" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
                                 <form action="registrazione" id="registrazione" method="post" autocomplete="off">
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Nome" id="nome" name="nome" oninput="textValidate(this)" required/>
-                                   		<p style=color:red; id="error-name"></p>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Cognome" name="cognome" id="cognome" oninput="textValidate(this)" required/>
-                                        <p style=color:red; id="error-surname"></p>
-                                    </div>
-									<div class="single-input-item">
-                                        <input type="text" placeholder="Username" id="username" name="username" required/>
-                                        <p style=color:red; id="error-username"></p>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="email" placeholder="Enter your Email" name="email" id="email" oninput="emailValidate(this)"required>
-        								<p style=color:red; id="error-email"></p>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="single-input-item">
-                                                <input type="password" placeholder="Enter your Password" id="password" name="password" oninput="passwordValidate(this)" required/>
-                                                <p style=color:red; id="error-pwd"></p>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <div class="single-input-item">
-                                                <input type="password" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" oninput="passwordMatchValidate(document.getElementById('password').value, this.value)"required/>
-                                                <p style=color:red; id="error-pwdchk"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="single-input-item">
-                                        <input class="btn-login" type="submit" id="registrati" value="Registrati">
-                                    </div>
-                                   
-                                    
-                                </form>
-                            </div>
+								    <div class="single-input-item">
+								        <input type="text" placeholder="Nome" id="nome" name="nome" required/>
+								        <p  class="errors"  style="color:red;" id="error-name"></p>
+								    </div>
+								    <div class="single-input-item">
+								        <input type="text" placeholder="Cognome" name="cognome" id="cognome" required/>
+								        <p  class="errors"  style="color:red;" id="error-surname"></p>
+								    </div>
+								    <div class="single-input-item">
+								        <input type="text" placeholder="Username" id="username" name="username" required/>
+								      
+								    </div>
+								    <div class="single-input-item">
+								        <input type="email" placeholder="Enter your Email" name="email" id="email" required>
+								     
+								    </div>
+								
+								    <div class="row">
+								        <div class="col-lg-6">
+								            <div class="single-input-item">
+								                <input type="text" placeholder="Enter your Password" id="password" name="password" required/>
+								             
+								            </div>
+								        </div>
+								
+								        <div class="col-lg-6">
+								            <div class="single-input-item">
+								                <input type="text" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
+								             
+								            </div>
+								        </div>
+								    </div>
+								
+								    <div class="single-input-item">
+								        <input class="btn-login" type="submit" id="registrati" value="Registrati">
+								    </div>
+								</form>
+							</div>
                         </div>
                     </div>
                 </div>

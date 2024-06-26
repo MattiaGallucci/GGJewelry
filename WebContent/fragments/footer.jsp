@@ -20,7 +20,7 @@
                             </figure>
                             <div class="callto-info">
                                 <h2>Spedizione internazionale gratuita</h2>
-                                <p>Per ordini superiori a 150</p>
+                                <p>Per ordini superiori a 150 euro</p>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->

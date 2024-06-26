@@ -1,3 +1,4 @@
+<%@page import="model.UtenteBean"%>
 <%@page import="model.IndirizzoBean"%>
 <%@page import="model.IndirizzoDAO"%>
 <%@page import="model.MetodoDiPagamentoBean"%>
@@ -323,62 +324,57 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="account-info" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Account Details</h3>
+                                        <h3>Dettagli dell'Account</h3>
 
                                         <div class="account-details-form">
                                             <form action="#">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
-                                                            <label for="first-name" class="required">First Name</label>
+                                                            <label for="first-name">Nome</label>
                                                             <input type="text" id="first-name"
-                                                                   placeholder="First Name"/>
+                                                                   placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
-                                                            <label for="last-name" class="required">Last Name</label>
-                                                            <input type="text" id="last-name" placeholder="Last Name"/>
+                                                            <label for="last-name">Cognome</label>
+                                                            <input type="text" id="last-name" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="single-input-item">
-                                                    <label for="display-name" class="required">Display Name</label>
-                                                    <input type="text" id="display-name" placeholder="Display Name"/>
+                                                    <label for="display-name">Username</label>
+                                                    <input type="text" id="display-name" placeholder="Username"/>
                                                 </div>
 
                                                 <div class="single-input-item">
-                                                    <label for="email" class="required">Email Addres</label>
-                                                    <input type="email" id="email" placeholder="Email Address"/>
+                                                    <label for="email">Email</label>
+                                                    <input type="email" id="email" placeholder="Email"/>
                                                 </div>
 
                                                 <fieldset>
-                                                    <legend>Password change</legend>
-                                                    <div class="single-input-item">
-                                                        <label for="current-pwd" class="required">Current
-                                                            Password</label>
-                                                        <input type="password" id="current-pwd"
-                                                               placeholder="Current Password"/>
-                                                    </div>
+                                                    <legend>Cambio Password</legend>
+                                                    
 
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="single-input-item">
-                                                                <label for="new-pwd" class="required">New
+                                                                <label for="new-pwd">
                                                                     Password</label>
                                                                 <input type="password" id="new-pwd"
-                                                                       placeholder="New Password"/>
+                                                                       placeholder="Password"/>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-6">
                                                             <div class="single-input-item">
-                                                                <label for="confirm-pwd" class="required">Confirm
+                                                                <label for="confirm-pwd">Ripeti
                                                                     Password</label>
                                                                 <input type="password" id="confirm-pwd"
-                                                                       placeholder="Confirm Password"/>
+                                                                       placeholder="Ripeti Password"/>
                                                             </div>
                                                         </div>
                                                     </div>

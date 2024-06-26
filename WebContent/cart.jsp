@@ -48,23 +48,11 @@
 <%
     Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
     if (carrello == null || carrello.isEmpty()) {
+        response.sendRedirect("carrelloVuoto.jsp");
+    } else {
+        List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
+        if (prodotti == null || prodotti.isEmpty()) {
 %>
-    <div class="">
-        <p>Carrello vuoto!</p>
-    </div>
-    <div class="">
-        <a href="catalogo">Continua lo shopping</a>
-    </div>
-<% } else {
-    List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
-    if (prodotti == null || prodotti.isEmpty()) {
-%>
-    <div class="">
-        <p>Prodotti non disponibili!</p>
-    </div>
-    <div class="">
-        <a href="catalogo">Continua lo shopping</a>
-    </div>
 <% } else {
 %>
 <div id="page-content-wrapper" class="p-9">

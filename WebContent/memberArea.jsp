@@ -327,12 +327,15 @@
                                         <h3>Dettagli dell'Account</h3>
 
                                         <div class="account-details-form">
-                                            <form action="#">
+                                            <form action="modificaInfo" id="modificaInfo" method="post">
+                                            <input type="hidden" name="utente" value="<%= request.getSession().getAttribute("utente") %>">
+											<input type="hidden" name="target" value="utente">
+											<input type="hidden" name="mode" value="update">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="first-name">Nome</label>
-                                                            <input type="text" id="nome" name="nome"
+                                                            <input type="text" id="nomeNuovo" name="nomeNuovo"
                                                                    placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
                                                         </div>
                                                     </div>
@@ -340,22 +343,22 @@
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="last-name">Cognome</label>
-                                                            <input type="text" id="cognome" name="cognome" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
+                                                            <input type="text" id="cognomeNuovo" name="cognomeNuovo" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="display-name">Username</label>
-                                                    <input type="text" id="username" name="username" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
+                                                    <input type="text" id="usernameNuovo" name="usernameNuovo" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="email">Email</label>
-                                                    <input type="email" id="email" name="email" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
+                                                    <input type="email" id="emailNuovo" name="emailNuovo" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
                                                 </div>
 
-                                                <fieldset>
+                                               <!--  <fieldset>
                                                     <legend>Cambio Password</legend>
                                                     
 
@@ -379,6 +382,7 @@
                                                         </div>
                                                     </div>
                                                 </fieldset>
+                                                 -->
 
                                                 <div class="single-input-item">
                                                     <button class="btn-login btn-add-to-cart">Salva Modfiche</button>

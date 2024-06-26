@@ -67,37 +67,45 @@
                                     }
                                 %>
                                 <form action="modificaProdotto" method="post">
-                                    <div class="single-input-item">
-                                        <input type="hidden" id="id" name="id" value="<%= prodotto.getId() %>">
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Nome" id="nome" name="nome" value="<%= prodotto.getNome() %>" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <textarea placeholder="Descrizione" id="descrizione" name="descrizione" required><%= prodotto.getDescrizione() %></textarea>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="number" placeholder="Quantità" id="quantita" name="quantita" value="<%= prodotto.getQuantita() %>" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="number" placeholder="Costo" id="costo" name="costo" value="<%= prodotto.getCosto() %>" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <select class="form-control" id="sesso" name="sesso" required>
-                                            <option value="M" <%= prodotto.getSesso().equals("M") ? "selected" : "" %>>Maschile</option>
-                                            <option value="F" <%= prodotto.getSesso().equals("F") ? "selected" : "" %>>Femminile</option>
-                                        </select>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" value="<%= prodotto.getImmagine() %>" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Categoria" id="categoriaNome" name="categoriaNome" value="<%= prodotto.getCategoriaNome() %>" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <button class="btn-login" type="submit">Salva Modifiche</button>
-                                    </div>
-                                </form>
+    <div class="single-input-item">
+        <input type="hidden" id="id" name="id" value="<%= prodotto.getId() %>">
+    </div>
+    <div class="single-input-item">
+        <label for="nome">Nome:</label>
+        <input type="text" placeholder="Nome" id="nome" name="nome" value="<%= prodotto.getNome() %>" required>
+    </div>
+    <div class="single-input-item">
+        <label for="descrizione">Descrizione:</label>
+        <textarea placeholder="Descrizione" id="descrizione" name="descrizione" required><%= prodotto.getDescrizione() %></textarea>
+    </div>
+    <div class="single-input-item">
+        <label for="quantita">Quantità:</label>
+        <input type="number" placeholder="Quantità" id="quantita" name="quantita" value="<%= prodotto.getQuantita() %>" required>
+    </div>
+    <div class="single-input-item">
+        <label for="costo">Costo:</label>
+        <input type="number" placeholder="Costo" id="costo" name="costo" value="<%= prodotto.getCosto() %>" required>
+    </div>
+    <div class="single-input-item">
+        <label for="sesso">Sesso:</label>
+        <select class="form-control" id="sesso" name="sesso" required>
+            <option value="M" <%= prodotto.getSesso().equals("M") ? "selected" : "" %>>Maschile</option>
+            <option value="F" <%= prodotto.getSesso().equals("F") ? "selected" : "" %>>Femminile</option>
+        </select>
+    </div>
+    <div class="single-input-item">
+        <label for="immagine">Immagine URL:</label>
+        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" value="<%= prodotto.getImmagine() %>" required>
+    </div>
+    <div class="single-input-item">
+        <label for="categoriaNome">Categoria:</label>
+        <input type="text" placeholder="Categoria" id="categoriaNome" name="categoriaNome" value="<%= prodotto.getCategoriaNome() %>" required>
+    </div>
+    <div class="single-input-item">
+        <button class="btn-login" type="submit">Salva Modifiche</button>
+    </div>
+</form>
+
                             </div>
                         </div>
                     </div>

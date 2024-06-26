@@ -19,8 +19,8 @@
                                 <img src="assets/img/air-plane.png" alt="WorldWide Shipping"/>
                             </figure>
                             <div class="callto-info">
-                                <h2>Spedizione internazionale gratuita</h2>
-                                <p>Per ordini superiori a 150 euro</p>
+                                <h2>Spedizione </h2>
+                                <p>Fissa a soli 10 euro</p>
                             </div>
                         </div>
                         <!-- Single Call-to Action End -->

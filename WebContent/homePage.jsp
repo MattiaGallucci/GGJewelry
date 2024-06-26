@@ -120,35 +120,31 @@
 
 
 
-
-
-
 <%
     List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
 %> 
+
 
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <!-- Section Title Start -->
                 <div class="section-title">
                     <h2>Nuova Collezione di prodotti</h2>
                     <p>Prodotti in Saldo.</p>
                 </div>
-                <!-- Section Title End -->
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="new-collection-tabs">
-                    <!-- Tab Content Area Start -->
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
+
                                     <% for (ProdottoBean prodotto : prodottiCasuali) { %>
                                     <!-- Loop through the randomProducts stored in session -->
                                     <div class="single-product-item text-center">
@@ -168,7 +164,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tab Content Area end -->
                 </div>
             </div>
         </div>
@@ -176,14 +171,8 @@
 </section>
 
 
-
-
-
-
-
-
-
-
+ 
+<!--== New Collection Area End ==-->
  
 
 <!--== Testimonial Area Start ==-->

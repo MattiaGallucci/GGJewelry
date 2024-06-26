@@ -75,7 +75,7 @@
 						    {%>
                             <li class="shop-cart">
                             		<a href="cart.jsp"><i
-                                    class="fa fa-shopping-bag"></i>
+                                    class="fa fa-shopping-bag"></i></a>
                             <%} 
                             %>
 

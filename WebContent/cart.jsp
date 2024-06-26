@@ -79,7 +79,7 @@
                                 <th class="pro-title">Prodotto</th>
                                 <th class="pro-price">Prezzo</th>
                                 <th class="pro-quantity">Quantità</th>
-                                <th class="pro-subtotal">Totale</th>
+                                <!--  <th class="pro-subtotal">Totale</th>-->
                                 <th class="pro-remove">Rimuovi</th>
                             </tr>
                         </thead>
@@ -100,17 +100,16 @@
                             %>
                             <tr>
                                 <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
-                                <td class="pro-title"><a href="DettaglioProdotto?prodotto=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
+                                <td class="pro-title"><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
                                 <td class="pro-price">$<%= prodotto.getCosto() %></td>
                                 <td class="pro-quantity">
                                     <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="update">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
                                         <input type="number" name="quantita" min="0" max="<%= prodotto.getQuantita() %>" onchange="updateCart(this, '<%= prodotto.getId() %>')" value="<%= quantita %>">
-                                        <button type="submit" class="btn btn-update-quantity">Aggiorna</button>
                                     </form>
                                 </td>
-                                <td class="pro-subtotal">$<%= prodotto.getCosto() * quantita %></td>
+                                <!-- <td class="pro-subtotal">$<%= prodotto.getCosto() * quantita %></td> -->
                                 <td class="pro-remove">
                                     <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="remove">
@@ -158,7 +157,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="" class="btn btn-proceed-to-checkout">Procedi al Checkout</a>
+                    <button  class="btn btn-proceed-to-checkout">Procedi al Checkout</button>
                 </div>
             </div>
         </div>

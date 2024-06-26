@@ -42,7 +42,6 @@
 </head>
 <body>
 
-
 <jsp:include page="fragments/header.jsp" />
 
 <%
@@ -55,6 +54,26 @@
 %>
 <% } else {
 %>
+
+
+<!--== Page Title Area Start ==-->
+<div id="page-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="page-title-content">
+                    <h1>Carrello</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="homePage.jsp">Home</a></li>
+                        <li><a href="carrelloVuoto.jsp" class="active">Carrello</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== Page Title Area End ==-->
+
 <div id="page-content-wrapper" class="p-9">
     <div class="container">
         <div class="row">
@@ -147,7 +166,7 @@
                             </table>
                         </div>
                     </div>
-                    <button  class="btn btn-proceed-to-checkout">Procedi al Checkout</button>
+                    <a href="" class="btn-add-to-cart">Procedi al Checkout</a>                   
                 </div>
             </div>
         </div>

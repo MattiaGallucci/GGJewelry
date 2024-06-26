@@ -103,7 +103,7 @@
                                     <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="update">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
-                                        <input type="number" name="quantita" min="0" max="<% prodotto.getQuantita();%>" onchange = "updateCart(this,'<%prodotto.getId();%>')" value="">
+                                        <input type="number" name="quantita" min="0" max="<% prodotto.getQuantita();%>" onchange = "updateCart(this,'<%prodotto.getId();%>')" value="<% out.print(quantita); %>">
                                         <button type="submit" class="btn btn-update-quantity">Aggiorna</button>
                                     </form>
                                 </td>

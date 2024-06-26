@@ -63,17 +63,7 @@
                         <tbody>
                         <%-- Iterate through the items in the cart --%>
                         <c:forEach var="entry" items="${sessionScope.carrello}">
-                            <%-- Get product details using the product ID (entry.key) --%>
-                            <%@ page import="model.ProdottoBean" %>
-                            <%@ page import="model.ProdottoDAO" %>
-                            <%-- Retrieve the product bean --%>
-                            <%
-                                String productId = entry.key;
-                                int quantity = entry.value;
-                                
-                                ProdottoDAO prodottoDAO = new ProdottoDAO();
-                                ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
-                            %>
+                           
                             <tr>
                                 <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
                                 <td class="pro-title"><a href="DettaglioProdotto?prodotto=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
@@ -168,24 +158,5 @@
 
 </html>
 
-<%-- Function to calculate total price of items in cart --%>
-<%! 
-    double getTotalPrice() {
-        double total = 0.0;
-        if (session.getAttribute("carrello") != null) {
-            Map<String, Integer> carrello = (Map<String, Integer>) session.getAttribute("carrello");
-            ProdottoDAO prodottoDAO = new ProdottoDAO();
-            for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
-                String productId = entry.getKey();
-                int quantity = entry.getValue();
-                try {
-                    ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
-                    total += prodotto.getCosto() * quantity;
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return total;
-    }
-%>
+ 
+

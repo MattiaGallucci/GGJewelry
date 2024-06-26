@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@page import="model.ProdottoBean"%>
+<%@page import="model.ProdottoDAO"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -128,74 +132,72 @@
 
             <!-- Order Summary Details -->
             <div class="col-lg-6 mt-5 mt-lg-0">
-                <div class="order-summary-details">
-                    <h2>Riepilogo Ordine</h2>
-                    <div class="order-summary-content">
-                        <!-- Order Summary Table -->
-                        <div class="order-summary-table table-responsive text-center">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Prodotti</th>
-                                    <th>Totale</th>
-                                </tr>
-                                </thead>
+                <<div class="order-summary-details">
+        <h2>Riepilogo Ordine</h2>
+        <div class="order-summary-content">
+            <div class="order-summary-table table-responsive text-center">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Prodotti</th>
+                        <th>Totale</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        Map<String, Integer> carrello = (Map<String, Integer>) request.getAttribute("carrello");
+                        double costoTotale = (Double) request.getAttribute("costoTot");
+                        ProdottoDAO prodottoDAO = new ProdottoDAO();
+                        
+                        for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
+                            String prodottoId = entry.getKey();
+                            int quantita = entry.getValue();
+                            ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(prodottoId);
+                            if (prodotto != null) {
+                                double prezzo = prodotto.getCosto();
+                                double totaleProdotto = prezzo * quantita;
+                    %>
+                    <tr>
+                        <td><a href="dettagliProdotto.jsp?id=<%= prodottoId %>"><%= prodotto.getNome() %><strong> × <%= quantita %></strong></a></td>
+                        <td>$<%= totaleProdotto %></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>Totale</td>
+                        <td><strong>$<%= costoTotale %></strong></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
 
-                                <tbody>
-                                <tr>
-                                    <td><a href="">Prodotto1<strong> × 1</strong></a></td>
-                                    <td>$165.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">Prodotto2<strong> × 4</strong></a>
-                                    </td>
-                                    <td>$165.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">Prodotto3<strong> × 2</strong></a></td>
-                                    <td>$165.00</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-
-                                <tr>
-                                    <td>Totale</td>
-                                    <td><strong>$470</strong></td>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                        <!-- Order Payment Method -->
-                        <div class="order-payment-method">
-                            <div class="single-payment-method show">
-                                <div class="payment-method-name">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="cashon" name="paymentmethod" value="cash"
-                                               class="custom-control-input" checked/>
-                                        <label class="custom-control-label" for="cashon">Numero carta</label>
-                                    </div>
-                                </div>
-                                <div class="payment-method-details" data-method="cash">
-                                    <input type="text" id="carta" placeholder="carta"/>
-                                </div>
-                            </div>
-
-
-                           
-
-                            <div class="summary-footer-area">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="terms" required/>
-                                    <label class="custom-control-label" for="terms">Ho letto le informazioni sul sito e sono d'accordo con termini e condizioni
-                                </div>
-
-                                <a href="" class="btn-add-to-cart">Completa Ordine</a>
-                            </div>
+            <div class="order-payment-method">
+                <div class="single-payment-method show">
+                    <div class="payment-method-name">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked/>
+                            <label class="custom-control-label" for="cashon">Numero carta</label>
                         </div>
                     </div>
+                    <div class="payment-method-details" data-method="cash">
+                        <input type="text" id="carta" placeholder="carta"/>
+                    </div>
+                </div>
+
+                <div class="summary-footer-area">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="terms" required/>
+                        <label class="custom-control-label" for="terms">Ho letto le informazioni sul sito e sono d'accordo con termini e condizioni</label>
+                    </div>
+                    <a href="completeOrderServlet" class="btn-add-to-cart">Completa Ordine</a>
                 </div>
             </div>
+        </div>
+    </div>
         </div>
         <!--== Checkout Page Content End ==-->
     </div>

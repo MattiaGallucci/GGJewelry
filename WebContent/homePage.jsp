@@ -125,7 +125,7 @@
 
 <%
     List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
-%>
+%> 
 
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">

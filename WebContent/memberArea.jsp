@@ -332,7 +332,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="first-name">Nome</label>
-                                                            <input type="text" id="first-name"
+                                                            <input type="text" id="nome" name="nome"
                                                                    placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
                                                         </div>
                                                     </div>
@@ -340,19 +340,19 @@
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="last-name">Cognome</label>
-                                                            <input type="text" id="last-name" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
+                                                            <input type="text" id="cognome" name="cognome" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="display-name">Username</label>
-                                                    <input type="text" id="display-name" placeholder="Username"/>
+                                                    <input type="text" id="username" name="username" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="email">Email</label>
-                                                    <input type="email" id="email" placeholder="Email"/>
+                                                    <input type="email" id="email" name="email" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
                                                 </div>
 
                                                 <fieldset>
@@ -364,7 +364,7 @@
                                                             <div class="single-input-item">
                                                                 <label for="new-pwd">
                                                                     Password</label>
-                                                                <input type="password" id="new-pwd"
+                                                                <input type="password" id="password" name="password"
                                                                        placeholder="Password"/>
                                                             </div>
                                                         </div>
@@ -373,7 +373,7 @@
                                                             <div class="single-input-item">
                                                                 <label for="confirm-pwd">Ripeti
                                                                     Password</label>
-                                                                <input type="password" id="confirm-pwd"
+                                                                <input type="password" id="passwordCheck" name="passwordCheck"
                                                                        placeholder="Ripeti Password"/>
                                                             </div>
                                                         </div>
@@ -381,7 +381,7 @@
                                                 </fieldset>
 
                                                 <div class="single-input-item">
-                                                    <button class="btn-login btn-add-to-cart">Save Changes</button>
+                                                    <button class="btn-login btn-add-to-cart">Salva Modfiche</button>
                                                 </div>
                                             </form>
                                         </div>

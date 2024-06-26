@@ -327,12 +327,15 @@
                                         <h3>Dettagli dell'Account</h3>
 
                                         <div class="account-details-form">
-                                            <form action="#">
+                                            <form action="modificaInfo" id="modificaInfo" method="post">
+                                            <input type="hidden" name="utente" value="<%= request.getSession().getAttribute("utente") %>">
+											<input type="hidden" name="target" value="utente">
+											<input type="hidden" name="mode" value="update">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="first-name">Nome</label>
-                                                            <input type="text" id="first-name"
+                                                            <input type="text" id="nomeNuovo" name="nomeNuovo"
                                                                    placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
                                                         </div>
                                                     </div>
@@ -340,22 +343,22 @@
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
                                                             <label for="last-name">Cognome</label>
-                                                            <input type="text" id="last-name" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
+                                                            <input type="text" id="cognomeNuovo" name="cognomeNuovo" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="display-name">Username</label>
-                                                    <input type="text" id="display-name" placeholder="Username"/>
+                                                    <input type="text" id="usernameNuovo" name="usernameNuovo" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="email">Email</label>
-                                                    <input type="email" id="email" placeholder="Email"/>
+                                                    <input type="email" id="emailNuovo" name="emailNuovo" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
                                                 </div>
 
-                                                <fieldset>
+                                               <!--  <fieldset>
                                                     <legend>Cambio Password</legend>
                                                     
 
@@ -364,7 +367,7 @@
                                                             <div class="single-input-item">
                                                                 <label for="new-pwd">
                                                                     Password</label>
-                                                                <input type="password" id="new-pwd"
+                                                                <input type="password" id="password" name="password"
                                                                        placeholder="Password"/>
                                                             </div>
                                                         </div>
@@ -373,15 +376,16 @@
                                                             <div class="single-input-item">
                                                                 <label for="confirm-pwd">Ripeti
                                                                     Password</label>
-                                                                <input type="password" id="confirm-pwd"
+                                                                <input type="password" id="passwordCheck" name="passwordCheck"
                                                                        placeholder="Ripeti Password"/>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
+                                                 -->
 
                                                 <div class="single-input-item">
-                                                    <button class="btn-login btn-add-to-cart">Save Changes</button>
+                                                    <button class="btn-login btn-add-to-cart">Salva Modfiche</button>
                                                 </div>
                                             </form>
                                         </div>

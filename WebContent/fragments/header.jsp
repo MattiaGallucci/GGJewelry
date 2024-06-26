@@ -23,17 +23,17 @@
 					<div class="main-menu-wrap">
 						<nav id="mainmenu">
 							<ul>
-								<li><a href="homePage.jsp">Home</a></li>
-								<li><a href="catalogo.jsp">Catalogo</a></li>
+								<li><a href="catalogo?mode=home">Home</a></li>
+								<li><a href="catalogo">Catalogo</a></li>
 								<li><a href="contact.jsp">Contattaci</a></li>
-								<%
+								<!-- <%/*
 								Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
 								if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) {
-								%>
-								<li><a href="gestisciProdotti.jsp">Prodotti</a></li>
-								<%
+								*/%>
+								<li><a href="adminArea.jsp">Prodotti</a></li>
+								<%/*
 								} 
-								%>
+								*/%> -->
 
 							</ul>
 						</nav>
@@ -75,7 +75,7 @@
 						    {%>
                             <li class="shop-cart">
                             		<a href="cart.jsp"><i
-                                    class="fa fa-shopping-bag"></i>
+                                    class="fa fa-shopping-bag"></i></a>
                             <%} 
                             %>
 

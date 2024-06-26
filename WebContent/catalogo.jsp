@@ -99,7 +99,7 @@
                                             <p class="products-desc">Quantità disponibile: <%= prodotto.getQuantita() %></p>
                                             <!-- Assuming you have a category name attribute -->
                                             <p class="products-desc">Categoria: <%= prodotto.getCategoriaNome() %></p>
-                                            <a href="CarrelloServlet?id=<%= prodotto.getId() %>" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <button class="btn btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
                                         </div>
                                     </div>
                                     <!-- Single Product Item -->
@@ -136,6 +136,9 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+
+<script src="assets/js/addedToCart.js"></script>
+		
 </body>
 
 </html>

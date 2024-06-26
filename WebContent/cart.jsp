@@ -1,3 +1,7 @@
+<%@page import="model.ProdottoBean"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -41,59 +45,91 @@
 
 <jsp:include page="fragments/header.jsp" />
 
-<!--== Page Content Wrapper Start ==-->
+<%
+    Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
+    if (carrello == null || carrello.isEmpty()) {
+%>
+    <div class="">
+        <p>Carrello vuoto!</p>
+    </div>
+    <div class="">
+        <a href="catalogo">Continua lo shopping</a>
+    </div>
+<% } else {
+    List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
+    if (prodotti == null || prodotti.isEmpty()) {
+%>
+    <div class="">
+        <p>Prodotti non disponibili!</p>
+    </div>
+    <div class="">
+        <a href="catalogo">Continua lo shopping</a>
+    </div>
+<% } else {
+%>
 <div id="page-content-wrapper" class="p-9">
     <div class="container">
-        <!-- Cart Page Content Start -->
         <div class="row">
             <div class="col-lg-12">
-                <!-- Cart Table Area -->
                 <div class="cart-table table-responsive">
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th class="pro-thumbnail">Immagine</th>
-                            <th class="pro-title">Prodotto</th>
-                            <th class="pro-price">Prezzo</th>
-                            <th class="pro-quantity">Quantità</th>
-                            <th class="pro-subtotal">Totale</th>
-                            <th class="pro-remove">Rimuovi</th>
-                        </tr>
+                            <tr>
+                                <th class="pro-thumbnail">Immagine</th>
+                                <th class="pro-title">Prodotto</th>
+                                <th class="pro-price">Prezzo</th>
+                                <th class="pro-quantity">Quantità</th>
+                                <!--  <th class="pro-subtotal">Totale</th>-->
+                                <th class="pro-remove">Rimuovi</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <%-- Iterate through the items in the cart --%>
-                        <c:forEach var="entry" items="${sessionScope.carrello}">
-                           
+
+                            <%
+                                Iterator<String> iterKeys = carrello.keySet().iterator();
+                                while (iterKeys.hasNext()) {
+                                    String key = iterKeys.next();
+                                    Integer quantita = carrello.get(key);
+                                    ProdottoBean prodotto = null;
+                                    for (ProdottoBean p : prodotti) {
+                                        if (String.valueOf(p.getId()).equals(key)) {
+                                            prodotto = p;
+                                            break;
+                                        }
+                                    }
+                                    if (prodotto != null) {
+                            %>
+
                             <tr>
                                 <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
-                                <td class="pro-title"><a href="DettaglioProdotto?prodotto=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
+                                <td class="pro-title"><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
                                 <td class="pro-price">$<%= prodotto.getCosto() %></td>
                                 <td class="pro-quantity">
-                                    <form action="Carrello" method="get">
+                                    <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="update">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
-                                        <input type="number" name="quantita" min="0" value="<%= quantity %>">
-                                        <button type="submit" class="btn btn-update-quantity">Aggiorna</button>
+                                        <input type="number" name="quantita" min="0" max="<%= prodotto.getQuantita() %>" onchange="updateCart(this, '<%= prodotto.getId() %>')" value="<%= quantita %>">
                                     </form>
                                 </td>
-                                <td class="pro-subtotal">$<%= prodotto.getCosto() * quantity %></td>
+                                <!-- <td class="pro-subtotal">$<%= prodotto.getCosto() * quantita %></td> -->
                                 <td class="pro-remove">
-                                    <form action="Carrello" method="get">
+                                    <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="remove">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
                                         <button type="submit" class="btn btn-remove">Rimuovi</button>
                                     </form>
                                 </td>
                             </tr>
-                        </c:forEach>
+                            <%
+                                    }
+                                }
+                            %>
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Cart Update Option -->
                 <div class="cart-update-option d-block d-lg-flex">
                     <div class="cart-update">
-                        <form action="Carrello" method="get">
+                        <form action="CarrelloServlet" method="get">
                             <input type="hidden" name="mode" value="reset">
                             <button type="submit" class="btn btn-clear-cart">Svuota Carrello</button>
                         </form>
@@ -103,7 +139,6 @@
         </div>
         <div class="row">
             <div class="col-lg-6 ml-auto">
-                <!-- Cart Calculation Area -->
                 <div class="cart-calculator-wrapper">
                     <h3>Riepilogo</h3>
                     <div class="cart-calculate-items">
@@ -111,26 +146,29 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Totale Prezzo</td>
-                                    <td>$<%= getTotalPrice() %></td>
+                                    <td id="netto"></td>
                                 </tr>
                                 <tr>
                                     <td>Spedizione</td>
-                                    <td>$70</td>
+                                    <td id="spedizione"></td>
                                 </tr>
                                 <tr>
                                     <td>Totale finale</td>
-                                    <td class="total-amount">$<%= getTotalPrice() + 70 %></td>
+                                    <td class="total-amount" id="prezzoTot"></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <a href="checkout.html" class="btn btn-proceed-to-checkout">Procedi al Checkout</a>
+                    <button  class="btn btn-proceed-to-checkout">Procedi al Checkout</button>
                 </div>
             </div>
         </div>
-        <!-- Cart Page Content End -->
     </div>
 </div>
+<%
+    }
+}
+%>
  
 <jsp:include page="fragments/footer.jsp" />
  
@@ -154,9 +192,10 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+
+<script src="assets/js/aggiornaCarrello.js"></script>
 </body>
 
-</html>
 
- 
+</html>
 

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,13 +19,19 @@ import model.ProdottoDAO;
 @WebServlet("/CarrelloServlet")
 public class CarrelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    public CarrelloServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String prodotto = request.getParameter("prodotto");
         Integer quantita;
+        Integer quantitaPresente;
         String mode = request.getParameter("mode");
-        String redirectPath = null;
+        response.setContentType("text/plain");
         
         Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
         
@@ -39,50 +44,66 @@ public class CarrelloServlet extends HttpServlet {
 
         if (mode.equalsIgnoreCase("add")) {
             quantita = Integer.parseInt(request.getParameter("quantita"));
-            if (carrello.containsKey(prodotto)) {
-                quantita += carrello.get(prodotto);
+            if(request.getSession().getAttribute("carrello") != null) {
+            	if(carrello.containsKey(prodotto)) {
+					quantitaPresente = carrello.get(prodotto);
+					carrello.put(prodotto,quantita + quantitaPresente);
+				} else {
+					carrello.put(prodotto,quantita);
+				}
+            	request.getSession().setAttribute("carrello", carrello);
             }
-            carrello.put(prodotto, quantita);
-            
-            if (request.getParameter("catalogo") != null) {
-                redirectPath = "catalogo.jsp";
-            } else {
-                request.getSession().setAttribute("aggiunto", "Aggiunto al carrello!");
-                redirectPath = "DettaglioProdotto?prodotto=" + prodotto;
-            }
-        } else if (mode.equalsIgnoreCase("update")) {
-            quantita = Integer.parseInt(request.getParameter("quantita"));
-            if (quantita <= 0) {
-                carrello.remove(prodotto);
-            } else {
-                carrello.put(prodotto, quantita);
-            }
-            redirectPath = "cart.jsp";
-        } else if (mode.equalsIgnoreCase("remove")) {
-            carrello.remove(prodotto);
-            redirectPath = "cart.jsp";
-        } else if (mode.equalsIgnoreCase("reset")) {
-            carrello.clear();
-            request.getSession().removeAttribute("carrello");
-            redirectPath = "cart.jsp";
-        } else if (mode.equalsIgnoreCase("getTotal")) {
-            double total = 0.0;
-            for (Entry<String, Integer> entry : carrello.entrySet()) {
-                String key = entry.getKey();
-                Integer qty = entry.getValue();
-                try {
-                    ProdottoBean prodottoBean = prodottoDAO.doRetrieveByKey(key);
-                    total += prodottoBean.getCosto() * qty;
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            response.getWriter().print(String.format("%.2f", total));
-            return;
-        }
+        } else if(mode.equalsIgnoreCase("update")) {
+        	quantita = Integer.parseInt(request.getParameter("quantita"));
+			carrello = (Map<String,Integer>) request.getSession().getAttribute("carrello");
+			if(quantita == 0) {
+				carrello.remove(prodotto);
+				if(carrello.isEmpty()) {
+					request.getSession().removeAttribute("carrello");
+				}
+				response.getWriter().print("reload");
+			} else {
+			carrello.put(prodotto, quantita);
+			request.getSession().setAttribute("carrello", carrello);
+			}
+        } else if(mode.equalsIgnoreCase("remove")) {
+			carrello = (Map<String,Integer>) request.getSession().getAttribute("carrello");
+			carrello.remove(prodotto);
+			
+			if(carrello.isEmpty()) {
+				request.getSession().removeAttribute("carrello");
+			}
+			RequestDispatcher view = request.getRequestDispatcher("./cart.jsp");
+			view.forward(request, response);
+		} else if(mode.equalsIgnoreCase("reset")) {
+			request.getSession().removeAttribute("carrello");
+			RequestDispatcher view = request.getRequestDispatcher("./cart.jsp");
+			view.forward(request, response);
+		} else if(mode.equalsIgnoreCase("getTotal")) {
+			if(request.getSession().getAttribute("carrello") == null) {
+				return;
+			} else {
+				Double total = 0.0;
+				carrello = (Map<String,Integer>) request.getSession().getAttribute("carrello");
+				ProdottoDAO dbProdotti = new ProdottoDAO();
+				ProdottoBean prodottoBean = new ProdottoBean();
+				String key;
+				Iterator<String> iterKeys = carrello.keySet().iterator();
+				
+				while(iterKeys.hasNext()) {
+					key = iterKeys.next();
+					try {
+						prodottoBean = dbProdotti.doRetrieveByKey(key);
+						total += prodottoBean.getCosto() * carrello.get(key);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				response.getWriter().print(String.format("%.2f", total));
+			}
+		}
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(redirectPath);
-        dispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

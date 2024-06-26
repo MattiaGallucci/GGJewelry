@@ -156,7 +156,7 @@
                                     <div class="product-details">
                                         <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
                                         <span class="price">$<%= prodotto.getCosto() %></span>
-                                        <a href="CarrelloServlet?id=<%= prodotto.getId() %>" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                        <button class="btn btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
                                     </div>
                                     </div>
                                     <% } %>
@@ -243,6 +243,10 @@
  
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+
+
+<script src="assets/js/addedToCart.js"></script>
+
 </body>
 
 </html>

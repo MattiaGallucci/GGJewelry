@@ -23,8 +23,8 @@
 					<div class="main-menu-wrap">
 						<nav id="mainmenu">
 							<ul>
-								<li><a href="homePage.jsp">Home</a></li>
-								<li><a href="catalogo.jsp">Catalogo</a></li>
+								<li><a href="catalogo?mode=home">Home</a></li>
+								<li><a href="catalogo">Catalogo</a></li>
 								<li><a href="contact.jsp">Contattaci</a></li>
 								<%
 								Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");

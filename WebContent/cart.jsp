@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -41,6 +44,32 @@
 
 <jsp:include page="fragments/header.jsp" />
 
+
+	<% Map<String,Integer> carrello = (Map<String,Integer>) request.getSession().getAttribute("carrello");
+		if(carrello == null){%>
+			<div class="">
+				<p>Carrello vuoto!</p>
+			</div>
+			<div class="">
+				<a href="catalogo">Continua lo shopping</a>
+			</div>
+			
+<%}else{ 
+			Iterator<String> iterKeys = carrello.keySet().iterator();
+			List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
+			Integer quantita = 0;
+			ProdottoBean prodotto = new ProdottoBean();
+			Iterator<ProdottoBean> iterProdotti;
+			String key;
+			
+			while(iterKeys.hasNext()){
+				key = iterKeys.next();
+				quantita = carrello.get(key);
+				iterProdotti = prodotti.iterator();
+				while(iterProdotti.hasNext()){
+					prodotto = iterProdotti.next();
+					if(String.valueOf(prodotto.getId()).equals(key)) break;
+				}%>
 <!--== Page Content Wrapper Start ==-->
 <div id="page-content-wrapper" class="p-9">
     <div class="container">
@@ -61,41 +90,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%-- Iterate through the items in the cart --%>
-                        <c:forEach var="entry" items="${sessionScope.carrello}">
                             <%-- Get product details using the product ID (entry.key) --%>
                             <%@ page import="model.ProdottoBean" %>
                             <%@ page import="model.ProdottoDAO" %>
                             <%-- Retrieve the product bean --%>
-                            <%
-                                String productId = entry.key;
-                                int quantity = entry.value;
-                                
-                                ProdottoDAO prodottoDAO = new ProdottoDAO();
-                                ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
-                            %>
+                            
                             <tr>
                                 <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
                                 <td class="pro-title"><a href="DettaglioProdotto?prodotto=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
                                 <td class="pro-price">$<%= prodotto.getCosto() %></td>
                                 <td class="pro-quantity">
-                                    <form action="Carrello" method="get">
+                                    <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="update">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
-                                        <input type="number" name="quantita" min="0" value="<%= quantity %>">
+                                        <input type="number" name="quantita" min="0" max="<% prodotto.getQuantita();%>" onchange = "updateCart(this,'<%prodotto.getId();%>')" value="">
                                         <button type="submit" class="btn btn-update-quantity">Aggiorna</button>
                                     </form>
                                 </td>
-                                <td class="pro-subtotal">$<%= prodotto.getCosto() * quantity %></td>
+                                <td class="pro-subtotal">$<%= prodotto.getCosto() %></td>
                                 <td class="pro-remove">
-                                    <form action="Carrello" method="get">
+                                    <form action="CarrelloServlet" method="get">
                                         <input type="hidden" name="mode" value="remove">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
                                         <button type="submit" class="btn btn-remove">Rimuovi</button>
                                     </form>
                                 </td>
                             </tr>
-                        </c:forEach>
+                        
                         </tbody>
                     </table>
                 </div>
@@ -103,7 +124,7 @@
                 <!-- Cart Update Option -->
                 <div class="cart-update-option d-block d-lg-flex">
                     <div class="cart-update">
-                        <form action="Carrello" method="get">
+                        <form action="CarrelloServlet" method="get">
                             <input type="hidden" name="mode" value="reset">
                             <button type="submit" class="btn btn-clear-cart">Svuota Carrello</button>
                         </form>
@@ -121,26 +142,27 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Totale Prezzo</td>
-                                    <td>$<%= getTotalPrice() %></td>
+                                    <td id="netto"></td>
                                 </tr>
                                 <tr>
                                     <td>Spedizione</td>
-                                    <td>$70</td>
+                                    <td id="spedizione"></td>
                                 </tr>
                                 <tr>
                                     <td>Totale finale</td>
-                                    <td class="total-amount">$<%= getTotalPrice() + 70 %></td>
+                                    <td class="total-amount" id="prezzoTot"></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <a href="checkout.html" class="btn btn-proceed-to-checkout">Procedi al Checkout</a>
+                    <a href="" class="btn btn-proceed-to-checkout">Procedi al Checkout</a>
                 </div>
             </div>
         </div>
         <!-- Cart Page Content End -->
     </div>
 </div>
+<%}}%>
  
 <jsp:include page="fragments/footer.jsp" />
  
@@ -164,28 +186,8 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+
+<script src="assets/js/aggiornaCarrello.js"></script>
 </body>
 
 </html>
-
-<%-- Function to calculate total price of items in cart --%>
-<%! 
-    double getTotalPrice() {
-        double total = 0.0;
-        if (session.getAttribute("carrello") != null) {
-            Map<String, Integer> carrello = (Map<String, Integer>) session.getAttribute("carrello");
-            ProdottoDAO prodottoDAO = new ProdottoDAO();
-            for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
-                String productId = entry.getKey();
-                int quantity = entry.getValue();
-                try {
-                    ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
-                    total += prodotto.getCosto() * quantity;
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return total;
-    }
-%>

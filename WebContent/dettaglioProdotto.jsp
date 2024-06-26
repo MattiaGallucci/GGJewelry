@@ -91,7 +91,7 @@ if (prodotto == null) {
                                         <label for="qty">Quantità</label>
                                         <input type="number" id="qty" min="1" max="100" value="1"/>
                                     </div>
-                                    <a href="CarrelloServlet?id=<%= prodotto.getId() %>" class="btn btn-add-to-cart">Add to Cart</a>
+									<button class="btn btn-add-to-cart" onclick="addToCartN('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>                                    
                                 </div>
                             </div>
                         </div>
@@ -117,5 +117,8 @@ if (prodotto == null) {
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <script src="assets/js/plugins.js"></script>
 <script src="assets/js/active.js"></script>
+
+<script src="assets/js/addedToCart.js"></script>
+
 </body>
 </html>

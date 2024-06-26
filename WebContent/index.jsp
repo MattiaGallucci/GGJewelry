@@ -10,6 +10,6 @@
 </head>
 <body>
     <!-- utilizzato per startare la servlet al momento dello start del server -->
-	<% response.sendRedirect("catalogo"); %>
+	<% response.sendRedirect("catalogo?mode=home"); %>
 </body>
 </html>

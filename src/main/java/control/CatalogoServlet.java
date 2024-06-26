@@ -24,7 +24,8 @@ public class CatalogoServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProdottoDAO dao = new ProdottoDAO();
+    	String mode = request.getParameter("mode");
+    	ProdottoDAO dao = new ProdottoDAO();
         List<ProdottoBean> prodotti = new ArrayList<>();
         List<ProdottoBean> randomProdotti = new ArrayList<>();
 
@@ -43,8 +44,14 @@ public class CatalogoServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Reindirizza alla catalogo.jsp
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/homePage.jsp");
+        String targetPage = "/catalogo.jsp"; // Default page
+
+        if ("home".equalsIgnoreCase(mode)) {
+            targetPage = "/homePage.jsp";
+        }
+
+        // Reindirizza alla pagina appropriata
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(targetPage);
         dispatcher.forward(request, response);
     }
 

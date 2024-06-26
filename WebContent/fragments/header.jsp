@@ -26,14 +26,14 @@
 								<li><a href="catalogo?mode=home">Home</a></li>
 								<li><a href="catalogo">Catalogo</a></li>
 								<li><a href="contact.jsp">Contattaci</a></li>
-								<%
+								<!-- <%/*
 								Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
 								if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) {
-								%>
-								<li><a href="gestisciProdotti.jsp">Prodotti</a></li>
-								<%
+								*/%>
+								<li><a href="adminArea.jsp">Prodotti</a></li>
+								<%/*
 								} 
-								%>
+								*/%> -->
 
 							</ul>
 						</nav>

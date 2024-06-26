@@ -41,7 +41,6 @@
 
 <jsp:include page="fragments/header.jsp" />
 
-
 <!--== Page Content Wrapper Start ==-->
 <div id="page-content-wrapper" class="p-9">
     <div class="container">
@@ -53,102 +52,89 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th class="pro-thumbnail">Thumbnail</th>
-                            <th class="pro-title">Product</th>
-                            <th class="pro-price">Price</th>
-                            <th class="pro-quantity">Quantity</th>
-                            <th class="pro-subtotal">Total</th>
-                            <th class="pro-remove">Remove</th>
+                            <th class="pro-thumbnail">Immagine</th>
+                            <th class="pro-title">Prodotto</th>
+                            <th class="pro-price">Prezzo</th>
+                            <th class="pro-quantity">Quantità</th>
+                            <th class="pro-subtotal">Totale</th>
+                            <th class="pro-remove">Rimuovi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-1.jpg"
-                                                                       alt="Product"/></a></td>
-                            <td class="pro-title"><a href="#">Zeon Zen 4 Pro</a></td>
-                            <td class="pro-price"><span>$295.00</span></td>
-                            <td class="pro-quantity">
-                                <div class="pro-qty"><input type="text" value="1"></div>
-                            </td>
-                            <td class="pro-subtotal"><span>$295.00</span></td>
-                            <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-2.jpg"
-                                                                       alt="Product"/></a></td>
-                            <td class="pro-title"><a href="#">Aquet Drone D 420</a></td>
-                            <td class="pro-price"><span>$275.00</span></td>
-                            <td class="pro-quantity">
-                                <div class="pro-qty"><input type="text" value="2"></div>
-                            </td>
-                            <td class="pro-subtotal"><span>$550.00</span></td>
-                            <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-3.jpg"
-                                                                       alt="Product"/></a></td>
-                            <td class="pro-title"><a href="#">Game Station X 22</a></td>
-                            <td class="pro-price"><span>$295.00</span></td>
-                            <td class="pro-quantity">
-                                <div class="pro-qty"><input type="text" value="1"></div>
-                            </td>
-                            <td class="pro-subtotal"><span>$295.00</span></td>
-                            <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-4.jpg"
-                                                                       alt="Product"/></a></td>
-                            <td class="pro-title"><a href="#">Roxxe Headphone Z 75 </a></td>
-                            <td class="pro-price"><span>$110.00</span></td>
-                            <td class="pro-quantity">
-                                <div class="pro-qty"><input type="text" value="1"></div>
-                            </td>
-                            <td class="pro-subtotal"><span>$110.00</span></td>
-                            <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                        </tr>
+                        <%-- Iterate through the items in the cart --%>
+                        <c:forEach var="entry" items="${sessionScope.carrello}">
+                            <%-- Get product details using the product ID (entry.key) --%>
+                            <%@ page import="model.ProdottoBean" %>
+                            <%@ page import="model.ProdottoDAO" %>
+                            <%-- Retrieve the product bean --%>
+                            <%
+                                String productId = entry.key;
+                                int quantity = entry.value;
+                                
+                                ProdottoDAO prodottoDAO = new ProdottoDAO();
+                                ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
+                            %>
+                            <tr>
+                                <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
+                                <td class="pro-title"><a href="DettaglioProdotto?prodotto=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
+                                <td class="pro-price">$<%= prodotto.getCosto() %></td>
+                                <td class="pro-quantity">
+                                    <form action="Carrello" method="get">
+                                        <input type="hidden" name="mode" value="update">
+                                        <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
+                                        <input type="number" name="quantita" min="0" value="<%= quantity %>">
+                                        <button type="submit" class="btn btn-update-quantity">Aggiorna</button>
+                                    </form>
+                                </td>
+                                <td class="pro-subtotal">$<%= prodotto.getCosto() * quantity %></td>
+                                <td class="pro-remove">
+                                    <form action="Carrello" method="get">
+                                        <input type="hidden" name="mode" value="remove">
+                                        <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
+                                        <button type="submit" class="btn btn-remove">Rimuovi</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Cart Update Option -->
                 <div class="cart-update-option d-block d-lg-flex">
-                    <div class="apply-coupon-wrapper">
-                        <form action="#" method="post" class=" d-block d-md-flex">
-                            <input type="text" placeholder="Enter Your Coupon Code"/>
-                            <button class="btn-add-to-cart">Apply Coupon</button>
-                        </form>
-                    </div>
                     <div class="cart-update">
-                        <a href="#" class="btn-add-to-cart">Update Cart</a>
+                        <form action="Carrello" method="get">
+                            <input type="hidden" name="mode" value="reset">
+                            <button type="submit" class="btn btn-clear-cart">Svuota Carrello</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-6 ml-auto">
                 <!-- Cart Calculation Area -->
                 <div class="cart-calculator-wrapper">
-                    <h3>Cart Totals</h3>
+                    <h3>Riepilogo</h3>
                     <div class="cart-calculate-items">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>Sub Total</td>
-                                    <td>$230</td>
+                                    <td>Totale Prezzo</td>
+                                    <td>$<%= getTotalPrice() %></td>
                                 </tr>
                                 <tr>
-                                    <td>Shipping</td>
+                                    <td>Spedizione</td>
                                     <td>$70</td>
                                 </tr>
                                 <tr>
-                                    <td>Total</td>
-                                    <td class="total-amount">$300</td>
+                                    <td>Totale finale</td>
+                                    <td class="total-amount">$<%= getTotalPrice() + 70 %></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <a href="checkout.html" class="btn-add-to-cart">Proceed To Checkout</a>
+                    <a href="checkout.html" class="btn btn-proceed-to-checkout">Procedi al Checkout</a>
                 </div>
             </div>
         </div>
@@ -181,3 +167,25 @@
 </body>
 
 </html>
+
+<%-- Function to calculate total price of items in cart --%>
+<%! 
+    double getTotalPrice() {
+        double total = 0.0;
+        if (session.getAttribute("carrello") != null) {
+            Map<String, Integer> carrello = (Map<String, Integer>) session.getAttribute("carrello");
+            ProdottoDAO prodottoDAO = new ProdottoDAO();
+            for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
+                String productId = entry.getKey();
+                int quantity = entry.getValue();
+                try {
+                    ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(productId);
+                    total += prodotto.getCosto() * quantity;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return total;
+    }
+%>

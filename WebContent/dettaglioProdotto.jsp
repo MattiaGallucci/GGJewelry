@@ -91,7 +91,7 @@ if (prodotto == null) {
                                         <label for="qty">Quantità</label>
                                         <input type="number" id="qty" min="1" max="100" value="1"/>
                                     </div>
-                                    <a href="cart.jsp" class="btn btn-add-to-cart">Add to Cart</a>
+                                    <a href="CarrelloServlet?id=<%= prodotto.getId() %>" class="btn btn-add-to-cart">Add to Cart</a>
                                 </div>
                             </div>
                         </div>

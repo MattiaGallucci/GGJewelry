@@ -156,7 +156,7 @@
                                     <div class="product-details">
                                         <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
                                         <span class="price">$<%= prodotto.getCosto() %></span>
-                                        <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                        <a href="CarrelloServlet?id=<%= prodotto.getId() %>" class="btn btn-add-to-cart">+ Add to Cart</a>
                                     </div>
                                     </div>
                                     <% } %>

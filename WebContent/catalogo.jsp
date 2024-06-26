@@ -45,9 +45,8 @@
 
 
 <%
-  		List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
-  		Iterator<ProdottoBean> iterProdotto = prodotti.iterator();
-  		
+        List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
+        Iterator<ProdottoBean> iterProdotto = prodotti.iterator();
 %>
 
 <!-- Page Title Area Start -->
@@ -85,13 +84,13 @@
                                     <!-- Single Product Item -->
                                     <div class="single-product-item text-center">
                                         <figure class="product-thumb">
-                                            <a href="single-product.html">
+                                            <a href="DettaglioProdotto?id=<%= prodotto.getId() %>">
                                                 <img src="<%= prodotto.getImmagine() %>"
                                                     alt="<%= prodotto.getNome() %>" class="img-fluid">
                                             </a>
                                         </figure>
                                         <div class="product-details">
-                                            <h2><a href="single-product.html"><%= prodotto.getNome() %></a></h2>
+                                            <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
                                             <!-- Example to show product description -->
                                             <p class="products-desc"><%= prodotto.getDescrizione() %></p>
                                             <!-- Example to show product price -->
@@ -100,7 +99,7 @@
                                             <p class="products-desc">Quantità disponibile: <%= prodotto.getQuantita() %></p>
                                             <!-- Assuming you have a category name attribute -->
                                             <p class="products-desc">Categoria: <%= prodotto.getCategoriaNome() %></p>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                            <a href="" class="btn btn-add-to-cart">+ Add to Cart</a>
                                         </div>
                                     </div>
                                     <!-- Single Product Item -->
@@ -116,11 +115,6 @@
     </div>
 </div>
 <!-- Page Content Wrapper End -->
-
-<jsp:include page="fragments/footer.jsp" />
-</body>
-
-
 
 <jsp:include page="fragments/footer.jsp" />
 <!-- Scroll to Top Start -->

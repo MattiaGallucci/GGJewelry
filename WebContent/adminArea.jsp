@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="model.ProdottoBean"%>
 <%@page import="model.ProdottoDAO"%>
 <%@page import="model.OrdineDao"%>
@@ -8,6 +9,23 @@
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
+
+<% 
+// Inizializza la lista dei prodotti solo se non è già presente nella sessione
+List<ProdottoBean> prodotti = (List<ProdottoBean>) session.getAttribute("prodotti");
+if (prodotti == null) {
+    ProdottoDAO prodottoDAO = new ProdottoDAO();
+    try {
+        prodotti = prodottoDAO.doRetrieveAll("id");
+        session.setAttribute("prodotti", prodotti);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        request.setAttribute("errorMessage", "Errore nel recupero dei prodotti");
+    }
+}
+%>
+
+
 
 <head>
     <meta charset="utf-8">
@@ -260,17 +278,12 @@
 									                <tbody>
 									                    <%-- Recupero tutti i prodotti --%>
 									                    <%
-									                        ProdottoDAO prodottoDAO = new ProdottoDAO();
-									                        List<ProdottoBean> prodotti = null;
+									                        ProdottoBean prodottoBean = new ProdottoBean();
 									
-									                        try {
-									                            prodotti = prodottoDAO.doRetrieveAll(null);
-									                        } catch (Exception e) {
-									                            out.println("Errore: " + e.getMessage());
-									                        }
 									
 									                        if (prodotti != null && !prodotti.isEmpty()) {
 									                            for (ProdottoBean prodotto : prodotti) {
+									                            	prodottoBean = prodotto;
 									                    %>
 									                    <tr>
 									                        <td><%= prodotto.getId() %></td>
@@ -280,8 +293,8 @@
 									                        <td><%= prodotto.getSesso() %></td>
 									                        <td><%= prodotto.getCategoriaNome() %></td>
 									                        <td>
-									                            <a href="editProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-info btn-sm">Modifica</a>
-									                            <a href="deleteProduct.jsp?id=<%= prodotto.getId() %>" class="btn btn-danger btn-sm">Elimina</a>
+									                            <a href="modificaProdotto?mode=modifica&prodotto=<% out.println(prodotto.getId());%>" class="btn btn-info btn-sm">Modifica</a>
+									                            <a href="modificaProdotto?mode=elimina&prodotto=<%= prodottoBean.getId() %>" class="btn btn-danger btn-sm">Elimina</a>
 									                        </td>
 									                    </tr>
 									                    <%

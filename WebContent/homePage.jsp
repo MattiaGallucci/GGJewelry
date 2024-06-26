@@ -145,20 +145,19 @@
                         <div class="tab-pane fade show active" id="feature-products" role="tabpanel" aria-labelledby="feature-products-tab">
                             <div class="products-wrapper">
                                 <div class="products-carousel owl-carousel">
-
                                     <% for (ProdottoBean prodotto : prodottiCasuali) { %>
                                     <!-- Loop through the randomProducts stored in session -->
                                     <div class="single-product-item text-center">
                                         <figure class="product-thumb">
-                                            <a href="single-product.html">
+                                            <a href="DettaglioProdotto?id=<%= prodotto.getId() %>">
                                                 <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" class="img-fluid">
                                             </a>
                                         </figure>
-                                        <div class="product-details">
-                                            <h2><a href="single-product.html"><%= prodotto.getNome() %></a></h2>
-                                            <span class="price">$<%= prodotto.getCosto() %></span>
-                                            <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
-                                        </div>
+                                    <div class="product-details">
+                                        <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
+                                        <span class="price">$<%= prodotto.getCosto() %></span>
+                                        <a href="single-product.html" class="btn btn-add-to-cart">+ Add to Cart</a>
+                                    </div>
                                     </div>
                                     <% } %>
                                 </div>

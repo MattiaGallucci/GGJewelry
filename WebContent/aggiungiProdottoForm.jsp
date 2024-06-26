@@ -59,7 +59,11 @@
                     <div class="tab-content" id="login-reg-tabcontent">
                         <div class="tab-pane fade show active" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="addProduct" method="post">
+                                <form action="modificaProdotto" method="get">
+                                <input required type="hidden" name="mode" value="aggiungi">
+	                                <div class="single-input-item">
+	                                        <input type="text" placeholder="ID" id="id" name="id" required>
+	                                </div>
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Nome" id="nome" name="nome" required>
                                     </div>
@@ -85,12 +89,6 @@
                                     <div class="single-input-item">
                                         <input type="text" placeholder="Categoria" id="categoria" name="categoria" required>
                                     </div>
-                                    
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="ID" id="id" name="id" required>
-                                    </div>
-                              
-
                                     <div class="single-input-item">
                                         <button class="btn-login" type="submit">Aggiungi Prodotto</button>
                                     </div>

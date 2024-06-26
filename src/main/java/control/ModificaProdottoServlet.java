@@ -38,6 +38,34 @@ public class ModificaProdottoServlet extends HttpServlet{
                 ProdottoBean prodotto = dbProdotto.doRetrieveByKey(id);
                 request.setAttribute("prodotto", prodotto);
                 pathForward = "./modificaProdotto.jsp";
+            } else if (mode.equalsIgnoreCase("aggiungi")) {
+            	Integer id = Integer.parseInt(request.getParameter("id"));
+            	String nome = request.getParameter("nome");
+            	String descrizione = request.getParameter("descrizione");
+            	Integer quantita = Integer.parseInt(request.getParameter("quantita"));
+        		Integer costo = Integer.parseInt(request.getParameter("costo"));
+        		String sesso = request.getParameter("sesso");
+        		String immagine = request.getParameter("immagine");
+        		String categoria = request.getParameter("categoria");
+        		
+        		ProdottoBean prodotto = new ProdottoBean();
+    			
+        		prodotto.setId(id);
+        		prodotto.setNome(nome);
+        		prodotto.setDescrizione(descrizione);
+        		prodotto.setQuantita(quantita);
+        		prodotto.setCosto(costo);
+        		prodotto.setSesso(sesso);
+        		prodotto.setImmagine(immagine);
+        		prodotto.setCategoriaNome(categoria);
+        		
+        		try {
+    				dbProdotto.doSave(prodotto);
+    			} catch (SQLException e) {
+    				e.printStackTrace();
+    			}
+    			
+    			pathForward = "catalogo";
             }
         } catch (SQLException e) {
             e.printStackTrace();

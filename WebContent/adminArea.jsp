@@ -127,8 +127,7 @@ if (prodotti == null) {
 							        } else {
 							            out.println("<p>Perfavore <a href='loginPage.jsp'>login</a> per continuare.</p>");
 							        }
-							
-						        
+			
 									%>
                                     </div>
 

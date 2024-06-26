@@ -3,6 +3,9 @@
 <%@page import="model.ProdottoBean"%>
 <%@page import="java.util.List"%>
 <html class="no-js" lang="zxx">
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%> 
 <head>
 
     <meta charset="utf-8">
@@ -123,9 +126,7 @@
 
 
 
-<%
-    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
-%> 
+
 
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">

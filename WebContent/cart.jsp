@@ -166,7 +166,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="" class="btn-add-to-cart">Procedi al Checkout</a>                   
+                    <a href="OrdineServlet" class="btn-add-to-cart">Procedi al Checkout</a>                   
                 </div>
             </div>
         </div>

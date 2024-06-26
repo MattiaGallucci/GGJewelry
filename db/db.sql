@@ -121,9 +121,7 @@ INSERT INTO inserimento (prodottoId, ordineId, quantita) VALUES
 
 -- Insert values into 'metodoDiPagamento' table
 INSERT INTO metodoDiPagamento (tipo, iban, numeroCarta, utenteEmail) VALUES
-('iban', 'IT60X0542811101000000123456', NULL, 'mario@example.com'),
 ('carta', NULL, '1234-5678-9123-4567', 'mario@example.com'),
-('iban', 'IT60X0542811101000000654321', NULL, 'luigi@example.com'),
 ('carta', NULL, '9876-5432-1098-7654', 'luigi@example.com'),
 ("carta", NULL, "1234-1234-1234-1234", "mattia@gmail.com");
 

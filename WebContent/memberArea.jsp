@@ -1,3 +1,11 @@
+<%@page import="model.IndirizzoBean"%>
+<%@page import="model.IndirizzoDAO"%>
+<%@page import="model.MetodoDiPagamentoBean"%>
+<%@page import="model.MetodoDiPagamentoDAO"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="model.OrdineDao"%>
+<%@page import="model.OrdineBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -120,79 +128,197 @@
                                 </div>
                                 <!-- Single Tab Content End -->
 
+
+
+
+								
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="orders" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Orders</h3>
+<div class="tab-pane fade" id="orders" role="tabpanel">
+    <div class="myaccount-content">
+        <h3>I tuoi Ordini</h3>
 
-                                        <div class="myaccount-table table-responsive text-center">
-                                            <table class="table table-bordered">
-                                                <thead class="thead-light">
-                                                <tr>
-                                                    <th>Order</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
+        
 
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Aug 22, 2018</td>
-                                                    <td>Pending</td>
-                                                    <td>$3000</td>
-                                                    <td><a href="cart.html" class="btn-add-to-cart">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>July 22, 2018</td>
-                                                    <td>Approved</td>
-                                                    <td>$200</td>
-                                                    <td><a href="cart.html" class="btn-add-to-cart">View</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>June 12, 2017</td>
-                                                    <td>On Hold</td>
-                                                    <td>$990</td>
-                                                    <td><a href="cart.html" class="btn-add-to-cart">View</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Costo Totale</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%-- Recupero gli ordini del cliente loggato --%>
+                    <%
+                        OrdineDao ordineDAO = new OrdineDao();
+                        String userEmail = (String) session.getAttribute("email");
+                        List<OrdineBean> ordini = null;
+
+                        if (userEmail != null && !userEmail.isEmpty()) {
+                            try {
+                                ordini = ordineDAO.doRetrieveByEmail(userEmail);
+                            } catch (Exception e) {
+                                out.println("Errore: " + e.getMessage());
+                            }
+                        }
+
+                        if (ordini != null && !ordini.isEmpty()) {
+                            for (OrdineBean ordine : ordini) {
+                    %>
+                    <tr>
+                        <td><%= ordine.getId() %></td>
+                        <td><%= ordine.getData() %></td>
+                        <td><%= ordine.getCostoTotale() %></td>
+                        <td><a href="viewOrder.jsp?id=<%= ordine.getId() %>" class="btn-add-to-cart">View</a></td>
+                    </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="4">Nessun ordine trovato per l'email <%= userEmail %>.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Single Tab Content End -->
+
+
+
+
+
+                                <!-- Single Tab Content Start -->
+                                <!-- Single Tab Content Start -->
+<div class="tab-pane fade" id="payment-method" role="tabpanel">
+    <div class="myaccount-content">
+        <h3>I tuoi Metodi di Pagamento</h3>
+
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Ultime 4 cifre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%-- Recupero i metodi di pagamento del cliente loggato --%>
+                    <%
+                        MetodoDiPagamentoDAO metodoDiPagamentoDAO = new MetodoDiPagamentoDAO();
+                        List<MetodoDiPagamentoBean> metodiDiPagamento = null;
+
+                        if (userEmail != null && !userEmail.isEmpty()) {
+                            try {
+                                metodiDiPagamento = metodoDiPagamentoDAO.doRetrieveByEmail(userEmail);
+                            } catch (Exception e) {
+                                out.println("Errore: " + e.getMessage());
+                            }
+                        }
+
+                        if (metodiDiPagamento != null && !metodiDiPagamento.isEmpty()) {
+                            for (MetodoDiPagamentoBean metodo : metodiDiPagamento) {
+                    %>
+                    <tr>
+                        <td><%= metodo.getTipo() %></td>
+                        <td><%= metodo.getNumeroCarta() %></td>
+                    </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="3">Nessun metodo di pagamento trovato per l'email <%= userEmail %>.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Single Tab Content End -->
+
                                 <!-- Single Tab Content End -->
 
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="payment-method" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Payment Method</h3>
 
-                                        <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
+
+
+
+
+
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="address" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
+                                <!-- Single Tab Content Start -->
+<div class="tab-pane fade" id="address" role="tabpanel">
+    <div class="myaccount-content">
+        <h3>I tuoi Indirizzi di Spedizione</h3>
 
-                                        <address>
-                                            <p><strong>Alex Tuntuni</strong></p>
-                                            <p>1355 Market St, Suite 900 <br>
-                                                San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
-                                        </address>
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Città</th>
+                        <th>Provincia</th>
+                        <th>CAP</th>
+                        <th>Via</th>
+                        <th>Civico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%-- Recupero gli indirizzi di spedizione dell'utente loggato --%>
+                    <%
+                        IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+                        List<IndirizzoBean> indirizzi = null;
 
-                                        <a href="#" class="btn-add-to-cart d-inline-block"><i class="fa fa-edit"></i>
-                                            Edit Address</a>
-                                    </div>
-                                </div>
+                        if (userEmail != null && !userEmail.isEmpty()) {
+                            try {
+                                indirizzi = indirizzoDAO.doRetrieveByEmail(userEmail);
+                            } catch (Exception e) {
+                                out.println("Errore: " + e.getMessage());
+                            }
+                        }
+
+                        if (indirizzi != null && !indirizzi.isEmpty()) {
+                            for (IndirizzoBean indirizzo : indirizzi) {
+                    %>
+                    <tr>
+                        <td><%= indirizzo.getCitta() %></td>
+                        <td><%= indirizzo.getProvincia() %></td>
+                        <td><%= indirizzo.getCap() %></td>
+                        <td><%= indirizzo.getVia() %></td>
+                        <td><%= indirizzo.getCivico() %></td>
+                    </tr>
+                    <%
+                            }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="6">Nessun indirizzo trovato per l'email <%= userEmail %>.</td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Single Tab Content End -->
+
                                 <!-- Single Tab Content End -->
+
+
+
+
+
 
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="account-info" role="tabpanel">
@@ -266,6 +392,11 @@
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
+                                
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                         <!-- My Account Tab Content End -->

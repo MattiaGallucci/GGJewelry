@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>Contact Us</h1>
+                    <h1>Contattaci</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
                         <li><a href="contact.jsp" class="active">Contatti</a></li>

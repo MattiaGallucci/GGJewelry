@@ -154,41 +154,41 @@ public class ProdottoDAO extends AbstractDAO<ProdottoBean>{
 	
 	@Override
 	public synchronized boolean doUpdate(ProdottoBean bean) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		int result = 0;
-		
-		String query = "UPDATE " + ProdottoDAO.TABLE_NAME + " SET nome = ?, descrizione = ?, quantita = ?, costo = ?, sesso = ?, immagine = ?, categoriaNome = ? WHERE id = ?";
-		
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
-			
-			statement.setInt(1, bean.getId());
-			statement.setString(2, bean.getNome());
-			statement.setString(3, bean.getDescrizione());
-			statement.setInt(4, bean.getQuantita());
-			statement.setInt(5, bean.getCosto());
-			statement.setString(6, bean.getSesso());
-			statement.setString(7, bean.getImmagine());
-			statement.setString(8, bean.getCategoriaNome());
-			
-			statement.executeUpdate();
-			
-			con.commit();
-		} finally {
-			try {
-				if(statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-		
-		return result != 0;
-			
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    int result = 0;
+
+	    String query = "UPDATE " + ProdottoDAO.TABLE_NAME + " SET nome = ?, descrizione = ?, quantita = ?, costo = ?, sesso = ?, immagine = ?, categoriaNome = ? WHERE id = ?";
+
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(query);
+
+	        statement.setString(1, bean.getNome());
+	        statement.setString(2, bean.getDescrizione());
+	        statement.setInt(3, bean.getQuantita());
+	        statement.setInt(4, bean.getCosto());
+	        statement.setString(5, bean.getSesso());
+	        statement.setString(6, bean.getImmagine());
+	        statement.setString(7, bean.getCategoriaNome());
+	        statement.setInt(8, bean.getId());
+
+	        result = statement.executeUpdate();
+
+	        con.commit();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
+
+	    return result != 0;
 	}
+
 	
 	public synchronized List<ProdottoBean> searchBy(String search) throws SQLException {
 		List<ProdottoBean> prodottiTrovati = new ArrayList<>();

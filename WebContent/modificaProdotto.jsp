@@ -1,3 +1,4 @@
+<%@page import="model.ProdottoBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -6,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
-    <title>Aggiungi Prodotto</title> 
-    
+    <title>Modifica Prodotto</title>
+
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>
@@ -25,7 +26,6 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-    
 </head>
 <body>
 
@@ -37,11 +37,11 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>Aggiungi Prodotto</h1>
+                    <h1>Modifica Prodotto</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                       	<li><a href="adminArea.jsp">Indietro</a></li>
-                        <li><a class="active">Aggiungi Prodotto</a></li>
+                        <li><a href="adminArea.jsp">Indietro</a></li>
+                        <li><a class="active">Modifica Prodotto</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,38 +59,43 @@
                     <div class="tab-content" id="login-reg-tabcontent">
                         <div class="tab-pane fade show active" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="modificaProdotto" method="get">
-                                <input required type="hidden" name="mode" value="aggiungi">
-	                                <div class="single-input-item">
-	                                        <input type="text" placeholder="ID" id="id" name="id" required>
-	                                </div>
+                                <% 
+                                    ProdottoBean prodotto = (ProdottoBean) request.getAttribute("prodotto");
+                                    if (prodotto == null) {
+                                        out.println("Errore: prodotto non trovato");
+                                        return;
+                                    }
+                                %>
+                                <form action="modificaProdotto" method="post">
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Nome" id="nome" name="nome" required>
+                                        <input type="hidden" id="id" name="id" value="<%= prodotto.getId() %>">
                                     </div>
                                     <div class="single-input-item">
-                                        <textarea placeholder="Descrizione" id="descrizione" name="descrizione" required></textarea>
+                                        <input type="text" placeholder="Nome" id="nome" name="nome" value="<%= prodotto.getNome() %>" required>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="number" placeholder="Quantità" id="quantita" name="quantita" required>
+                                        <textarea placeholder="Descrizione" id="descrizione" name="descrizione" required><%= prodotto.getDescrizione() %></textarea>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="number" placeholder="Costo" id="costo" name="costo" required>
+                                        <input type="number" placeholder="Quantità" id="quantita" name="quantita" value="<%= prodotto.getQuantita() %>" required>
+                                    </div>
+                                    <div class="single-input-item">
+                                        <input type="number" placeholder="Costo" id="costo" name="costo" value="<%= prodotto.getCosto() %>" required>
                                     </div>
                                     <div class="single-input-item">
                                         <select class="form-control" id="sesso" name="sesso" required>
-                                            <option value="M">Maschile</option>
-                                            <option value="F">Femminile</option>
+                                            <option value="M" <%= prodotto.getSesso().equals("M") ? "selected" : "" %>>Maschile</option>
+                                            <option value="F" <%= prodotto.getSesso().equals("F") ? "selected" : "" %>>Femminile</option>
                                         </select>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" required>
-                                    </div>
-                                    
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Categoria" id="categoria" name="categoria" required>
+                                        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" value="<%= prodotto.getImmagine() %>" required>
                                     </div>
                                     <div class="single-input-item">
-                                        <button class="btn-login" type="submit">Aggiungi Prodotto</button>
+                                        <input type="text" placeholder="Categoria" id="categoriaNome" name="categoriaNome" value="<%= prodotto.getCategoriaNome() %>" required>
+                                    </div>
+                                    <div class="single-input-item">
+                                        <button class="btn-login" type="submit">Salva Modifiche</button>
                                     </div>
                                 </form>
                             </div>

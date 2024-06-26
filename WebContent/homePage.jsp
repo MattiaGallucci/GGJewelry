@@ -3,6 +3,9 @@
 <%@page import="model.ProdottoBean"%>
 <%@page import="java.util.List"%>
 <html class="no-js" lang="zxx">
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%> 
 <head>
 
     <meta charset="utf-8">
@@ -34,9 +37,7 @@
 
  
 </head>
-<%
-    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
-%>
+
 <body>
 
 <jsp:include page="fragments/header.jsp" />
@@ -120,7 +121,6 @@
     </div>
 </section>
 <!--== About Us Area End ==-->
-
 
 
 

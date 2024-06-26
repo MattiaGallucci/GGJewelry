@@ -34,6 +34,9 @@
 
  
 </head>
+<%
+    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
+%>
 <body>
 
 <jsp:include page="fragments/header.jsp" />
@@ -120,9 +123,7 @@
 
 
 
-<%
-    List<ProdottoBean> prodottiCasuali = (List<ProdottoBean>) request.getSession().getAttribute("randomProdotti");
-%>
+
 
 
 <!--== New Collection Area Start ==-->

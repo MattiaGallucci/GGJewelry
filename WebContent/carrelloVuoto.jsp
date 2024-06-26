@@ -44,10 +44,10 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>404</h1>
+                    <h1>Carrello</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <li><a href="carrelloVuoto.jsp" class="active">Carrello Vuoto</a></li>
+                        <li><a href="carrelloVuoto.jsp" class="active">Carrello</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                 <div class="error-page-content-wrap">
                     <h2>Carrello vuoto</h2>
                     <h3>
-                    	Non affredarti ad acquistare da noi!!
+                    	Non esitare ad acquistare da noi!!
                     </h3>    
                     </p>
                     <a href="catalogo.jsp" class="btn-add-to-cart">Vai al catalogo</a>

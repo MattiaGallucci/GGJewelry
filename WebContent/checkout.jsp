@@ -114,12 +114,7 @@
                         <label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
                             + indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia()); %></label><br><br>
                     <% } %>
-                    <form action="modificaInfo" method="get">
-                        <input type="hidden" value="<% out.print(request.getSession().getAttribute("utente")); %>" name="utente">
-                        <input type="hidden" name="mode" value="add">
-                        <input type="hidden" name="target" value="indirizzo">
-                        <button class="btn btn-primary mb-3">Aggiungi indirizzo</button>
-                    </form>
+                    <a href="modificaInfo?mode=add&target=indirizzo" class="btn btn-primary mb-3">Aggiungi indirizzo</a>
                 </div>
                 <div class="checkout-billing-details-wrap">
                     <h2>Scegli metodo di pagamento</h2>
@@ -130,12 +125,7 @@
 					        <label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta()); %></label><br><br>
 					    <% } 
 					} %>
-                    <form action="modificaInfo" method="get">
-                        <input type="hidden" value="<% out.print(request.getSession().getAttribute("utente")); %>" name="utente">
-                        <input type="hidden" name="mode" value="add">
-                        <input type="hidden" name="target" value="metodoPagamento">
-                        <button class="btn btn-primary mb-3">Aggiungi metodo di pagamento</button>
-                    </form>
+                    <a href="modificaInfo?mode=add&target=metodoPagamento" class="btn btn-primary mb-3">Aggiungi metodo di pagamento</a>
                 </div>
             </div>
 
@@ -203,6 +193,8 @@
 </div>
 </form>
 <!--== Page Content Wrapper End ==-->
+
+
 
 <jsp:include page="fragments/footer.jsp" />
 

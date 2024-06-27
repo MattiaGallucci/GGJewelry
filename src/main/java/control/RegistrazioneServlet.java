@@ -44,7 +44,7 @@ public class RegistrazioneServlet extends HttpServlet{
 				UtenteBean utente = new UtenteBean();
 				UtenteBean utenteRicercato = new UtenteBean();
 				boolean flag = false;
-				List<UtenteBean> listaUtenti = dbUtenti.doRetrieveAll(username);
+				List<UtenteBean> listaUtenti = dbUtenti.doRetrieveAll("");
 				Iterator<UtenteBean> iterUtenti = listaUtenti.iterator();
 				
 				utente.setUsername(username);

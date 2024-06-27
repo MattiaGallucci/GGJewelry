@@ -53,7 +53,7 @@
                 <div class="page-title-content">
                     <h1>Member Area</h1>
                     <ul class="breadcrumb">
-                        <li><a href="homePage.jsp">Home</a></li>
+                        <li><a href="catalogo?mode=home">Home</a></li>
                         <li><a href="loginPage.jsp." class="active">Login & Register</a></li>
                     </ul>
                 </div>
@@ -89,11 +89,11 @@
 										        }
 								%>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Enter your Username" id="username" name="username" required/>
+                                        <input type="text" placeholder="Username" id="username" name="username" required/>
                                     </div>
 
                                     <div class="single-input-item">
-                                        <input type="password" placeholder="Enter your Password" id="password" name="password" required/>
+                                        <input type="password" placeholder="Password" id="password" name="password" required/>
                                     </div>
 
                                     <div class="single-input-item">
@@ -118,28 +118,28 @@
 								      
 								    </div>
 								    <div class="single-input-item">
-								        <input type="email" placeholder="Enter your Email" name="email" id="email" required>
+								        <input type="email" placeholder="Email" name="email" id="email" required>
 								     
 								    </div>
 								
 								    <div class="row">
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="text" placeholder="Enter your Password" id="password" name="password" required/>
+								                <input type="text" placeholder="Password" id="password" name="password" required/>
 								             
 								            </div>
 								        </div>
 								
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="text" placeholder="Repeat your Password" id="passwordCheck" name="passwordCheck" required/>
+								                <input type="text" placeholder="Conferma Password" id="passwordCheck" name="passwordCheck" required/>
 								             
 								            </div>
 								        </div>
 								    </div>
 								
 								    <div class="single-input-item">
-								        <input class="btn-login" type="submit" id="registrati" value="Registrati">
+								        <button class="btn-login">Registrati</button>
 								    </div>
 								</form>
 							</div>

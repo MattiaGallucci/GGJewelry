@@ -2,13 +2,13 @@
 <%@page import="model.MetodoDiPagamentoDAO"%>
 <%@page import="model.IndirizzoBean"%>
 <%@page import="model.IndirizzoDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@page import="model.ProdottoBean"%>
 <%@page import="model.ProdottoDAO"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -50,30 +50,36 @@
 <jsp:include page="fragments/header.jsp" />
 
 <%
-						String userEmail = (String) session.getAttribute("email");
+    String userEmail = (String) session.getAttribute("email");
 
-                        IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
-                        List<IndirizzoBean> listaIndirizzi = null;
+    IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+    List<IndirizzoBean> listaIndirizzi = null;
+    
+    MetodoDiPagamentoDAO metodoDiPagamentoDAO = new MetodoDiPagamentoDAO();
+    List<MetodoDiPagamentoBean> listaMetodi = null;
+
+    if (userEmail != null && !userEmail.isEmpty()) {
+        try {
+            listaIndirizzi = indirizzoDAO.doRetrieveByEmail(userEmail);
+            listaMetodi = metodoDiPagamentoDAO.doRetrieveByEmail(userEmail);
+        } catch (Exception e) {
+            out.println("Errore: " + e.getMessage());
+        }
+    }
+    Iterator<MetodoDiPagamentoBean> iterMetodiPagamento = listaMetodi.iterator();
+    Iterator<IndirizzoBean> iterIndirizzi = listaIndirizzi.iterator(); 
+    
+    IndirizzoBean indirizzo = new IndirizzoBean();
+    MetodoDiPagamentoBean metodoPagamento = new MetodoDiPagamentoBean();
+%>
+
+<%
+    Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
+    List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
+
+    double totale = 0;
+%>
                         
-                        MetodoDiPagamentoDAO metodoDiPagamentoDAO = new MetodoDiPagamentoDAO();
-                        List<MetodoDiPagamentoBean> listaMetodi = null;
-
-
-                        if (userEmail != null && !userEmail.isEmpty()) {
-                            try {
-                            	listaIndirizzi = indirizzoDAO.doRetrieveByEmail(userEmail);
-                                listaMetodi = metodoDiPagamentoDAO.doRetrieveByEmail(userEmail);
-                            } catch (Exception e) {
-                                out.println("Errore: " + e.getMessage());
-                            }
-                        }
-                        Iterator<MetodoDiPagamentoBean> iterMetodiPagamento = listaMetodi.iterator();
-                		Iterator<IndirizzoBean> iterIndirizzi = listaIndirizzi.iterator(); 
-                		
-                		IndirizzoBean indirizzo = new IndirizzoBean();
-                		MetodoDiPagamentoBean metodoPagamento = new MetodoDiPagamentoBean();%>
-                        
- 
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
     <div class="container">
@@ -96,92 +102,106 @@
 <!--== Page Content Wrapper Start ==-->
 <div id="page-content-wrapper" class="p-9">
     <div class="container">
-        
-        
         <div class="row">
             <!-- Checkout Billing Details -->
             <div class="col-lg-6">
                 <div class="checkout-billing-details-wrap">
                     <h2>Scegli indirizzo</h2>
-                    <%	while(iterIndirizzi.hasNext()){
-					indirizzo = iterIndirizzi.next();
-					%>
-						<input type="radio" name="indirizzo" id="indirizzo" value="<%out.print(indirizzo.getId());%>">
-						&nbsp&nbsp
-						<label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
-								+ indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia());%></label><br><br>
-					<% } %>
-					<form action="modificaInfo" method="get">
-				  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
-				  		<input type="hidden" name="mode" value="add">
-				  		<input type="hidden" name="target" value="indirizzo">
-				        <button class="btn btn-primary mb-3">Aggiungi Indirizzo</button>
-		        	</form>
-        	
-		        	
-				<h2>Scegli metodo di pagamento</h2>
-				<% while(iterMetodiPagamento.hasNext()) {
-				    metodoPagamento = iterMetodiPagamento.next();
-				    if(!metodoPagamento.getTipo().equals("iban")) { %>
-				        <input type="radio" name="metodoPagamento" id="metodoPagamento" value="<% out.print(metodoPagamento.getId()); %>">
-				        &nbsp&nbsp
-				        <label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta()); %></label><br><br>
-				    <% } 
-				} %> 	   
-				                    
-                    
+                    <% while(iterIndirizzi.hasNext()) {
+                        indirizzo = iterIndirizzi.next();
+                    %>
+                        <input type="radio" name="indirizzo" id="indirizzo" value="<% out.print(indirizzo.getId()); %>">
+                        &nbsp;&nbsp;
+                        <label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
+                            + indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia()); %></label><br><br>
+                    <% } %>
+                    <form action="modificaInfo" method="get">
+                        <input type="hidden" value="<% out.print(request.getSession().getAttribute("utente")); %>" name="utente">
+                        <input type="hidden" name="mode" value="add">
+                        <input type="hidden" name="target" value="indirizzo">
+                        <button class="btn btn-primary mb-3">Aggiungi indirizzo</button>
+                    </form>
+                </div>
+                <div class="checkout-billing-details-wrap">
+                    <h2>Scegli metodo di pagamento</h2>
+					<% while(iterMetodiPagamento.hasNext()) {
+					    metodoPagamento = iterMetodiPagamento.next();
+					    if(!metodoPagamento.getTipo().equals("iban")) { %>
+					        <input type="radio" name="metodoPagamento" id="metodoPagamento" value="<% out.print(metodoPagamento.getId()); %>">
+					        <label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta()); %></label><br><br>
+					    <% } 
+					} %>
+                    <form action="modificaInfo" method="get">
+                        <input type="hidden" value="<% out.print(request.getSession().getAttribute("utente")); %>" name="utente">
+                        <input type="hidden" name="mode" value="add">
+                        <input type="hidden" name="target" value="metodoPagamento">
+                        <button class="btn btn-primary mb-3">Aggiungi metodo di pagamento</button>
+                    </form>
                 </div>
             </div>
 
-            <!-- Order Summary Details -->
             <div class="col-lg-6 mt-5 mt-lg-0">
                 <div class="order-summary-details">
-        <h2>Riepilogo Ordine</h2>
-        <div class="order-summary-content">
-            <div class="order-summary-table table-responsive text-center">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Prodotti</th>
-                        <th>Totale</th>
-                    </tr>
-                    </thead>
-                    
-                    <tfoot>
-                    <tr>
-                        <td>Totale</td>
-                        
-                        <td><strong>$</strong></td>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
+                    <h2>Riepilogo Ordine</h2>
+                    <div class="order-summary-content">
+                        <div class="order-summary-table table-responsive text-center">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Prodotti</th>
+                                        <th>Totale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% Iterator<String> iterKeys = carrello.keySet().iterator();
+                                    while (iterKeys.hasNext()) {
+                                        String key = iterKeys.next();
+                                        Integer quantita = carrello.get(key);
+                                        ProdottoBean prodotto = null;
+                                        for (ProdottoBean p : prodotti) {
+                                            if (String.valueOf(p.getId()).equals(key)) {
+                                                prodotto = p;
+                                                break;
+                                            }
+                                        }
+                                        if (prodotto != null) {
+                                            double prezzoTotaleProdotto = prodotto.getCosto() * quantita;
+                                            totale += prezzoTotaleProdotto;
+                                    %>
+                                    <tr>
+                                        <td><%= prodotto.getNome() %> x <%= quantita %></td>
+                                        <td>$<%= prezzoTotaleProdotto %></td>
+                                    </tr>
+                                    <% }
+                                    } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Totale</td>
+                                        <td><strong>$<%= totale %></strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
 
-            <div class="order-payment-method">
-
-                <div class="summary-footer-area">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="terms" required/>
-                        <label class="custom-control-label" for="terms">Ho letto le informazioni sul sito e sono d'accordo con termini e condizioni</label>
+                        <div class="order-payment-method">
+                            <div class="summary-footer-area">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="terms" required/>
+                                    <label class="custom-control-label" for="terms">Ho letto le informazioni sul sito e sono d'accordo con termini e condizioni</label>
+                                </div>
+                                <a href="completeOrderServlet" class="btn-add-to-cart">Completa Ordine</a>
+                            </div>
+                        </div>
                     </div>
-                    <a href="completeOrderServlet" class="btn-add-to-cart">Completa Ordine</a>
                 </div>
             </div>
         </div>
     </div>
-        </div>
-        <!--== Checkout Page Content End ==-->
-    </div>
-</div>
 </div>
 <!--== Page Content Wrapper End ==-->
 
-
 <jsp:include page="fragments/footer.jsp" />
-<!-- Scroll to Top Start -->
-<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
-<!-- Scroll to Top End -->
-
 
 <!--=======================Javascript============================-->
 <!--=== Jquery Min Js ===-->
@@ -192,11 +212,10 @@
 <script src="assets/js/vendor/popper.min.js"></script>
 <!--=== Bootstrap Min Js ===-->
 <script src="assets/js/vendor/bootstrap.min.js"></script>
-<!--=== Plugins Min Js ===-->
+<!--=== Plugins Js ===-->
 <script src="assets/js/plugins.js"></script>
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
 </body>
-
 </html>

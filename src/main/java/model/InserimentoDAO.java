@@ -136,40 +136,42 @@ public class InserimentoDAO extends AbstractDAO<InserimentoBean> {
 	}
 
 	public synchronized List<InserimentoBean> doRetrieveByOrdine(String key) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		List<InserimentoBean> inserimenti = new ArrayList<>();
-		InserimentoBean inserimento = null;
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    List<InserimentoBean> inserimenti = new ArrayList<>();
+	    InserimentoBean inserimento = null;
 
-		String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE ordine = ?";
+	    String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE ordineId = ?";
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(query);
+	        statement.setString(1, key); // Set the key parameter
 
-			ResultSet result = statement.executeQuery();
+	        ResultSet result = statement.executeQuery();
 
-			while (result.next()) {
-				inserimento = new InserimentoBean();
+	        while (result.next()) {
+	            inserimento = new InserimentoBean();
 
-				inserimento.setProdottoId(result.getString("prodottoId"));
-				inserimento.setOrdineId(result.getInt("ordineId"));
-				inserimento.setQuantita(result.getInt("quantita"));
+	            inserimento.setProdottoId(result.getString("prodottoId"));
+	            inserimento.setOrdineId(result.getInt("ordineId"));
+	            inserimento.setQuantita(result.getInt("quantita"));
 
-				inserimenti.add(inserimento);
-			}
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
+	            inserimenti.add(inserimento);
+	        }
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
 
-		return inserimenti;
+	    return inserimenti;
 	}
+
 
 	@Override
 	public synchronized boolean doUpdate(InserimentoBean bean) throws SQLException {

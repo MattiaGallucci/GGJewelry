@@ -94,6 +94,7 @@
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Informazioni account</a>
 
                                 <a href="LogOutServlet"><i class="fa fa-sign-out"></i> Logout</a>
+                                
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -144,10 +145,9 @@
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
-                        <th>ID</th>
                         <th>Data</th>
                         <th>Costo Totale</th>
-                        <th>Action</th>
+                        <th>Dettagli</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,10 +169,9 @@
                             for (OrdineBean ordine : ordini) {
                     %>
                     <tr>
-                        <td><%= ordine.getId() %></td>
                         <td><%= ordine.getData() %></td>
                         <td><%= ordine.getCostoTotale() %></td>
-                        <td><a href="viewOrder.jsp?id=<%= ordine.getId() %>" class="btn-add-to-cart">View</a></td>
+                        <td><a href="visualizzaOrdine.jsp?id=<%= ordine.getId()%>" class="btn-add-to-cart">Visualizza</a></td>
                     </tr>
                     <%
                             }
@@ -195,6 +194,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
                                 <!-- Single Tab Content Start -->
                                 <!-- Single Tab Content Start -->
 <div class="tab-pane fade" id="payment-method" role="tabpanel">
@@ -206,7 +216,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Tipo</th>
-                        <th>Ultime 4 cifre</th>
+                        <th>Numero carta</th>
                     </tr>
                 </thead>
                 <tbody>

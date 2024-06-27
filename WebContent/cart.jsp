@@ -1,4 +1,4 @@
-<%@page import="model.ProdottoBean"%>
+ <%@page import="model.ProdottoBean"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
@@ -166,7 +166,7 @@
                             </table>
                         </div>
                     </div>
-                    <a href="OrdineServlet" class="btn-add-to-cart">Procedi al Checkout</a>                   
+                    <button class="btn-add-to-cart"  onclick="proseguiOrdine()" >Procedi al Checkout</button>                  
                 </div>
             </div>
         </div>
@@ -201,6 +201,7 @@
 <script src="assets/js/active.js"></script>
 
 <script src="assets/js/aggiornaCarrello.js"></script>
+ 
 </body>
 
 

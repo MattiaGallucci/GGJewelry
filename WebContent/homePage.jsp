@@ -157,7 +157,7 @@
 			                            <%}
                                         else 
                                         {%>
-                                        		<button class="btn btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Login per acquistare</button>
+                                        		<button class="btn btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
                                         <%}	
 			                            %>
 			                            

@@ -179,7 +179,7 @@
                          	        <tr>
                                          
                                     <td>Spedizione</td>
-                                        <td><strong>10</strong></td>
+                                        <td><strong>$10</strong></td>
                                     </tr>
                                     <tr>
                                          

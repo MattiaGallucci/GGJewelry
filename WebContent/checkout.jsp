@@ -150,6 +150,7 @@
                     <tfoot>
                     <tr>
                         <td>Totale</td>
+                        
                         <td><strong>$</strong></td>
                     </tr>
                     </tfoot>
@@ -157,17 +158,6 @@
             </div>
 
             <div class="order-payment-method">
-                <div class="single-payment-method show">
-                    <div class="payment-method-name">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked/>
-                            <label class="custom-control-label" for="cashon">Numero carta</label>
-                        </div>
-                    </div>
-                    <div class="payment-method-details" data-method="cash">
-                        <input type="text" id="carta" placeholder="carta"/>
-                    </div>
-                </div>
 
                 <div class="summary-footer-area">
                     <div class="custom-control custom-checkbox">

@@ -12,9 +12,6 @@
 
     <title>Contatti</title>
 
-    <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
-
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>

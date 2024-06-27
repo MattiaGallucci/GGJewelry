@@ -192,10 +192,7 @@
 
                         <div class="order-payment-method">
                             <div class="summary-footer-area">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="terms" required/>
-                                    <label class="custom-control-label" for="terms">Ho letto le informazioni sul sito e sono d'accordo con termini e condizioni</label>
-                                </div>
+
                                 <a href="completeOrderServlet" class="btn-add-to-cart">Completa Ordine</a>
                             </div>
                         </div>

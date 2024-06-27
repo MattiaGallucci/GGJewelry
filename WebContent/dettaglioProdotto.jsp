@@ -75,16 +75,18 @@ if (prodotto == null) {
                         <div class="col-lg-7 mt-5 mt-lg-0">
                             <div class="product-details">
                                 <h2><a href="DettaglioProdotto"><%= prodotto.getNome() %></a></h2>
-                                <span class="price"><%= prodotto.getCosto() %></span>
-                                <       
+                                <span class="price">$ <%= prodotto.getCosto() %> </span>
+                                
                                 <% if(prodotto.getQuantita() == 0) { %>
                                 <div class="product-info-stock-sku">
                                     <span class="product-stock-status">Non disponibile</span>
+                                    <br><br>
                                     <p class="products-desc"><%= prodotto.getDescrizione() %></p> 
                                 </div>
                                 <% } else { %>
                                 <div class="product-info-stock-sku">
                                     <span class="product-stock-status">Disponibile</span>
+                                    <br><br>
                                     <p class="products-desc"><%= prodotto.getDescrizione() %></p> 
                                 </div>
                                                         
@@ -93,7 +95,8 @@ if (prodotto == null) {
                                         <label for="qty">Quantità</label>
                                         <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1"/>
                                     </div>
-                                                                                <% 
+                                    <br><br>
+                                             <% 
 	                                        if(request.getSession().getAttribute("logged") != null) 
 										    {%>
 				                           			<button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>

@@ -75,7 +75,12 @@
                     <h1>Dettagli Ordine</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
+                        <%Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
+								if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) {%>
+                        <li><a href="adminArea.jsp">Ordini</a></li>
+                        <%} else{%>
                         <li><a href="memberArea.jsp">Ordini</a></li>
+                        <%} %>
                         <li><a href="ordine.jsp?idOrdine=<%= idOrdine %>" class="active">Dettagli Ordine</a></li>
                     </ul>
                 </div>

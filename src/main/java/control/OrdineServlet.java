@@ -46,8 +46,8 @@ public class OrdineServlet extends HttpServlet {
         if (request.getSession().getAttribute("logged") == null) {
             path = "./loginPage.jsp";
         } else {
-            String indirizzoID = request.getParameter("indirizzo");
-            String metodoDiPagamentoID = request.getParameter("metodoPagamento");
+             
+            
             String email = (String) request.getSession().getAttribute("email");
             String costoStr = (String) request.getSession().getAttribute("costoTot");
             costoStr = costoStr.replace(",", ".");
@@ -59,13 +59,7 @@ public class OrdineServlet extends HttpServlet {
             ProdottoDAO dbProdotto = new ProdottoDAO();
 
             try {
-                IndirizzoBean indirizzo = dbIndirizzi.doRetrieveByKey(indirizzoID, email);
-                MetodoDiPagamentoBean metodoDiPagamento = dbMetodi.doRetrieveByKey(metodoDiPagamentoID, email);
-
-                if (indirizzo == null || metodoDiPagamento == null) {
-                    request.getSession().setAttribute("error", "Devi aggiungere un indirizzo/metodo di pagamento per poter acquistare!");
-                    path = "./memberArea.jsp";
-                } else {
+                
                     OrdineBean ordine = new OrdineBean();
                     ordine.setUtenteEmail(email);
                     ordine.setCostoTotale(costoTot);
@@ -93,7 +87,7 @@ public class OrdineServlet extends HttpServlet {
                     response.sendRedirect("./homePage.jsp");
                     return;
                 }
-            } catch (SQLException e) {
+             catch (SQLException e) {
                 e.printStackTrace();
                 request.getSession().setAttribute("error", "Errore durante l'elaborazione dell'ordine.");
                 path = "./error.jsp";

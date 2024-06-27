@@ -1,3 +1,7 @@
+<%@page import="model.MetodoDiPagamentoBean"%>
+<%@page import="model.MetodoDiPagamentoDAO"%>
+<%@page import="model.IndirizzoBean"%>
+<%@page import="model.IndirizzoDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="model.ProdottoBean"%>
@@ -44,6 +48,31 @@
 <body>
  
 <jsp:include page="fragments/header.jsp" />
+
+<%
+						String userEmail = (String) session.getAttribute("email");
+
+                        IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+                        List<IndirizzoBean> listaIndirizzi = null;
+                        
+                        MetodoDiPagamentoDAO metodoDiPagamentoDAO = new MetodoDiPagamentoDAO();
+                        List<MetodoDiPagamentoBean> listaMetodi = null;
+
+
+                        if (userEmail != null && !userEmail.isEmpty()) {
+                            try {
+                            	listaIndirizzi = indirizzoDAO.doRetrieveByEmail(userEmail);
+                                listaMetodi = metodoDiPagamentoDAO.doRetrieveByEmail(userEmail);
+                            } catch (Exception e) {
+                                out.println("Errore: " + e.getMessage());
+                            }
+                        }
+                        Iterator<MetodoDiPagamentoBean> iterMetodiPagamento = listaMetodi.iterator();
+                		Iterator<IndirizzoBean> iterIndirizzi = listaIndirizzi.iterator(); 
+                		
+                		IndirizzoBean indirizzo = new IndirizzoBean();
+                		MetodoDiPagamentoBean metodoPagamento = new MetodoDiPagamentoBean();%>
+                        %>
  
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
@@ -73,66 +102,39 @@
             <!-- Checkout Billing Details -->
             <div class="col-lg-6">
                 <div class="checkout-billing-details-wrap">
-                    <h2>Informazioni sulla spedizione</h2>
-                    <div class="billing-form-wrap">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="single-input-item">
-                                        <label for="f_name" class="required">Nome</label>
-                                        <input type="text" id="f_name" placeholder="Nome"/>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="single-input-item">
-                                        <label for="l_name" class="required">Cognome</label>
-                                        <input type="text" id="l_name" placeholder=Cognome/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-input-item">
-                                <label for="email" class="required">Email</label>
-                                <input type="email" id="email" placeholder="Email"/>
-                            </div>
-
-                      
-     
-                            <div class="single-input-item">
-                                <label for="street-address" class="required">Via</label>
-                                <input type="text" id="street-address" placeholder="Via"/>
-                            </div>
-
-                         
-                            <div class="single-input-item">
-                                <label for="town" class="required">Città</label>
-                                <input type="text" id="town" placeholder="Città"/>
-                            </div>
-
-                            <div class="single-input-item">
-                                <label for="state">Stato</label>
-                                <input type="text" id="state" placeholder="Stato"/>
-                            </div>
-
-                            <div class="single-input-item">
-                                <label for="postcode" class="required">Cap</label>
-                                <input type="text" id="postcode" placeholder="Cap"/>
-                            </div>
-
-                            <div class="single-input-item">
-                                <label for="ordernote">Note</label>
-                                <textarea name="ordernote" id="ordernote" cols="30" rows="3"
-                                          placeholder="Aggiungi indicazioni sull'abitazione."></textarea>
-                            </div>
-                        </form>
-                    </div>
+                    <h2>Scegli indirizzo</h2>
+                    <%	while(iterIndirizzi.hasNext()){
+			indirizzo = iterIndirizzi.next();
+			%>
+				<input type="radio" name="indirizzo" id="indirizzo" value="<%out.print(indirizzo.getId());%>">
+				<label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
+						+ indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia());%></label><br><br>
+			<% } %>
+			<form action="modificaInfo" method="get">
+		  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
+		  		<input type="hidden" name="mode" value="add">
+		  		<input type="hidden" name="target" value="indirizzo">
+		        <button class="btn btn-primary mb-3">Aggiungi Indirizzo</button>
+        	</form>
+        	
+        	
+                    <h2>Scegli metodo di pagamento</h2>
+                    <%	while(iterMetodiPagamento.hasNext()){
+							metodoPagamento = iterMetodiPagamento.next();
+							if(metodoPagamento.getTipo().equals("iban"));
+			%>
+				<input type="radio" name="metodoPagamento" id="metodoPagamento" value="<%out.print(metodoPagamento.getId());%>">
+				<label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta());%></label><br><br>
+			<% } %>
+                    
+                    
+                    
                 </div>
             </div>
 
             <!-- Order Summary Details -->
             <div class="col-lg-6 mt-5 mt-lg-0">
-                <<div class="order-summary-details">
+                <div class="order-summary-details">
         <h2>Riepilogo Ordine</h2>
         <div class="order-summary-content">
             <div class="order-summary-table table-responsive text-center">
@@ -143,33 +145,11 @@
                         <th>Totale</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <%
-                        Map<String, Integer> carrello = (Map<String, Integer>) request.getAttribute("carrello");
-                        double costoTotale = (Double) request.getAttribute("costoTot");
-                        ProdottoDAO prodottoDAO = new ProdottoDAO();
-                        
-                        for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
-                            String prodottoId = entry.getKey();
-                            int quantita = entry.getValue();
-                            ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(prodottoId);
-                            if (prodotto != null) {
-                                double prezzo = prodotto.getCosto();
-                                double totaleProdotto = prezzo * quantita;
-                    %>
-                    <tr>
-                        <td><a href="dettagliProdotto.jsp?id=<%= prodottoId %>"><%= prodotto.getNome() %><strong> × <%= quantita %></strong></a></td>
-                        <td>$<%= totaleProdotto %></td>
-                    </tr>
-                    <%
-                            }
-                        }
-                    %>
-                    </tbody>
+                    
                     <tfoot>
                     <tr>
                         <td>Totale</td>
-                        <td><strong>$<%= costoTotale %></strong></td>
+                        <td><strong>$</strong></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -201,6 +181,7 @@
         </div>
         <!--== Checkout Page Content End ==-->
     </div>
+</div>
 </div>
 <!--== Page Content Wrapper End ==-->
 

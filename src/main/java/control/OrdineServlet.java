@@ -30,7 +30,15 @@ public class OrdineServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+    	response.setContentType("text/plain");
+		
+		if(request.getSession().getAttribute("logged") == null) {
+			request.getSession().setAttribute("error", "Devi essere loggato per procedere all'acquisto");
+			response.getWriter().print("./loginPage.jsp");
+		} else {
+			request.getSession().setAttribute("costoTot", (String) request.getParameter("costoTot"));
+			response.getWriter().print("./checkout.jsp");
+		}
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -3,6 +3,8 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -12,10 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.IndirizzoBean;
-import model.IndirizzoDAO;
-import model.MetodoDiPagamentoBean;
-import model.MetodoDiPagamentoDAO;
+import model.InserimentoBean;
+import model.InserimentoDAO;
 import model.OrdineBean;
 import model.OrdineDao;
 import model.ProdottoBean;
@@ -47,14 +47,11 @@ public class OrdineServlet extends HttpServlet {
             path = "./loginPage.jsp";
         } else {
              
-            
             String email = (String) request.getSession().getAttribute("email");
             String costoStr = (String) request.getSession().getAttribute("costoTot");
             costoStr = costoStr.replace(",", ".");
             double costoTot = Double.parseDouble(costoStr);
 
-            IndirizzoDAO dbIndirizzi = new IndirizzoDAO();
-            MetodoDiPagamentoDAO dbMetodi = new MetodoDiPagamentoDAO();
             OrdineDao dbOrdini = new OrdineDao();
             ProdottoDAO dbProdotto = new ProdottoDAO();
 
@@ -68,6 +65,30 @@ public class OrdineServlet extends HttpServlet {
                     dbOrdini.doSave(ordine);
 
                     Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
+                    Iterator<String> keyIter = carrello.keySet().iterator();
+                    InserimentoDAO dbInserimenti = new InserimentoDAO();
+
+                    try {
+                        while(keyIter.hasNext()) {
+                            String key1 = keyIter.next();
+                            List<OrdineBean> listaOrdini = dbOrdini.doRetrieveByEmail(email);
+                            InserimentoBean inserimento = new InserimentoBean();
+
+                            inserimento.setOrdineId(listaOrdini.get(listaOrdini.size()-1).getId());
+                            inserimento.setProdottoId(key1);
+
+                            // Ottieni la quantità dal carrello per il prodotto corrente
+                            int quantita = carrello.get(key1);
+                            inserimento.setQuantita(quantita);
+
+                            dbInserimenti.doSave(inserimento);
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        request.getSession().setAttribute("error", "Errore durante l'elaborazione dell'ordine.");
+                        path = "./error.jsp";
+                    }
+                    
                     if (carrello != null) {
                         for (Map.Entry<String, Integer> entry : carrello.entrySet()) {
                             String key = entry.getKey();

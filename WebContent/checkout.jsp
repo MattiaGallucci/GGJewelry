@@ -78,7 +78,7 @@
 
     double totale = 10;
 %>
-<form action="ordine" method="GET">                        
+<form action="OrdineServlet" method="POST">                        
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
     <div class="container">
@@ -88,7 +88,7 @@
                     <h1>Checkout</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <li><a href="catalogo.jsp">Shop</a></li>
+                        <li><a href="cart.jsp">Carrello</a></li>
                         <li><a href="#" class="active">Checkout</a></li>
                     </ul>
                 </div>

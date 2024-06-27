@@ -54,3 +54,21 @@ function updatePrice() {
         }
     });
 }
+
+function proseguiOrdine() 
+{
+	let formData = {
+			costoTot: $("#prezzoTot").html(),
+	}
+	
+	$.ajax({
+		type: "GET",
+		url: "OrdineServlet",
+		data: formData,
+		dataType: "html",
+		success: function(data){
+			console.log($("#prezzoTot").html());
+			window.location.replace(data);
+		}
+	});
+}

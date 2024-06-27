@@ -173,7 +173,7 @@ if (prodotti == null) {
 								                        <th>Data</th>
 								                        <th>Costo Totale</th>
 								                        <th>Email Utente</th>
-								                        <th>Action</th>
+								                        <th>Dettagli</th>
 								                    </tr>
 								                </thead>
 								                <tbody>
@@ -225,7 +225,7 @@ if (prodotti == null) {
 								                        <td><%= ordine.getData() %></td>
 								                        <td><%= ordine.getCostoTotale() %></td>
 								                        <td><%= ordine.getUtenteEmail() %></td>
-								                        <td><a href="viewOrder.jsp?id=<%= ordine.getId() %>" class="btn-add-to-cart">View</a></td>
+								                        <td><a href="visualizzaOrdine.jsp?id=<%= ordine.getId()%>" class="btn-add-to-cart">Visualizza</a></td>
 								                    </tr>
 								                    <%
 								                        }

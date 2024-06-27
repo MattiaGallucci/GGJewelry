@@ -182,38 +182,39 @@ public class UtenteDAO extends AbstractDAO<UtenteBean>{
 	}
 	
 	public synchronized boolean doUpdate(UtenteBean bean, String key) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		int result = 0;
-		
-		String query = "UPDATE " + UtenteDAO.TABLE_NAME + " SET email = ?, username = ?, password = ?, nome = ?, cognome = ?, admin = ? WHERE email = ?;";
-		
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
-			
-			statement.setString(1, bean.getEmail());
-			statement.setString(2, bean.getUsername());
-			statement.setString(3, bean.getPassword());
-			statement.setString(5, bean.getNome());
-			statement.setString(6, bean.getCognome());
-			statement.setBoolean(7, bean.isAdmin());
-			statement.setString(8, key);
-			
-			result = statement.executeUpdate();
-			
-			con.commit();
-		} finally {
-			try {
-				if(statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-		return result != 0;
+	    Connection con = null;
+	    PreparedStatement statement = null;
+	    int result = 0;
+	    
+	    String query = "UPDATE " + UtenteDAO.TABLE_NAME + " SET email = ?, username = ?, password = ?, nome = ?, cognome = ?, admin = ? WHERE email = ?";
+	    
+	    try {
+	        con = DriverManagerConnectionPool.getConnection();
+	        statement = con.prepareStatement(query);
+	        
+	        statement.setString(1, bean.getEmail());
+	        statement.setString(2, bean.getUsername());
+	        statement.setString(3, bean.getPassword());
+	        statement.setString(4, bean.getNome());
+	        statement.setString(5, bean.getCognome());
+	        statement.setBoolean(6, bean.isAdmin());
+	        statement.setString(7, key); // key should be the original email for WHERE clause
+	        
+	        result = statement.executeUpdate();
+	        
+	        con.commit();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	        } finally {
+	            DriverManagerConnectionPool.releaseConnection(con);
+	        }
+	    }
+	    return result != 0;
 	}
+
 	
 	public synchronized boolean checkEmail(String email) throws SQLException{
 		boolean alreadyUsed = false;

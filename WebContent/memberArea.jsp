@@ -344,7 +344,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
-                                                            <label for="first-name">Nome</label>
+                                                            <label for="nome">Nome</label>
                                                             <input type="text" id="nomeNuovo" name="nomeNuovo"
                                                                    placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
                                                         </div>
@@ -352,14 +352,14 @@
 
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
-                                                            <label for="last-name">Cognome</label>
+                                                            <label for="cognome">Cognome</label>
                                                             <input type="text" id="cognomeNuovo" name="cognomeNuovo" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="single-input-item">
-                                                    <label for="display-name">Username</label>
+                                                    <label for="username">Username</label>
                                                     <input type="text" id="usernameNuovo" name="usernameNuovo" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
                                                 </div>
 
@@ -395,7 +395,7 @@
                                                  -->
 
                                                 <div class="single-input-item">
-                                                    <button class="btn-login btn-add-to-cart">Salva Modfiche</button>
+                                                    <input class="btn-login btn-add-to-cart" type="submit" id="modificaInfoBtn" value="Modifica dati">
                                                 </div>
                                             </form>
                                         </div>

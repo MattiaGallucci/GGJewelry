@@ -52,7 +52,7 @@ public class ModificaInfoServlet extends HttpServlet{
 		view.forward(request, response);
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = null;
 		String target = request.getParameter("target");
 		String mode = request.getParameter("mode");
@@ -66,19 +66,18 @@ public class ModificaInfoServlet extends HttpServlet{
 				
 				String username = request.getParameter("utente");
 				String newUsername = request.getParameter("usernameNuovo");
-				//String password = request.getParameter("password");
-				//String passwordCheck = request.getParameter("passwordCheck");
-				String email = request.getParameter("email");
-				String nome = request.getParameter("nome");
-				String cognome = request.getParameter("cognome");
-				//String pwd64 = null;
+				String password = request.getParameter("password");
+				String passwordCheck = request.getParameter("passwordCheck");
+				String email = request.getParameter("emailNuovo");
+				String nome = request.getParameter("nomeNuovo");
+				String cognome = request.getParameter("cognomeNuovo");
+				String pwd64 = null;
 				
 				Writer out = response.getWriter();
-				//out.append(username + "|" + newUsername + "|" + password + "|" + passwordCheck + "|" + email + "|" + nome + "|" + cognome + "| \n");
 				out.append(username + "|" + newUsername + "|"  + email + "|" + nome + "|" + cognome + "| \n");
 				
-				//if(password.equals(passwordCheck)) {
-					//pwd64 = encoder.encodeToString(password.getBytes());
+				if(password.equals(passwordCheck)) {
+					pwd64 = encoder.encodeToString(password.getBytes());
 					try {
 						utente = dbUtente.doRetrieveByUsername(username);
 						
@@ -87,9 +86,9 @@ public class ModificaInfoServlet extends HttpServlet{
 							request.getSession().setAttribute("utente", newUsername);
 						}
 						
-						/*if(!utente.getPassword().equals(pwd64)) {
+						if(!utente.getPassword().equals(pwd64)) {
 							utente.setPassword(pwd64);
-						}*/
+						}
 						
 						if(!utente.getEmail().equalsIgnoreCase(email)) {
 							List<UtenteBean> listaUtenti = dbUtente.doRetrieveAll("");
@@ -133,9 +132,66 @@ public class ModificaInfoServlet extends HttpServlet{
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
-				//}
-				//}
+				}
+				}
+					response.sendRedirect(path);
 			}
 		}
-	}
+	}*/
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path = null;
+        String mode = request.getParameter("mode");
+        String target = request.getParameter("target");
+
+        if (mode != null && mode.equalsIgnoreCase("update")) {
+            if (target != null && target.equalsIgnoreCase("utente")) {
+                UtenteDAO dbUtente = new UtenteDAO();
+                UtenteBean utente = new UtenteBean();
+                
+                String username = (String) request.getSession().getAttribute("utente");
+                String newUsername = request.getParameter("usernameNuovo");
+                String email = request.getParameter("emailNuovo");
+                String nome = request.getParameter("nomeNuovo");
+                String cognome = request.getParameter("cognomeNuovo");
+
+                try {
+                    utente = dbUtente.doRetrieveByUsername(username);
+
+                    if (!utente.getUsername().equals(newUsername)) {
+                        utente.setUsername(newUsername);
+                        request.getSession().setAttribute("utente", newUsername);
+                    }
+
+                    if (!utente.getEmail().equalsIgnoreCase(email)) {
+                        utente.setEmail(email);
+                    }
+
+                    if (!utente.getNome().equals(nome)) {
+                        utente.setNome(nome);
+                        request.getSession().setAttribute("nome", nome);
+                    }
+
+                    if (!utente.getCognome().equals(cognome)) {
+                        utente.setCognome(cognome);
+                        request.getSession().setAttribute("cognome", cognome);
+                    }
+
+                    if (!dbUtente.doUpdate(utente, email)) {
+                        request.getSession().setAttribute("error", "Aggiornamento non effettuato!");
+                        path = "modificaInfo?mode=update&target=utente";
+                    } else {
+                        request.getSession().setAttribute("message", "Aggiornato con successo!");
+                        request.getSession().setAttribute("utente", utente.getUsername());
+                        path = "./memberArea.jsp";
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    request.getSession().setAttribute("error", "Errore durante l'aggiornamento. Riprova.");
+                    path = "modificaInfo?mode=update&target=utente";
+                }
+            }
+        }
+        response.sendRedirect(path);
+    }
 }

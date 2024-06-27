@@ -153,11 +153,11 @@
                                         <% 
                                         if(request.getSession().getAttribute("logged") != null) 
 									    {%>
-			                           			<button class="btn btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
+			                           			<button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
 			                            <%}
                                         else 
                                         {%>
-                                        		<button class="btn btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
+                                        		<button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
                                         <%}	
 			                            %>
 			                            

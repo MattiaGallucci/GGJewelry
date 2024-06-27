@@ -99,15 +99,25 @@
                                             <p class="products-desc">Quantità disponibile: <%= prodotto.getQuantita() %></p>
                                             <!-- Assuming you have a category name attribute -->
                                             <p class="products-desc">Categoria: <%= prodotto.getCategoriaNome() %></p>
-                                            <% 
+	                                        <% 
 	                                        if(request.getSession().getAttribute("logged") != null) 
 										    {%>
 				                           			<button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
 				                            <%}
 	                                        else 
-	                                        {%>
+	                                        {
+	                                           if(prodotto.getQuantita()!=0){
+	                                        %>   
 	                                        		<button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
+	                                        <% 
+	                                            } 
+	                                          else 
+	                                            {
+	                                        	  
+	                                        %>
+	                                        	<button class="btn-add-to-cart" value="Acquista">Esaurito</button>
 	                                        <%}	
+	                                        }
 				                            %>
                                             
                                         </div>

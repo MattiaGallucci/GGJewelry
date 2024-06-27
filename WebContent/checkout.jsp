@@ -77,7 +77,7 @@
     Map<String, Integer> carrello = (Map<String, Integer>) request.getSession().getAttribute("carrello");
     List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getSession().getAttribute("prodotti");
 
-    double totale = 0;
+    double totale = 10;
 %>
                         
 <!--== Page Title Area Start ==-->

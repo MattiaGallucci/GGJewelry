@@ -150,7 +150,18 @@
                                     <div class="product-details">
                                         <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
                                         <span class="price">$<%= prodotto.getCosto() %></span>
-                                        <button class="btn btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
+                                        <% 
+                                        if(request.getSession().getAttribute("logged") != null) 
+									    {%>
+			                           			<button class="btn btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
+			                            <%}
+                                        else 
+                                        {%>
+                                        		<button class="btn btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Login per acquistare</button>
+                                        <%}	
+			                            %>
+			                            
+                                        
                                     </div>
                                     </div>
                                     <% } %>

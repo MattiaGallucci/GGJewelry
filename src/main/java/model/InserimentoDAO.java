@@ -11,32 +11,33 @@ public class InserimentoDAO extends AbstractDAO<InserimentoBean> {
 	private static final String TABLE_NAME = "inserimento";
 
 	@Override
-	public synchronized void doSave(InserimentoBean bean) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
+    public synchronized void doSave(InserimentoBean bean) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
 
-		String query = "INSERT INTO " + InserimentoDAO.TABLE_NAME
-				+ " (prodottoId, ordineId, quantita) VALUES (?, ?, ?)";
+        String query = "INSERT INTO " + InserimentoDAO.TABLE_NAME
+                + " (prodottoId, ordineId, quantita) VALUES (?, ?, ?)";
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
 
-			statement.setString(1, bean.getProdottoId());
-			statement.setInt(2, bean.getOrdineId());
-			statement.setInt(3, bean.getQuantita());
+            statement.setString(1, bean.getProdottoId());
+            statement.setInt(2, bean.getOrdineId());
+            statement.setInt(3, bean.getQuantita());
 
-			con.commit();
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-	}
+            statement.executeUpdate();  // Add this line to execute the insert
+            con.commit();  // Commit the transaction
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
+    }
 
 	public synchronized boolean doDelete(String key1, String key2) throws SQLException {
 		Connection con = null;

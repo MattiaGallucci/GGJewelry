@@ -76,16 +76,18 @@ if (prodotto == null) {
                             <div class="product-details">
                                 <h2><a href="DettaglioProdotto"><%= prodotto.getNome() %></a></h2>
                                 <span class="price"><%= prodotto.getCosto() %></span>
+                                <       
                                 <% if(prodotto.getQuantita() == 0) { %>
                                 <div class="product-info-stock-sku">
                                     <span class="product-stock-status">Non disponibile</span>
+                                    <p class="products-desc"><%= prodotto.getDescrizione() %></p> 
                                 </div>
                                 <% } else { %>
                                 <div class="product-info-stock-sku">
                                     <span class="product-stock-status">Disponibile</span>
+                                    <p class="products-desc"><%= prodotto.getDescrizione() %></p> 
                                 </div>
-                                <% } %>
-                                <p class="products-desc"><%= prodotto.getDescrizione() %></p>                                  
+                                                        
                                 <div class="product-quantity d-flex align-items-center">
                                     <div class="quantity-field">
                                         <label for="qty">Quantità</label>
@@ -99,10 +101,11 @@ if (prodotto == null) {
 	                                        else 
 	                                        {%>
 	                                        		<button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
-	                                        <%}	
+	                                        <%
+	                                        }
 				                            %>
                                             
-									
+								 <% } %>	
                                 </div>
                             </div>
                         </div>

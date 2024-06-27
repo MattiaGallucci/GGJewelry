@@ -176,7 +176,13 @@
                                     } %>
                                 </tbody>
                                 <tfoot>
+                         	        <tr>
+                                         
+                                    <td>Spedizione</td>
+                                        <td><strong>10</strong></td>
+                                    </tr>
                                     <tr>
+                                         
                                         <td>Totale</td>
                                         <td><strong>$<%= totale %></strong></td>
                                     </tr>

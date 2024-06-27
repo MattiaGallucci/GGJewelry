@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="page-title-content">
-                    <h1>404</h1>
+                    <h1>Errore</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
                         <li><a href="error.jsp" class="active">Errore</a></li>

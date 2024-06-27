@@ -43,8 +43,6 @@
 <jsp:include page="fragments/header.jsp" />
 
 
-
-
 <!--== Banner // Slider Area Start ==-->
 <section id="banner-area">
     <div class="ruby-container">
@@ -122,10 +120,6 @@
 </section>
 <!--== About Us Area End ==-->
 
-
-
-
-
 <!--== New Collection Area Start ==-->
 <section id="new-collection-area" class="p-9">
     <div class="container">
@@ -169,9 +163,6 @@
         </div>
     </div>
 </section>
-
-
- 
 <!--== New Collection Area End ==-->
  
 

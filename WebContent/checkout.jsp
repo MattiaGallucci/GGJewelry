@@ -72,7 +72,7 @@
                 		
                 		IndirizzoBean indirizzo = new IndirizzoBean();
                 		MetodoDiPagamentoBean metodoPagamento = new MetodoDiPagamentoBean();%>
-                        %>
+                        
  
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
@@ -104,30 +104,31 @@
                 <div class="checkout-billing-details-wrap">
                     <h2>Scegli indirizzo</h2>
                     <%	while(iterIndirizzi.hasNext()){
-			indirizzo = iterIndirizzi.next();
-			%>
-				<input type="radio" name="indirizzo" id="indirizzo" value="<%out.print(indirizzo.getId());%>">
-				<label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
-						+ indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia());%></label><br><br>
-			<% } %>
-			<form action="modificaInfo" method="get">
-		  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
-		  		<input type="hidden" name="mode" value="add">
-		  		<input type="hidden" name="target" value="indirizzo">
-		        <button class="btn btn-primary mb-3">Aggiungi Indirizzo</button>
-        	</form>
+					indirizzo = iterIndirizzi.next();
+					%>
+						<input type="radio" name="indirizzo" id="indirizzo" value="<%out.print(indirizzo.getId());%>">
+						&nbsp&nbsp
+						<label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
+								+ indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia());%></label><br><br>
+					<% } %>
+					<form action="modificaInfo" method="get">
+				  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
+				  		<input type="hidden" name="mode" value="add">
+				  		<input type="hidden" name="target" value="indirizzo">
+				        <button class="btn btn-primary mb-3">Aggiungi Indirizzo</button>
+		        	</form>
         	
-        	
-                    <h2>Scegli metodo di pagamento</h2>
-                    <%	while(iterMetodiPagamento.hasNext()){
-							metodoPagamento = iterMetodiPagamento.next();
-							if(metodoPagamento.getTipo().equals("iban"));
-			%>
-				<input type="radio" name="metodoPagamento" id="metodoPagamento" value="<%out.print(metodoPagamento.getId());%>">
-				<label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta());%></label><br><br>
-			<% } %>
-                    
-                    
+		        	
+				<h2>Scegli metodo di pagamento</h2>
+				<% while(iterMetodiPagamento.hasNext()) {
+				    metodoPagamento = iterMetodiPagamento.next();
+				    if(!metodoPagamento.getTipo().equals("iban")) { %>
+				        <input type="radio" name="metodoPagamento" id="metodoPagamento" value="<% out.print(metodoPagamento.getId()); %>">
+				        &nbsp&nbsp
+				        <label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta()); %></label><br><br>
+				    <% } 
+				} %> 	   
+				                    
                     
                 </div>
             </div>

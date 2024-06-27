@@ -91,7 +91,7 @@ if (prodotto == null) {
                                         <label for="qty">Quantità</label>
                                         <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1"/>
                                     </div>
-									<button class="btn btn-add-to-cart" onclick="addToCartN('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>                                    
+									<button class="btn-add-to-cart" onclick="addToCartN('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>                                    
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.IndirizzoBean;
+import model.IndirizzoDAO;
 import model.UtenteBean;
 import model.UtenteDAO;
 
@@ -46,6 +48,16 @@ public class ModificaInfoServlet extends HttpServlet{
 				request.setAttribute("utente", utente);
 				request.setAttribute("target", "utente");
 				pathRedirect = "./memberArea.jsp";
+			}
+		} else if (mode.equals("add")) {
+			String utente = (String) request.getSession().getAttribute("email");
+			request.setAttribute("utente", utente);
+			if(target.equals("indirizzo")) {
+				request.setAttribute("target", "indirizzo");
+				pathRedirect = "./aggiungiInfoForm.jsp";
+			} else if (target.equals("metodoPagamento")) {
+				request.setAttribute("target", "metodoPagamento");
+				pathRedirect = "./aggiungiInfoForm.jsp";
 			}
 		}
 		RequestDispatcher view = request.getRequestDispatcher(pathRedirect);
@@ -191,6 +203,33 @@ public class ModificaInfoServlet extends HttpServlet{
                     path = "modificaInfo?mode=update&target=utente";
                 }
             }
+        } else if(mode.equals("add")) {
+        	String utente = request.getParameter("utente");
+        	if(target.equals("indirizzo")) {
+        		IndirizzoBean indirizzo = new IndirizzoBean();
+				IndirizzoDAO dbIndirizzo = new IndirizzoDAO();
+				
+				String via = request.getParameter("via");
+				String citta = request.getParameter("citta");
+				String CAP = request.getParameter("CAP");
+				String civico = request.getParameter("civico");
+				String provincia = request.getParameter("provincia");
+				
+				indirizzo.setUtenteEmail(utente);
+				indirizzo.setVia(via);
+				indirizzo.setCitta(citta);
+				indirizzo.setCap(CAP);
+				indirizzo.setCivico(civico);
+				indirizzo.setProvincia(provincia);
+				
+				try {
+					dbIndirizzo.doSave(indirizzo);
+					request.getSession().setAttribute("message", "Aggiunto nuovo indirizzo con successo!");
+					path = "./memberArea.jsp";
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        	}
         }
         response.sendRedirect(path);
     }

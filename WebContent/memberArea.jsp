@@ -138,9 +138,6 @@
 <div class="tab-pane fade" id="orders" role="tabpanel">
     <div class="myaccount-content">
         <h3>I tuoi Ordini</h3>
-
-        
-
         <div class="myaccount-table table-responsive text-center">
             <table class="table table-bordered">
                 <thead class="thead-light">
@@ -271,7 +268,12 @@
 <div class="tab-pane fade" id="address" role="tabpanel">
     <div class="myaccount-content">
         <h3>I tuoi Indirizzi di Spedizione</h3>
-
+		<form action="modificaInfo" method="get">
+	  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
+	  		<input type="hidden" name="mode" value="add">
+	  		<input type="hidden" name="target" value="indirizzo">
+	        <button class="btn btn-primary mb-3">Aggiungi Indirizzo</button>
+        </form>
         <div class="myaccount-table table-responsive text-center">
             <table class="table table-bordered">
                 <thead class="thead-light">

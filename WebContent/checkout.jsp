@@ -39,7 +39,6 @@
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
-
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -79,7 +78,7 @@
 
     double totale = 10;
 %>
-                        
+<form action="ordine" method="GET">                        
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
     <div class="container">
@@ -192,8 +191,8 @@
 
                         <div class="order-payment-method">
                             <div class="summary-footer-area">
-
-                                <a href="completeOrderServlet" class="btn-add-to-cart">Completa Ordine</a>
+                            <button type="submit" class="btn-add-to-cart">Completa Ordine</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -202,6 +201,7 @@
         </div>
     </div>
 </div>
+</form>
 <!--== Page Content Wrapper End ==-->
 
 <jsp:include page="fragments/footer.jsp" />
@@ -217,8 +217,8 @@
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <!--=== Plugins Js ===-->
 <script src="assets/js/plugins.js"></script>
-
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+<script src="assets/js/aggiornaCarrello.js"></script>
 </body>
 </html>

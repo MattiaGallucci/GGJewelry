@@ -112,38 +112,24 @@
                     <div class="tab-content" id="login-reg-tabcontent">
                         <div class="tab-pane fade show active" id="register" role="tabpanel">
                             <div class="login-reg-form-wrap">
-                                <form action="modificaProdotto" method="get">
-                                <input required type="hidden" name="mode" value="aggiungi">
+                                <form action="modificaInfo" method="post">
+                                <input type="hidden" name="utente" value="<%= request.getSession().getAttribute("email")%>">
+								<input type="hidden" name="target" value="metodoPagamento">
+								<input type="hidden" name="mode" value="add">
 	                                <div class="single-input-item">
-	                                        <input type="text" placeholder="ID" id="id" name="id" required>
+	                                        <select required id="tipo" name="tipo">
+							 					<!-- <option value="IBAN" selected>IBAN</option> -->
+							 					<option value="carta">Carta</option>
+				        					</select>
 	                                </div>
+                                    <!-- <div class="single-input-item">
+                                        <input type="text" placeholder="IBAN" id="iban" name="iban">
+                                    </div> -->
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Nome" id="nome" name="nome" required>
+                                        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="carta" name="carta" required>
                                     </div>
                                     <div class="single-input-item">
-                                        <textarea placeholder="Descrizione" id="descrizione" name="descrizione" required></textarea>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="number" placeholder="Quantità" id="quantita" name="quantita" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="number" placeholder="Costo" id="costo" name="costo" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <select class="form-control" id="sesso" name="sesso" required>
-                                            <option value="M">Maschile</option>
-                                            <option value="F">Femminile</option>
-                                        </select>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" required>
-                                    </div>
-                                    
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Categoria" id="categoria" name="categoria" required>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <button class="btn-login" type="submit">Aggiungi Prodotto</button>
+                                        <button class="btn-login" type="submit">Aggiungi Metodo di Pagamento</button>
                                     </div>
                                 </form>
                             </div>

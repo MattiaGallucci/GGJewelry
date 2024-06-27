@@ -207,7 +207,12 @@
 <div class="tab-pane fade" id="payment-method" role="tabpanel">
     <div class="myaccount-content">
         <h3>I tuoi Metodi di Pagamento</h3>
-
+		<form action="modificaInfo" method="get">
+	  		<input type="hidden" value="<% out.print(request.getSession().getAttribute("utente"));%>" name="utente">
+	  		<input type="hidden" name="mode" value="add">
+	  		<input type="hidden" name="target" value="metodoPagamento">
+	        <button class="btn btn-primary mb-3">Aggiungi Metodo di Pagamento</button>
+        </form>
         <div class="myaccount-table table-responsive text-center">
             <table class="table table-bordered">
                 <thead class="thead-light">
@@ -232,12 +237,15 @@
 
                         if (metodiDiPagamento != null && !metodiDiPagamento.isEmpty()) {
                             for (MetodoDiPagamentoBean metodo : metodiDiPagamento) {
+                            	if(metodo.getTipo().equals("iban")){
                     %>
+                    <tr></tr>
+                    <%} else{%>
                     <tr>
                         <td><%= metodo.getTipo() %></td>
                         <td><%= metodo.getNumeroCarta() %></td>
                     </tr>
-                    <%
+                    <%}
                             }
                         } else {
                     %>

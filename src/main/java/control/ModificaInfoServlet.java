@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.IndirizzoBean;
 import model.IndirizzoDAO;
+import model.MetodoDiPagamentoBean;
+import model.MetodoDiPagamentoDAO;
 import model.UtenteBean;
 import model.UtenteDAO;
 
@@ -225,6 +227,38 @@ public class ModificaInfoServlet extends HttpServlet{
 				try {
 					dbIndirizzo.doSave(indirizzo);
 					request.getSession().setAttribute("message", "Aggiunto nuovo indirizzo con successo!");
+					path = "./memberArea.jsp";
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        	} else if(target.equals("metodoPagamento")) {
+        		MetodoDiPagamentoBean metodoPagamento = new MetodoDiPagamentoBean();
+				MetodoDiPagamentoDAO dbMetodiPagamento = new MetodoDiPagamentoDAO();
+				
+				String tipo = request.getParameter("tipo");
+				String IBAN = request.getParameter("iban");
+				String numCarta = request.getParameter("carta");
+				
+				metodoPagamento.setUtenteEmail(utente);
+				metodoPagamento.setTipo(tipo);
+				if (tipo.equals("iban")) {
+					if (IBAN != null) {
+						metodoPagamento.setIban(IBAN);
+					} else {
+						request.getSession().setAttribute("error", "Aggiunta non effettuata!");
+						path = "modificaInfo?mode=add&target=metodoPagamento&utente=" + utente;
+					}
+				} else if (tipo.equals("carta")) {
+					if (numCarta != null) {
+						metodoPagamento.setNumeroCarta(numCarta);
+					} else {
+						request.getSession().setAttribute("error", "Aggiunta non effettuata!");
+						path = "modificaInfo?mode=add&target=metodoPagamento&utente=" + utente;
+					}
+				}
+				try {
+					dbMetodiPagamento.doSave(metodoPagamento);
+					request.getSession().setAttribute("message", "Aggiunto nuovo metodo di pamento con successo!");
 					path = "./memberArea.jsp";
 				} catch (SQLException e) {
 					e.printStackTrace();

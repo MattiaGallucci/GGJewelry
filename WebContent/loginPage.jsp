@@ -44,7 +44,7 @@
 <jsp:include page="fragments/header.jsp" />
 
 
-
+ 
 <!--== Page Title Area Start ==-->
 <div id="page-title-area">
     <div class="container">

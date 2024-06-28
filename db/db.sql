@@ -4,79 +4,83 @@ USE GGDB;
 
 DROP TABLE IF EXISTS utente;
 CREATE TABLE utente (
-email 		varchar(100) 	NOT NULL,
-username 	varchar(50) 	NOT NULL,
-password 	varchar(64) 	NOT NULL,
-nome 		varchar(50) 	NOT NULL,
-cognome 	varchar(50) 	DEFAULT NULL,
-admin 		tinyint(1) 		NOT NULL DEFAULT '0',
+email        varchar(100)    NOT NULL,
+username     varchar(50)     NOT NULL,
+password     varchar(64)     NOT NULL,
+nome         varchar(50)     NOT NULL,
+cognome      varchar(50)     DEFAULT NULL,
+admin        tinyint(1)      NOT NULL DEFAULT '0',
 PRIMARY KEY (email),
 UNIQUE (username)
 );
 
 DROP TABLE IF EXISTS indirizzo;
 CREATE TABLE indirizzo (
-id 				int 			NOT NULL AUTO_INCREMENT,
-citta 			varchar(50) 	NOT NULL,
-provincia 		varchar(10)		NOT NULL,
-cap 			varchar(10) 	NOT NULL,
-via 			varchar(50) 	NOT NULL,
-civico 			varchar(10) 	NOT NULL,
-utenteEmail 	varchar(50) 	NOT NULL,
+id             int             NOT NULL AUTO_INCREMENT,
+citta          varchar(50)     NOT NULL,
+provincia      varchar(10)     NOT NULL,
+cap            varchar(10)     NOT NULL,
+via            varchar(50)     NOT NULL,
+civico         varchar(10)     NOT NULL,
+utenteEmail    varchar(50)     NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS metodoDiPagamento;
 CREATE TABLE metodoDiPagamento (
-id 				int 					NOT NULL AUTO_INCREMENT,
-tipo 			enum('carta','iban')	NOT NULL,
-iban 			char(27) 				DEFAULT NULL,
-numeroCarta 	varchar(19) 			DEFAULT NULL,
-utenteEmail 	varchar(50) 			NOT NULL,
+id             int                     NOT NULL AUTO_INCREMENT,
+tipo           enum('carta','iban')    NOT NULL,
+iban           char(27)                DEFAULT NULL,
+numeroCarta    varchar(19)             DEFAULT NULL,
+utenteEmail    varchar(50)             NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS ordine;
 CREATE TABLE ordine (
-id 				int 			NOT NULL AUTO_INCREMENT,
-data 			date 			NOT NULL,
-costoTotale 	double 			NOT NULL,
-utenteEmail 	varchar(50) 	NOT NULL,
+id             int             NOT NULL AUTO_INCREMENT,
+data           date            NOT NULL,
+costoTotale    double          NOT NULL,
+utenteEmail    varchar(50)     NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (utenteEmail) REFERENCES utente(email) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS categoria;
 CREATE TABLE categoria (
-nome varchar(50) 	NOT NULL,
+nome varchar(50)     NOT NULL,
 PRIMARY KEY (nome)
 );
 
 DROP TABLE IF EXISTS prodotto;
 CREATE TABLE prodotto (
-id 				int 			NOT NULL,
-nome 			varchar(100) 	NOT NULL,
-descrizione 	varchar(500) 	NOT NULL,
-quantita 		int 			NOT NULL,
-costo		 	int 			NOT NULL,
-sesso 			enum('m','f') 	NOT NULL,
-immagine 		varchar(1000) 	DEFAULT NULL,
-categoriaNome 	varchar(50) 	NOT NULL,
+id             int             NOT NULL,
+nome           varchar(100)    NOT NULL,
+descrizione    varchar(500)    NOT NULL,
+quantita       int             NOT NULL,
+costo          int             NOT NULL,
+sesso          enum('m','f')   NOT NULL,
+immagine       varchar(1000)   DEFAULT NULL,
+categoriaNome  varchar(50)     NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (categoriaNome) REFERENCES categoria(nome) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS inserimento;
 CREATE TABLE inserimento (
-prodottoId 	int 			NOT NULL,
-ordineId 	int 			NOT NULL,
-quantita   	int				NOT NULL,
-PRIMARY KEY (prodottoId, ordineId),
-FOREIGN KEY (prodottoId) REFERENCES prodotto(id) ON UPDATE CASCADE ON DELETE CASCADE,
+id				int				NOT NULL AUTO_INCREMENT,
+prodottoId     	int             NOT NULL,
+ordineId       	int             NOT NULL,
+quantita       	int             NOT NULL,
+immagine      	varchar(1000)   DEFAULT NULL,
+nome           	varchar(100)    NOT NULL,
+costo          	int             NOT NULL,
+PRIMARY KEY (id, ordineId),
 FOREIGN KEY (ordineId) REFERENCES ordine(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
+    );
+
 
 INSERT INTO utente (email, username, password, nome, cognome, admin) VALUES
 ('mario@example.com', 'user1', "cGFzc3dvcmQx", 'Mario', 'Rossi', 0),
@@ -112,12 +116,12 @@ INSERT INTO ordine (data, costoTotale, utenteEmail) VALUES
 ("2023-02-15", 40, "luigi@example.com"),
 ("2003-09-03", 100, "mattia@gmail.com");
 
--- Insert values into 'inserimento' table
-INSERT INTO inserimento (prodottoId, ordineId, quantita) VALUES
-(1, 1, 1),
-(2, 1, 1),
-(3, 2, 2),
-(5, 3, 1);
+-- Updated: Insert values into 'inserimento' table with the new attributes
+INSERT INTO inserimento (prodottoId, ordineId, quantita, immagine, nome, costo) VALUES
+(1, 1, 1, 'assets/img/new-product-1.jpg', 'T-shirt Uomo', 15.99),
+(2, 1, 1, 'assets/img/new-product-2.jpg', 'Jeans Donna', 39.99),
+(3, 2, 2, 'assets/img/new-product-3.jpg', 'Giacca Uomo', 99.99),
+(5, 3, 1, 'assets/img/new-product-1.jpg', 'collana1', 100);
 
 -- Insert values into 'metodoDiPagamento' table
 INSERT INTO metodoDiPagamento (tipo, iban, numeroCarta, utenteEmail) VALUES

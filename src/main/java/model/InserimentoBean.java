@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class InserimentoBean implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String prodottoId;
+    private int id;
+    private int prodottoId;
     private int ordineId;
     private int quantita;
     private String immagine;
@@ -12,19 +13,28 @@ public class InserimentoBean implements Serializable {
     private int costo;
 
     public InserimentoBean() {
-        this.prodottoId = "null";
+    	this.id = -1;
+        this.prodottoId = -1;
         this.ordineId = -1;
         this.quantita = -1;
         this.immagine = "null";
         this.nome = "null";
         this.costo = -1;
     }
+    
+    public int getId() {
+        return id;
+    }
 
-    public String getProdottoId() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getProdottoId() {
         return prodottoId;
     }
 
-    public void setProdottoId(String prodottoId) {
+    public void setProdottoId(int prodottoId) {
         this.prodottoId = prodottoId;
     }
 

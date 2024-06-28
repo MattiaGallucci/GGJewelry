@@ -72,7 +72,7 @@ public class OrdineServlet extends HttpServlet {
                     InserimentoBean inserimento = new InserimentoBean();
 
                     inserimento.setOrdineId(listaOrdini.get(listaOrdini.size() - 1).getId());
-                    inserimento.setProdottoId(key1);
+                    inserimento.setProdottoId(Integer.valueOf(key1));
 
                     // Ottieni la quantità dal carrello per il prodotto corrente
                     int quantita = carrello.get(key1);

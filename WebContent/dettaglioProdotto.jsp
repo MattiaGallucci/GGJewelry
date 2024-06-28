@@ -103,11 +103,11 @@ if (prodotto == null) {
                                                 %>
                                                 <div class="product-quantity d-flex align-items-center">
 			                                    <div class="quantity-field">
-			                                        <label for="qty">Quantità</label>
-			                                        <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1"/>
-			                                    </div>
+												    <label for="quantita">Quantità</label>
+												    <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1" onchange="updateQuantity(this)">
+												</div>
 			                                    <br><br>
-                                                    <button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId()); %>')" value="Acquista">Acquista</button>
+                                                    <button class="btn-add-to-cart" onclick="addToCartN('<% out.print(prodotto.getId()); %>')" value="Acquista">Acquista</button>
                                                 <%
                                                 } else {
                                                     if(prodotto.getQuantita() != 0) {
@@ -151,6 +151,20 @@ if (prodotto == null) {
 <script src="assets/js/active.js"></script>
 
 <script src="assets/js/addedToCart.js"></script>
+
+
+<script>
+function updateQuantity(input) {
+    let quantita = parseInt(input.value);
+    let maxQuantita = parseInt(input.max);
+
+    // Verifica se la quantità inserita supera quella disponibile
+    if (quantita > maxQuantita) {
+        input.value = maxQuantita; // Imposta la quantità al massimo disponibile
+        quantita = maxQuantita; // Aggiorna la variabile quantita
+    }
+}
+</script>
 
 </body>
 </html>

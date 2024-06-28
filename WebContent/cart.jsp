@@ -112,7 +112,7 @@
                                 <td class="pro-title"><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
                                 <td class="pro-price">$<%= prodotto.getCosto() %></td>
                                 <td class="pro-quantity">
-                                    <form action="CarrelloServlet" method="get">
+                                    <form action="CarrelloServlet" method="get" onsubmit="return false;">
                                         <input type="hidden" name="mode" value="update">
                                         <input type="hidden" name="prodotto" value="<%= prodotto.getId() %>">
                                         <input type="number" name="quantita" min="0" max="<%= prodotto.getQuantita() %>" onchange="updateCart(this, '<%= prodotto.getId() %>')" value="<%= quantita %>">

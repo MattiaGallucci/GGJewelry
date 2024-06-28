@@ -147,32 +147,34 @@
                                                 <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" class="img-fluid">
                                             </a>
                                         </figure>
-                                    <div class="product-details">
-                                        <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
-                                        <span class="price">$<%= prodotto.getCosto() %></span>
-                                        <% 
-                                        if(request.getSession().getAttribute("logged") != null) 
-									    {%>
-			                           			<button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
-			                            <%}
-                                        else 
-                                        {
-                                           if(prodotto.getQuantita()!=0){
-                                        %>   
-                                        		<button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
-                                        <% 
-                                            } 
-                                          else 
-                                            {
-                                        	  
-                                        %>
-                                        	<button class="btn-add-to-cart" value="Acquista">Esaurito</button>
-                                        <%}	
-                                        }
-			                            %>
-			                            
-                                        
-                                    </div>
+                                        <div class="product-details">
+                                            <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
+                                            <span class="price">$<%= prodotto.getCosto() %></span>
+                                            <%
+                                            if(request.getSession().getAttribute("admin") == Boolean.TRUE) {
+                                            %>       	
+                                            	
+                                            
+                                            <% 
+                                            } else {
+                                                if(request.getSession().getAttribute("logged") != null) {
+                                                %>
+                                                    <button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId()); %>')" value="Acquista">Acquista</button>
+                                                <%
+                                                } else {
+                                                    if(prodotto.getQuantita() != 0) {
+                                                    %>   
+                                                        <button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
+                                                    <% 
+                                                    } else { 
+                                                    %>
+                                                        <button class="btn-add-to-cart" value="Acquista">Esaurito</button>
+                                                    <%
+                                                    }
+                                                }	
+                                            }
+                                            %>
+                                        </div>
                                     </div>
                                     <% } %>
                                 </div>
@@ -184,6 +186,8 @@
         </div>
     </div>
 </section>
+<!--== New Collection Area End ==-->
+
 <!--== New Collection Area End ==-->
  
 

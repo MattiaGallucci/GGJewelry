@@ -90,23 +90,38 @@ if (prodotto == null) {
                                     <p class="products-desc"><%= prodotto.getDescrizione() %></p> 
                                 </div>
                                                         
-                                <div class="product-quantity d-flex align-items-center">
-                                    <div class="quantity-field">
-                                        <label for="qty">Quantità</label>
-                                        <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1"/>
-                                    </div>
-                                    <br><br>
-                                             <% 
-	                                        if(request.getSession().getAttribute("logged") != null) 
-										    {%>
-				                           			<button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId());%>')" value="Acquista">Acquista</button>
-				                            <%}
-	                                        else 
-	                                        {%>
-	                                        		<button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
-	                                        <%
-	                                        }
-				                            %>
+                                
+                                    
+                                    
+                                             <%
+                                            if(request.getSession().getAttribute("admin") == Boolean.TRUE) {
+                                            %>       	
+                                            	<button class="btn-add-to-cart" onclick="window.location.href='modificaProdotto?mode=modifica&prodotto=<%= prodotto.getId() %>'">Modifica prodotto</button>
+                                            <% 
+                                            } else {
+                                                if(request.getSession().getAttribute("logged") != null) {
+                                                %>
+                                                <div class="product-quantity d-flex align-items-center">
+			                                    <div class="quantity-field">
+			                                        <label for="qty">Quantità</label>
+			                                        <input type="number" id="quantita" name="quantita" min="1" max="<%= prodotto.getQuantita() %>" value="1"/>
+			                                    </div>
+			                                    <br><br>
+                                                    <button class="btn-add-to-cart" onclick="addToCart('<% out.print(prodotto.getId()); %>')" value="Acquista">Acquista</button>
+                                                <%
+                                                } else {
+                                                    if(prodotto.getQuantita() != 0) {
+                                                    %>   
+                                                        <button class="btn-add-to-cart" onclick="window.location.href='loginPage.jsp'" value="Acquista">Accedi per acquistare</button>
+                                                    <% 
+                                                    } else { 
+                                                    %>
+                                                        <button class="btn-add-to-cart" value="Acquista">Esaurito</button>
+                                                    <%
+                                                    }
+                                                }	
+                                            }
+                                            %>
                                             
 								 <% } %>	
                                 </div>

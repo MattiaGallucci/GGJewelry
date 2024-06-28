@@ -89,11 +89,11 @@
 										        }
 								%>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Username" id="username" name="username" required/>
+                                        <input type="text" placeholder="Username" id="usernameLogin" name="usernameLogin" required/>
                                     </div>
 
                                     <div class="single-input-item">
-                                        <input type="password" placeholder="Password" id="password" name="password" required/>
+                                        <input type="password" placeholder="Password" id="passwordLogin" name="passwordLogin" required/>
                                     </div>
 
                                     <div class="single-input-item">

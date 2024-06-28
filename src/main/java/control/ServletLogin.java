@@ -62,9 +62,9 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String username = request.getParameter("username");
+		String username = request.getParameter("usernameLogin");
 		Encoder encoder = Base64.getEncoder();
-		String password64 = encoder.encodeToString(request.getParameter("password").getBytes());
+		String password64 = encoder.encodeToString(request.getParameter("passwordLogin").getBytes());
 		UtenteBean user = checkLogin(username, password64);
 
 		if (user != null) {

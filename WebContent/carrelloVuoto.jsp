@@ -66,7 +66,6 @@
                     <h3>
                     	Non esitare ad acquistare da noi!!
                     </h3>    
-                    </p>
                     <a href="catalogo.jsp" class="btn-add-to-cart">Vai al catalogo</a>
                 </div>
             </div>

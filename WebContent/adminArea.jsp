@@ -11,6 +11,9 @@
 <html class="no-js" lang="zxx">
 
 <% 
+if(request.getSession().getAttribute("admin") != Boolean.TRUE)
+	response.sendRedirect("catalogo?mode=home");
+
 // Inizializza la lista dei prodotti solo se non è già presente nella sessione
 List<ProdottoBean> prodotti = (List<ProdottoBean>) session.getAttribute("prodotti");
 if (prodotti == null) {

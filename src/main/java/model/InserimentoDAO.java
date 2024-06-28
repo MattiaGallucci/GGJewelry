@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InserimentoDAO extends AbstractDAO<InserimentoBean> {
-	private static final String TABLE_NAME = "inserimento";
+    private static final String TABLE_NAME = "inserimento";
 
-	@Override
+    @Override
     public synchronized void doSave(InserimentoBean bean) throws SQLException {
         Connection con = null;
         PreparedStatement statement = null;
 
         String query = "INSERT INTO " + InserimentoDAO.TABLE_NAME
-                + " (prodottoId, ordineId, quantita) VALUES (?, ?, ?)";
+                + " (prodottoId, ordineId, quantita, immagine, nome, costo) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             con = DriverManagerConnectionPool.getConnection();
@@ -25,9 +25,12 @@ public class InserimentoDAO extends AbstractDAO<InserimentoBean> {
             statement.setString(1, bean.getProdottoId());
             statement.setInt(2, bean.getOrdineId());
             statement.setInt(3, bean.getQuantita());
+            statement.setString(4, bean.getImmagine());
+            statement.setString(5, bean.getNome());
+            statement.setInt(6, bean.getCosto());
 
-            statement.executeUpdate();  // Add this line to execute the insert
-            con.commit();  // Commit the transaction
+            statement.executeUpdate();
+            con.commit();
         } finally {
             try {
                 if (statement != null) {
@@ -39,171 +42,184 @@ public class InserimentoDAO extends AbstractDAO<InserimentoBean> {
         }
     }
 
-	public synchronized boolean doDelete(String key1, String key2) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		int result = 0;
-		String query = "DELETE FROM " + InserimentoDAO.TABLE_NAME + " WHERE prodottoId = ? AND ordineId = ?";
+    public synchronized boolean doDelete(String key1, String key2) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        int result = 0;
+        String query = "DELETE FROM " + InserimentoDAO.TABLE_NAME + " WHERE prodottoId = ? AND ordineId = ?";
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
 
-			statement.setString(1, key1);
-			statement.setString(2, key2);
+            statement.setString(1, key1);
+            statement.setInt(2, Integer.parseInt(key2));
 
-			result = statement.executeUpdate();
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
+            result = statement.executeUpdate();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
 
-		return result != 0;
-	}
+        return result != 0;
+    }
 
-	public synchronized InserimentoBean doRetrieveByKey(String key1, String key2) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		InserimentoBean inserimento = new InserimentoBean();
+    public synchronized InserimentoBean doRetrieveByKey(String key1, String key2) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        InserimentoBean inserimento = new InserimentoBean();
 
-		String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE prodottoId = ? AND ordineId = ?";
+        String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE prodottoId = ? AND ordineId = ?";
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
-			statement.setString(1, key1);
-			statement.setString(2, key2);
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
+            statement.setString(1, key1);
+            statement.setInt(2, Integer.parseInt(key2));
 
-			ResultSet result = statement.executeQuery();
+            ResultSet result = statement.executeQuery();
 
-			while (result.next()) {
-				inserimento.setProdottoId(result.getString("prodottoId"));
-				inserimento.setOrdineId(result.getInt("ordineId"));
-				inserimento.setQuantita(result.getInt("quantita"));
-			}
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
+            if (result.next()) {
+                inserimento.setProdottoId(result.getString("prodottoId"));
+                inserimento.setOrdineId(result.getInt("ordineId"));
+                inserimento.setQuantita(result.getInt("quantita"));
+                inserimento.setImmagine(result.getString("immagine"));
+                inserimento.setNome(result.getString("nome"));
+                inserimento.setCosto(result.getInt("costo"));
+            }
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
 
-		return inserimento;
-	}
+        return inserimento;
+    }
 
-	@Override
-	public synchronized List<InserimentoBean> doRetrieveAll(String order) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
+    @Override
+    public synchronized List<InserimentoBean> doRetrieveAll(String order) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
 
-		List<InserimentoBean> inserimenti = new ArrayList<>();
+        List<InserimentoBean> inserimenti = new ArrayList<>();
 
-		String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME;
+        String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME;
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
+        if (order != null && !order.equals("")) {
+            query += " ORDER BY " + order;
+        }
 
-			ResultSet result = statement.executeQuery();
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
 
-			while (result.next()) {
-				InserimentoBean inserimento = new InserimentoBean();
+            ResultSet result = statement.executeQuery();
 
-				inserimento.setProdottoId(result.getString("prodottoId"));
-				inserimento.setOrdineId(result.getInt("ordineId"));
-				inserimento.setQuantita(result.getInt("quantita"));
+            while (result.next()) {
+                InserimentoBean inserimento = new InserimentoBean();
 
-				inserimenti.add(inserimento);
-			}
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
+                inserimento.setProdottoId(result.getString("prodottoId"));
+                inserimento.setOrdineId(result.getInt("ordineId"));
+                inserimento.setQuantita(result.getInt("quantita"));
+                inserimento.setImmagine(result.getString("immagine"));
+                inserimento.setNome(result.getString("nome"));
+                inserimento.setCosto(result.getInt("costo"));
 
-		return inserimenti;
-	}
+                inserimenti.add(inserimento);
+            }
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
 
-	public synchronized List<InserimentoBean> doRetrieveByOrdine(String key) throws SQLException {
-	    Connection con = null;
-	    PreparedStatement statement = null;
-	    List<InserimentoBean> inserimenti = new ArrayList<>();
-	    InserimentoBean inserimento = null;
+        return inserimenti;
+    }
 
-	    String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE ordineId = ?";
+    public synchronized List<InserimentoBean> doRetrieveByOrdine(String key) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        List<InserimentoBean> inserimenti = new ArrayList<>();
 
-	    try {
-	        con = DriverManagerConnectionPool.getConnection();
-	        statement = con.prepareStatement(query);
-	        statement.setString(1, key); // Set the key parameter
+        String query = "SELECT * FROM " + InserimentoDAO.TABLE_NAME + " WHERE ordineId = ?";
 
-	        ResultSet result = statement.executeQuery();
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
+            statement.setInt(1, Integer.parseInt(key));
 
-	        while (result.next()) {
-	            inserimento = new InserimentoBean();
+            ResultSet result = statement.executeQuery();
 
-	            inserimento.setProdottoId(result.getString("prodottoId"));
-	            inserimento.setOrdineId(result.getInt("ordineId"));
-	            inserimento.setQuantita(result.getInt("quantita"));
+            while (result.next()) {
+                InserimentoBean inserimento = new InserimentoBean();
 
-	            inserimenti.add(inserimento);
-	        }
-	    } finally {
-	        try {
-	            if (statement != null) {
-	                statement.close();
-	            }
-	        } finally {
-	            DriverManagerConnectionPool.releaseConnection(con);
-	        }
-	    }
+                inserimento.setProdottoId(result.getString("prodottoId"));
+                inserimento.setOrdineId(result.getInt("ordineId"));
+                inserimento.setQuantita(result.getInt("quantita"));
+                inserimento.setImmagine(result.getString("immagine"));
+                inserimento.setNome(result.getString("nome"));
+                inserimento.setCosto(result.getInt("costo"));
 
-	    return inserimenti;
-	}
+                inserimenti.add(inserimento);
+            }
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
 
+        return inserimenti;
+    }
 
-	@Override
-	public synchronized boolean doUpdate(InserimentoBean bean) throws SQLException {
-		Connection con = null;
-		PreparedStatement statement = null;
-		int result = 0;
+    @Override
+    public synchronized boolean doUpdate(InserimentoBean bean) throws SQLException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        int result = 0;
 
-		String query = "UPDATE " + InserimentoDAO.TABLE_NAME
-				+ " SET prodottoId = ?, ordineId = ?, quantita = ? WHERE prodottoId = ? AND ordineId = ?";
+        String query = "UPDATE " + InserimentoDAO.TABLE_NAME
+                + " SET quantita = ?, immagine = ?, nome = ?, costo = ? WHERE prodottoId = ? AND ordineId = ?";
 
-		try {
-			con = DriverManagerConnectionPool.getConnection();
-			statement = con.prepareStatement(query);
+        try {
+            con = DriverManagerConnectionPool.getConnection();
+            statement = con.prepareStatement(query);
 
-			statement.setString(1, bean.getProdottoId());
-			statement.setInt(2, bean.getOrdineId());
-			statement.setInt(3, bean.getQuantita());
+            statement.setInt(1, bean.getQuantita());
+            statement.setString(2, bean.getImmagine());
+            statement.setString(3, bean.getNome());
+            statement.setInt(4, bean.getCosto());
+            statement.setString(5, bean.getProdottoId());
+            statement.setInt(6, bean.getOrdineId());
 
-			result = statement.executeUpdate();
+            result = statement.executeUpdate();
+            con.commit();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(con);
+            }
+        }
 
-			con.commit();
-		} finally {
-			try {
-				if (statement != null) {
-					statement.close();
-				}
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(con);
-			}
-		}
-
-		return result != 0;
-	}
+        return result != 0;
+    }
 }

@@ -7,11 +7,17 @@ public class InserimentoBean implements Serializable {
     private String prodottoId;
     private int ordineId;
     private int quantita;
+    private String immagine;
+    private String nome;
+    private int costo;
 
     public InserimentoBean() {
         this.prodottoId = "null";
         this.ordineId = -1;
         this.quantita = -1;
+        this.immagine = "null";
+        this.nome = "null";
+        this.costo = -1;
     }
 
     public String getProdottoId() {
@@ -36,6 +42,30 @@ public class InserimentoBean implements Serializable {
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
+    }
+
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine) {
+        this.immagine = immagine;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
 
     public static long getSerialversionuid() {

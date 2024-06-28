@@ -1,7 +1,5 @@
 <%@page import="model.OrdineDao"%>
 <%@page import="model.OrdineBean"%>
-<%@page import="model.ProdottoBean"%>
-<%@page import="model.ProdottoDAO"%>
 <%@page import="model.InserimentoDAO"%>
 <%@page import="model.InserimentoBean"%>
 <%@page import="java.util.List"%>
@@ -51,19 +49,9 @@
     String idOrdine = request.getParameter("id");
     if (idOrdine != null && !idOrdine.isEmpty()) {
         InserimentoDAO inserimentoDAO = new InserimentoDAO();
-        ProdottoDAO prodottoDAO = new ProdottoDAO();
         List<InserimentoBean> inserimenti = inserimentoDAO.doRetrieveByOrdine(idOrdine);
-        List<ProdottoBean> prodotti = new ArrayList<>();
         OrdineDao ordineDAO = new OrdineDao();
         OrdineBean ordine = ordineDAO.doRetrieveByKey(idOrdine);
-
-        for (InserimentoBean inserimento : inserimenti) {
-            ProdottoBean prodotto = prodottoDAO.doRetrieveByKey(inserimento.getProdottoId());
-            prodotto.setQuantita(inserimento.getQuantita());
-            prodotti.add(prodotto);
-        }
-
-        {
 %>
 
 <!--== Page Title Area Start ==-->
@@ -75,12 +63,12 @@
                     <h1>Dettagli Ordine</h1>
                     <ul class="breadcrumb">
                         <li><a href="homePage.jsp">Home</a></li>
-                        <%Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
-								if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) {%>
+                        <% Boolean isAdmin = (Boolean) request.getSession().getAttribute("admin");
+                            if (isAdmin != null && isAdmin.equals(Boolean.TRUE)) { %>
                         <li><a href="adminArea.jsp">Ordini</a></li>
-                        <%} else{%>
+                        <% } else { %>
                         <li><a href="memberArea.jsp">Ordini</a></li>
-                        <%} %>
+                        <% } %>
                         <li><a href="ordine.jsp?idOrdine=<%= idOrdine %>" class="active">Dettagli Ordine</a></li>
                     </ul>
                 </div>
@@ -105,16 +93,14 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <%
-                                for (ProdottoBean prodotto : prodotti) {
+                                for (InserimentoBean inserimento : inserimenti) {
                             %>
-
                             <tr>
-                                <td class="pro-thumbnail"><img class="img-fluid" src="<%= prodotto.getImmagine() %>" alt="Product"/></td>
-                                <td class="pro-title"><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></td>
-                                <td class="pro-price">$<%= prodotto.getCosto() %></td>
-                                <td class="pro-quantity"><%= prodotto.getQuantita() %></td>
+                                <td class="pro-thumbnail"><img class="img-fluid" src="<%= inserimento.getImmagine() %>" alt="Product"/></td>
+                                <td class="pro-title"><a href="DettaglioProdotto?id=<%= inserimento.getProdottoId() %>"><%= inserimento.getNome() %></a></td>
+                                <td class="pro-price">$<%= inserimento.getCosto() %></td>
+                                <td class="pro-quantity"><%= inserimento.getQuantita() %></td>
                             </tr>
                             <%
                                 }
@@ -133,7 +119,7 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Totale</td>
-                                    <td id="netto">$<%= ordine.getCostoTotale()%></td>
+                                    <td id="netto">$<%= ordine.getCostoTotale() %></td>
                                 </tr>
                             </table>
                         </div>
@@ -145,7 +131,6 @@
 </div>
 
 <%
-        }
     }
 %>
 

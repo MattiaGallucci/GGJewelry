@@ -1,3 +1,5 @@
+![logo](https://github.com/MattiaGallucci/GGJewelry/assets/162311884/eee89ebc-d2af-4af8-b65e-741925505cc7)
+
 Progetto E-commerce del corso di Tecnologie Software per il Web
 
 

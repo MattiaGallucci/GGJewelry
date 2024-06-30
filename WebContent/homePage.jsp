@@ -111,8 +111,7 @@
                                         <div class="product-details">
                                             <h2><a href="DettaglioProdotto?id=<%= prodotto.getId() %>"><%= prodotto.getNome() %></a></h2>
                                             <span class="price">$<%= prodotto.getCosto() %></span>
-                                            
-	                                        <%
+                                             <%
                                             if(request.getSession().getAttribute("admin") == Boolean.TRUE) {
                                             %>       	
                                             	<button class="btn-add-to-cart" onclick="window.location.href='modificaProdotto?mode=modifica&prodotto=<%= prodotto.getId() %>'">Modifica prodotto</button>
@@ -151,6 +150,7 @@
                                                 }	
                                             }
                                             %>
+	                                        
                                         </div>
                                     </div>
                                     <% } %>

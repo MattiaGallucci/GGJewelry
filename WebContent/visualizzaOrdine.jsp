@@ -118,6 +118,10 @@
                     <div class="cart-calculate-items">
                         <div class="table-responsive">
                             <table class="table table-bordered">
+                            	<tr>
+                                    <td>Spedizione</td>
+                                    <td id="netto">$ 10</td>
+                                </tr>
                                 <tr>
                                     <td>Totale</td>
                                     <td id="netto">$<%= ordine.getCostoTotale() %></td>

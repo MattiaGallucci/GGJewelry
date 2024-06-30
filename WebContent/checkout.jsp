@@ -23,7 +23,7 @@
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i"/>
 

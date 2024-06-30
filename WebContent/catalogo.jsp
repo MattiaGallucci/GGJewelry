@@ -102,8 +102,7 @@
                                             <p class="products-desc">Categoria: <%= prodotto.getCategoriaNome() %></p>
 	                                        
 	                                        
-	                                        
-	                                        <%
+	                                         <%
                                             if(request.getSession().getAttribute("admin") == Boolean.TRUE) {
                                             %>       	
                                             	<button class="btn-add-to-cart" onclick="window.location.href='modificaProdotto?mode=modifica&prodotto=<%= prodotto.getId() %>'">Modifica prodotto</button>

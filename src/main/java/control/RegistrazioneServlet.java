@@ -78,7 +78,7 @@ public class RegistrazioneServlet extends HttpServlet{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			path = "./homePage.jsp";
+			path = "catalogo?mode=home";
 			request.removeAttribute("acquisto");
 			
 			RequestDispatcher view = request.getRequestDispatcher(path);

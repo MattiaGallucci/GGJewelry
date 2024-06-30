@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @WebServlet("/catalogo")
 public class CatalogoServlet extends HttpServlet {
@@ -24,8 +26,8 @@ public class CatalogoServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String mode = request.getParameter("mode");
-    	ProdottoDAO dao = new ProdottoDAO();
+        String mode = request.getParameter("mode");
+        ProdottoDAO dao = new ProdottoDAO();
         List<ProdottoBean> prodotti = new ArrayList<>();
         List<ProdottoBean> randomProdotti = new ArrayList<>();
 
@@ -61,12 +63,20 @@ public class CatalogoServlet extends HttpServlet {
 
     private List<ProdottoBean> getRandomProducts(List<ProdottoBean> products, int count) {
         List<ProdottoBean> randomProducts = new ArrayList<>();
+        Set<Integer> selectedIndexes = new HashSet<>();
         Random random = new Random();
 
-        for (int i = 0; i < count; i++) {
+        if (products.size() <= count) {
+            // Se ci sono meno o esattamente il numero di prodotti richiesti, restituisci tutti i prodotti
+            return new ArrayList<>(products);
+        }
+
+        while (randomProducts.size() < count) {
             int randomIndex = random.nextInt(products.size());
-            ProdottoBean randomProduct = products.get(randomIndex);
-            randomProducts.add(randomProduct);
+            if (!selectedIndexes.contains(randomIndex)) {
+                randomProducts.add(products.get(randomIndex));
+                selectedIndexes.add(randomIndex);
+            }
         }
 
         return randomProducts;

@@ -126,14 +126,14 @@
 								    <div class="row">
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="text" placeholder="Password" id="password" name="password" required/>
+								                <input type="password" placeholder="Password" id="password" name="password" required/>
 								             	<p  class="errors"  style="color:red;" id="error-pwd"></p>
 								            </div>
 								        </div>
 								
 								        <div class="col-lg-6">
 								            <div class="single-input-item">
-								                <input type="text" placeholder="Conferma Password" id="passwordCheck" name="passwordCheck" required/>
+								                <input type="password" placeholder="Conferma Password" id="passwordCheck" name="passwordCheck" required/>
 								             	<p  class="errors"  style="color:red;" id="error-pwdchk"></p>
 								            </div>
 								        </div>

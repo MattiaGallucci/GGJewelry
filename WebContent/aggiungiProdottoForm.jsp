@@ -84,7 +84,7 @@
                                         </select>
                                     </div>
                                     <div class="single-input-item">
-                                        <input type="text" placeholder="Immagine URL" id="immagine" name="immagine" required>
+                                        <input type="file" accept="image/*" id="immagine" name="immagine" required>
                                     </div>
                                     
                                     <div class="single-input-item">

@@ -82,7 +82,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="follow-content-wrap">
-                            <a href="homePage.jsp" class="logo"><img src="assets/img/logo.png" alt="logo"/></a>
+                            <a href="catalogo?mode=home" class="logo"><img src="assets/img/logo.png" alt="logo"/></a>
                             <p>©. All Rights Reserved.</p>
 								<p>Choaib Goumri</p>	
 								<p>Mattia Gallucci</p>

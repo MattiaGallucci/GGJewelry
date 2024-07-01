@@ -256,7 +256,7 @@ if (prodotti == null) {
                      <!-- Single Tab Content Start -->                       
 					 <div class="tab-pane fade" id="products" role="tabpanel">
 									    <div class="myaccount-content">
-									        <h3>Gestisi Prodotti</h3>
+									        <h3>Gestisci Prodotti</h3>
 									        
 									        
 									        <a href="aggiungiProdottoForm.jsp" class="btn btn-primary mb-3">Aggiungi Prodotto</a>

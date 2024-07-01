@@ -12,7 +12,7 @@
 			<div class="row">
 				<!-- Logo Area Start -->
 				<div class="col-3 col-lg-1 col-xl-2 m-auto">
-					<a href="homePage.jsp" class="logo-area"> <img
+					<a href="catalogo?mode=home" class="logo-area"> <img
 						src="assets/img/logo.png" alt="Logo" class="img-fluid" />
 					</a>
 				</div>

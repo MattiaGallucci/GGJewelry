@@ -16,6 +16,7 @@
     <meta name="description" content="meta description">
 
     <title>Dettagli Ordine</title>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon"/>
 
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"

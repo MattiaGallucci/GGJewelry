@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
     <title>Aggiungi Informazioni</title> 
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon"/>
     
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"

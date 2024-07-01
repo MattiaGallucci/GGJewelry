@@ -10,7 +10,6 @@
     <meta name="description" content="meta description">
 
     <title>Carrello Vuoto</title>
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon"/>
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"/>

@@ -39,7 +39,7 @@ if (prodotti == null) {
     <title>Area utente</title>
 
     <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon"/>
+    
 
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"

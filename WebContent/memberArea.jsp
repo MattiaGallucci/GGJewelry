@@ -383,11 +383,12 @@
                                                 	<p  class="errors"  style="color:red;" id="error-username"></p>
                                                 </div>
 
-                                                <div class="single-input-item">
+                                                <!-- <div class="single-input-item">
                                                     <label for="email">Email</label>
                                                     <input type="email" id="emailNuovo" name="emailNuovo" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
                                                 	<p  class="errors"  style="color:red;" id="error-email"></p>
                                                 </div>
+                                                 -->
 
                                                 <fieldset>
                                                     <legend>Cambio Password</legend>

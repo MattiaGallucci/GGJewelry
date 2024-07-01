@@ -109,7 +109,7 @@
                     <% while(iterIndirizzi.hasNext()) {
                         indirizzo = iterIndirizzi.next();
                     %>
-                        <input type="radio" name="indirizzo" id="indirizzo" value="<% out.print(indirizzo.getId()); %>">
+                        <input type="radio" name="indirizzo" id="indirizzo" value="<% out.print(indirizzo.getId()); %>" required>
                         &nbsp;&nbsp;
                         <label for="indirizzo"><% out.println(indirizzo.getVia() + " " + indirizzo.getCivico() + " " 
                             + indirizzo.getCitta() + " " + indirizzo.getCap() + " " + indirizzo.getProvincia()); %></label><br><br>
@@ -121,7 +121,7 @@
 					<% while(iterMetodiPagamento.hasNext()) {
 					    metodoPagamento = iterMetodiPagamento.next();
 					    if(!metodoPagamento.getTipo().equals("iban")) { %>
-					        <input type="radio" name="metodoPagamento" id="metodoPagamento" value="<% out.print(metodoPagamento.getId()); %>">
+					        <input type="radio" name="metodoPagamento" id="metodoPagamento" value="<% out.print(metodoPagamento.getId()); %>" required>
 					        <label for="pagamento"><% out.println(metodoPagamento.getTipo() + " " + metodoPagamento.getNumeroCarta()); %></label><br><br>
 					    <% } 
 					} %>

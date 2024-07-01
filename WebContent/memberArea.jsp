@@ -462,6 +462,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+<script src="assets/js/aggiornaInfo.js"></script>
 
 </body>
 

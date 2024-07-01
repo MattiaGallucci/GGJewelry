@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Iterator;
@@ -189,6 +188,11 @@ public class ModificaInfoServlet extends HttpServlet{
 						if(!utente.getPassword().equals(pwd64)) {
 							utente.setPassword(pwd64);
 							request.getSession().setAttribute("password", pwd64);
+						}
+						
+						if(!utente.getEmail().equals(email)) {
+							utente.setEmail(email);
+							request.getSession().setAttribute("email", email);
 						}
 						
 						if(!utente.getEmail().equalsIgnoreCase(email)) {

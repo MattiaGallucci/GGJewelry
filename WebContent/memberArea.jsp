@@ -1,3 +1,5 @@
+<%@page import="java.util.Base64"%>
+<%@page import="java.util.Base64.Decoder"%>
 <%@page import="model.UtenteBean"%>
 <%@page import="model.IndirizzoBean"%>
 <%@page import="model.IndirizzoDAO"%>
@@ -20,9 +22,10 @@
     <meta name="description" content="meta description">
 
     <title>Area utente</title>
+    
 
     <!--=== Favicon ===-->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon"/>
 
     <!--== Google Fonts ==-->
     <link rel="stylesheet" type="text/css"
@@ -345,7 +348,11 @@
                                 <div class="tab-pane fade" id="account-info" role="tabpanel">
                                     <div class="myaccount-content">
                                         <h3>Dettagli dell'Account</h3>
-
+										<%
+										Decoder decoder = Base64.getDecoder();	
+										String encodedPassword = (String)request.getSession().getAttribute("password");
+										String decodedPwd = new String(decoder.decode(encodedPassword));
+										%>
                                         <div class="account-details-form">
                                             <form action="modificaInfo" id="modificaInfo" method="post">
                                             <input type="hidden" name="utente" value="<%= request.getSession().getAttribute("utente") %>">
@@ -357,6 +364,7 @@
                                                             <label for="nome">Nome</label>
                                                             <input type="text" id="nomeNuovo" name="nomeNuovo"
                                                                    placeholder="Nome" value="<%= request.getSession().getAttribute("nome") %>"/>
+                                                                   <p  class="errors"  style="color:red;" id="error-name"></p>
                                                         </div>
                                                     </div>
 
@@ -364,6 +372,7 @@
                                                         <div class="single-input-item">
                                                             <label for="cognome">Cognome</label>
                                                             <input type="text" id="cognomeNuovo" name="cognomeNuovo" placeholder="Cognome" value="<%= request.getSession().getAttribute("cognome") %>"/>
+                                                        	<p  class="errors"  style="color:red;" id="error-surname"></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -371,14 +380,16 @@
                                                 <div class="single-input-item">
                                                     <label for="username">Username</label>
                                                     <input type="text" id="usernameNuovo" name="usernameNuovo" placeholder="Username" value="<%= request.getSession().getAttribute("utente") %>"/>
+                                                	<p  class="errors"  style="color:red;" id="error-username"></p>
                                                 </div>
 
                                                 <div class="single-input-item">
                                                     <label for="email">Email</label>
                                                     <input type="email" id="emailNuovo" name="emailNuovo" placeholder="Email" value="<%= request.getSession().getAttribute("email") %>"/>
+                                                	<p  class="errors"  style="color:red;" id="error-email"></p>
                                                 </div>
 
-                                               <!--  <fieldset>
+                                                <fieldset>
                                                     <legend>Cambio Password</legend>
                                                     
 
@@ -388,21 +399,22 @@
                                                                 <label for="new-pwd">
                                                                     Password</label>
                                                                 <input type="password" id="password" name="password"
-                                                                       placeholder="Password"/>
+                                                                       placeholder="Password" value="<%= decodedPwd%>"/>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-6">
                                                             <div class="single-input-item">
-                                                                <label for="confirm-pwd">Ripeti
+                                                                <label for="passwordCheck">Ripeti
                                                                     Password</label>
                                                                 <input type="password" id="passwordCheck" name="passwordCheck"
-                                                                       placeholder="Ripeti Password"/>
+                                                                       placeholder="Ripeti Password" value="<%= decodedPwd%>"/>
+                                                            	<p  class="errors"  style="color:red;" id="error-pwd"></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
-                                                 -->
+                                                
 
                                                 <div class="single-input-item">
                                                     <input class="btn-login btn-add-to-cart" type="submit" id="modificaInfoBtn" value="Modifica dati">
@@ -450,6 +462,7 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+
 </body>
 
 </html>
